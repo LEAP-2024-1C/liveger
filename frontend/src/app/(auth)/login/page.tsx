@@ -59,7 +59,6 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                id="email"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -75,7 +74,6 @@ const Login = () => {
               </label>
               <input
                 type="password"
-                id="password"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
