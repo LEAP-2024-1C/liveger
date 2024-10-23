@@ -18,7 +18,7 @@ function Host_header() {
 				</Button>
 				{/* <div>мэссеж</div> */}
 				<Button className="rounded-full bg-green-400 p-2">
-					<Link href="">мэссеж</Link>
+					<Link href="">мэссеж 10</Link>
 				</Button>
 			</div>
 			<div className="flex">
