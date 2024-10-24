@@ -24,11 +24,8 @@ export default function Header() {
     <div className="h-12 flex flex-row justify-between items-center px-8">
       <Image src="/ger.jpg" alt="zurag1" width={30} height={30} className="" />
       <label className="relative flex flex-row items-center w-[30%]">
-        <Input
-          placeholder="Хайх газрын нэрийг бичнэ үү"
-          className="rounded-3xl"
-        />
-        <div className="bg-green-400 absolute right-2 p-2 rounded-full">
+        <Input placeholder="Search" className="rounded-3xl" />
+        <div className="bg-green-400 absolute right-2 p-1 rounded-full">
           <IoSearch className=" text-white "></IoSearch>
         </div>
       </label>
@@ -49,7 +46,7 @@ export default function Header() {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator className="" />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <span>Profile</span>
