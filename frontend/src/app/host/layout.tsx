@@ -13,7 +13,6 @@ const geistMono = localFont({
 });
 //host font
 import Host_header from "@/app/components/host/host_header";
-
 export default function Layout({
 	children,
 }: Readonly<{
@@ -22,10 +21,9 @@ export default function Layout({
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[100vh] flex flex-col justify-between`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[100vh] `}
 			>
 				<Host_header />
-				<p>host</p>
 				{children}
 			</body>
 		</html>
