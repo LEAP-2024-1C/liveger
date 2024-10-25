@@ -9,7 +9,7 @@ export default function Place() {
             <p>Save</p>
           </div>
         </div>
-        <div className="bg-stone-300 w-full h-4"></div>
+        <div className="bg-stone-300 w-full h-4">zurguud</div>
       </div>
     </div>
   );
