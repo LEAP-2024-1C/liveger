@@ -27,14 +27,17 @@ function Host_header() {
 		<div className="h-12 flex flex-row justify-between items-center px-8">
 			<Image src="/ger.jpg" alt="zurag1" width={30} height={30} className="" />
 			<div className="relative flex flex-row items-center gap-4">
+				<Button className="">
+					<Link href="/host" >Таны жагсаалт</Link>
+				</Button>
 				<Button>
-					<Link href="/host/calendar">calendar</Link>
+					<Link href="/host/calendar">Хуанли</Link>
 				</Button>
 				<Button className="">
-					<Link href="/host/dashboard">dashboard</Link>
+					<Link href="/host/dashboard">Хяналтын самбар</Link>
 				</Button>
 				<Button>
-					<Link href="/host/reservation">reservation</Link>
+					<Link href="/host/reservation">Захиалга</Link>
 				</Button>
 			</div>
 			<div className="flex flex-row items-center space-x-4">
@@ -53,69 +56,47 @@ function Host_header() {
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent className="w-56">
-						<DropdownMenuLabel>My Account</DropdownMenuLabel>
+						<DropdownMenuLabel>Миний эрх</DropdownMenuLabel>
 						<DropdownMenuSeparator className="" />
 						<DropdownMenuGroup>
 							<DropdownMenuItem>
-								<span>Profile</span>
-								<DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+								<span>Профил</span>
 							</DropdownMenuItem>
 							<DropdownMenuItem>
-								<span>Billing</span>
-								<DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+								<span>Төлбөр</span>
 							</DropdownMenuItem>
 							<DropdownMenuItem>
-								<span>Settings</span>
-								<DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+								<span>Захиалга</span>
 							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<span>Keyboard shortcuts</span>
-								<DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-							</DropdownMenuItem>
+							
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
-							<DropdownMenuItem>
-								<span>Team</span>
-							</DropdownMenuItem>
 							<DropdownMenuSub>
 								<DropdownMenuSubTrigger>
-									<span>Invite users</span>
+									<span>Хэрэглэгчидтэй харилцах</span>
 								</DropdownMenuSubTrigger>
 								<DropdownMenuPortal>
 									<DropdownMenuSubContent>
 										<DropdownMenuItem>
-											<span>Email</span>
+											<span>Имэйл</span>
 										</DropdownMenuItem>
 										<DropdownMenuItem>
-											<span>Message</span>
-										</DropdownMenuItem>
-										<DropdownMenuSeparator />
-										<DropdownMenuItem>
-											<span>More...</span>
+											<span>Мессеж</span>
 										</DropdownMenuItem>
 									</DropdownMenuSubContent>
 								</DropdownMenuPortal>
 							</DropdownMenuSub>
-							<DropdownMenuItem>
-								<span>New Team</span>
-								<DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem>
-							<span>GitHub</span>
+							<span>Тохиргоо</span>
 						</DropdownMenuItem>
 						<DropdownMenuItem>
-							<span>Support</span>
+							<span>Тусламж</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem disabled>
-							<span>API</span>
-						</DropdownMenuItem>
-						<DropdownMenuSeparator />
 						<DropdownMenuItem>
-							<span>Log out</span>
-							<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+							<span>Гарах</span>
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
