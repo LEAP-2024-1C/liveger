@@ -24,6 +24,7 @@ export default function Layout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[100vh] `}
 			>
 				<Host_header />
+				<div className="h-12"></div>
 				{children}
 			</body>
 		</html>

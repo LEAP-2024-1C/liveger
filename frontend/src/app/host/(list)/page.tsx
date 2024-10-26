@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import image from "@/app/media/images_mock_data/baigal 1.jpg";
 import image2 from "@/app/media/images_mock_data/baigal 2.jpg";
 import image3 from "@/app/media/images_mock_data/aaruul hiih.jpg"
@@ -9,7 +10,7 @@ import image4 from "@/app/media/images_mock_data/ger baigal 1.jpg"
 // mock data	
 const cards = [
 	{
-		id: 1,
+		id: "sd1f45",
 		title: "bataas home",
 		image: image,
 		info: "you can live here with your family we have 3 bedrooms and 2 bathrooms. the house is in the center of the city.",
@@ -17,7 +18,7 @@ const cards = [
 		action: "Edit",
 	},
 	{
-		id: 1,
+		id: "akshdbfue234",
 		title: "mongolian home",
 		image: image2,
 		info: "you can live here with your family we have 3 bedrooms and 2 bathrooms. the house is in the center of the city.",
@@ -25,7 +26,7 @@ const cards = [
 		action: "Edit",
 	},
 	{
-		id: 1,
+		id: "6351fdvdf45g",
 		title: "korean home",
 		image: image3,
 		info: "you can live here with your family we have 3 bedrooms and 2 bathrooms. the house is in the center of the city.",
@@ -33,7 +34,7 @@ const cards = [
 		action: "Edit",
 	},
 	{
-		id: 1,
+		id: "65sdf165dff",
 		title: "japanese home",
 		image: image4,
 		info: "you can live here with your family we have 3 bedrooms and 2 bathrooms. the house is in the center of the city.",
@@ -76,13 +77,12 @@ function Page() {
 									{card.info}
 								</p>
 								<div className="list-item-actions flex flex-wrap justify-between gap-2">
-									<Button className="flex-grow" >Засах</Button>
-									<Button className="flex-grow" >Устгах</Button>
-									{card.status === "published" ? (
-										<Button className="flex-grow" >Идвэхгүй болгох</Button>
-									) : (
-										<Button className="flex-grow" >Идвэхтэй болгох</Button>
-									)}
+									<Button className="flex-grow" >
+										<Link href={`/host/calendar/${card.id}`}>Хуанли засах</Link>
+									</Button>
+									<Button className="flex-grow" >
+										<Link href={`/host/edit/${card.id}`}>Гэр засах</Link>
+									</Button>
 								</div>
 							</div>
 						</div>

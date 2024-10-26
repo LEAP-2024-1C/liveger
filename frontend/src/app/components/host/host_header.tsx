@@ -24,40 +24,60 @@ import { FaRegUser } from "react-icons/fa";
 
 function Host_header() {
 	return (
-		<div className="h-12 flex flex-row justify-between items-center px-8">
-			<Image src="/ger.jpg" alt="zurag1" width={30} height={30} className="" />
-			<div className="relative flex flex-row items-center gap-4">
-				<Button className="">
-					<Link href="/host" >Таны жагсаалт</Link>
-				</Button>
-				<Button>
-					<Link href="/host/calendar">Хуанли</Link>
-				</Button>
-				<Button className="">
-					<Link href="/host/dashboard">Хяналтын самбар</Link>
-				</Button>
-				<Button>
-					<Link href="/host/reservation">Захиалга</Link>
-				</Button>
+		<div className="h-12 flex flex-row justify-between items-center py-4 sm:py-8 px-4 md:px-8 border-b bg-white border-gray-200 fixed z- top-0 w-full shadow-lg">
+			<div className="flex items-center">
+				<Image src="/ger.jpg" alt="zurag1" width={30} height={30} className="" />
 			</div>
-			<div className="flex flex-row items-center space-x-4">
-				<div className="flex flex-row items-center space-x-8">
-					<p>Live Ger</p>
-					<p className="flex flex-row items-center">
-						Mongolia
-						<TbWorld />
-					</p>
+			{/* Desktop navigation */}
+			<div className="hidden md:flex items-center space-x-4">
+					<Button >
+						<Link href="/host">Таны жагсаалт</Link>
+					</Button>
+					<Button >
+						<Link href="/host/calendar">Хуанли</Link>
+					</Button>
+					<Button >
+						<Link href="/host/dashboard">Хяналтын самбар</Link>
+					</Button>
+					<Button >
+						<Link href="/host/reservation">Захиалга</Link>
+					</Button>
 				</div>
+			<div className="flex items-center space-x-4">
+				{/* Mobile navigation */}
+				<div className="md:hidden">
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button variant="outline" className="rounded-full p-2">
+								<FiAlignJustify className="text-gray-600" />
+							</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent className="w-56">
+							<DropdownMenuItem>
+								<Link href="/host">Таны жагсаалт</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
+								<Link href="/host/calendar">Хуанли</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
+								<Link href="/host/dashboard">Хяналтын самбар</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
+								<Link href="/host/reservation">Захиалга</Link>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
+				</div>
+				{/* User menu */}
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant="outline" className=" rounded-3xl p-2 text-xl ">
-							<FiAlignJustify className="text-gray-600" />
+						<Button variant="outline" className="rounded-full p-2">
 							<FaRegUser className="text-gray-600" />
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent className="w-56">
 						<DropdownMenuLabel>Миний эрх</DropdownMenuLabel>
-						<DropdownMenuSeparator className="" />
+						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
 							<DropdownMenuItem>
 								<span>Профил</span>
@@ -68,7 +88,6 @@ function Host_header() {
 							<DropdownMenuItem>
 								<span>Захиалга</span>
 							</DropdownMenuItem>
-							
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
