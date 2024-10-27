@@ -11,14 +11,14 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuPortal,
 	DropdownMenuSeparator,
-	DropdownMenuShortcut,
+	// DropdownMenuShortcut,
 	DropdownMenuSub,
 	DropdownMenuSubContent,
 	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 //left corner icons
-import { TbWorld } from "react-icons/tb";
+// import { TbWorld } from "react-icons/tb";
 import { FiAlignJustify } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa";
 
@@ -26,23 +26,29 @@ function Host_header() {
 	return (
 		<div className="h-12 flex flex-row justify-between items-center py-4 sm:py-8 px-4 md:px-8 border-b bg-white border-gray-200 fixed z- top-0 w-full shadow-lg">
 			<div className="flex items-center">
-				<Image src="/ger.jpg" alt="zurag1" width={30} height={30} className="" />
+				<Image
+					src="/ger.jpg"
+					alt="zurag1"
+					width={30}
+					height={30}
+					className=""
+				/>
 			</div>
 			{/* Desktop navigation */}
 			<div className="hidden md:flex items-center space-x-4">
-					<Button >
-						<Link href="/host">Таны жагсаалт</Link>
-					</Button>
-					<Button >
-						<Link href="/host/calendar">Хуанли</Link>
-					</Button>
-					<Button >
-						<Link href="/host/dashboard">Хяналтын самбар</Link>
-					</Button>
-					<Button >
-						<Link href="/host/reservation">Захиалга</Link>
-					</Button>
-				</div>
+				<Button>
+					<Link href="/host">Таны жагсаалт</Link>
+				</Button>
+				<Button>
+					<Link href="/host/calendar">Хуанли</Link>
+				</Button>
+				<Button>
+					<Link href="/host/dashboard">Хяналтын самбар</Link>
+				</Button>
+				<Button>
+					<Link href="/host/reservation">Захиалга</Link>
+				</Button>
+			</div>
 			<div className="flex items-center space-x-4">
 				{/* Mobile navigation */}
 				<div className="md:hidden">
