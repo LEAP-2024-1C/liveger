@@ -32,30 +32,36 @@ export default function Place() {
             </section>
           </div>
         </div>
-        <div className=" w-full rounded-2xl grid grid-cols-4 gap-2">
+        <div className=" w-full grid grid-cols-4 gap-2">
           {maplakhData[paramId].images.map((image, index) => {
             return (
               <>
                 {index === 0 ? (
-                  <div className="col-span-2 row-span-2">
-                    {/* <Image
+                  <div className="col-span-2 row-span-2 h-full">
+                    <Image
                       key={index}
                       src={image}
                       alt="zurguud"
-                      layout="fill"
+                      layout="responsive"
+                      width={100}
+                      height={100}
                       objectFit="cover"
                       className=" rounded-xl"
-                    /> */}
+                    />
                   </div>
                 ) : (
-                  <Image
-                    key={index}
-                    src={image}
-                    alt="zurguud"
-                    layout="fill"
-                    objectFit="cover"
-                    className=" rounded-xl"
-                  />
+                  <div className="h-full">
+                    <Image
+                      key={index}
+                      src={image}
+                      alt="zurguud"
+                      layout="responsive"
+                      width={100}
+                      height={100}
+                      objectFit="cover"
+                      className=" rounded-xl"
+                    />
+                  </div>
                 )}
               </>
             );

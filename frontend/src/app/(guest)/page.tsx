@@ -4,7 +4,7 @@ import UserHome from "../components/home";
 export default function Home() {
   return (
     <div className="container min-w-full mx-auto flex flex-col space-y-5 mb-10">
-      <div className="min-w-[100%] h-1/3 relative">
+      <div className="min-w-[100%] min-h-[30%] relative">
         <Image
           src="/sarlag.jpg"
           alt="sarlag"
