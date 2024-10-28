@@ -7,8 +7,13 @@ import { Button } from "@/components/ui/button";
 //get titel api
 //put titel api
 
-function EditTitel() {
-	const [garchig, setGarchig] = useState("");
+// Add props interface
+interface EditTitelProps {
+	title: string;
+}
+
+function EditTitel({ title }: EditTitelProps) {
+	const [garchig, setGarchig] = useState(title);
 	return (
 		<div className="container mx-auto border border-green-400 rounded-xl p-6">
 			<h1 className="font-bold text-2xl">Гарчиг:{garchig}</h1>

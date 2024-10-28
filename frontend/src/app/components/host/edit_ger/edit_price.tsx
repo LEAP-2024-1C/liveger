@@ -14,11 +14,15 @@ async function fetchMntUsdCompare() {
 	return data.rates.MNT;
 }
 
-function EditPrice() {
-	const [priceusd, setPriceusd] = useState(0); //default value from backend
-	const [pricemn, setPricemn] = useState(0); //default value from backend
-	const [mntUsdCompare, setMntUsdCompare] = useState(3400); //default value for compare
+// Add props interface
+interface EditPriceProps {
+	price: number;
+}
 
+function EditPrice({ price }: EditPriceProps) {
+	const [priceusd, setPriceusd] = useState(price); //default value from backend
+	const [mntUsdCompare, setMntUsdCompare] = useState(3400); //default value for compare
+	const [pricemn, setPricemn] = useState(price * mntUsdCompare * 0.9);
 	useEffect(() => {
 		fetchMntUsdCompare().then((data) => setMntUsdCompare(data));
 	}, []);

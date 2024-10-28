@@ -6,8 +6,13 @@ import { Button } from "@/components/ui/button";
 //get guest number api
 //put guest number api
 
-function EditGuestNumber() {
-	const [guestNumber, setGuestNumber] = useState(0);
+// Add props interface
+interface EditGuestNumberProps {
+	guest_number: number;
+}
+
+function EditGuestNumber({ guest_number }: EditGuestNumberProps) {
+	const [guestNumber, setGuestNumber] = useState(guest_number);
 	return (
 		<div className="container mx-auto border border-green-400 rounded-xl p-6">
 			<h1 className="font-bold text-2xl">Зочдын дээд тоо: {guestNumber}</h1>
