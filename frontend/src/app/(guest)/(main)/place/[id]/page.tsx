@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
-import { useState } from "react";
+// import { useState } from "react";
 import { Rate } from "antd";
 import { maplakhData } from "@/app/components/home";
 import { useParams } from "next/navigation";

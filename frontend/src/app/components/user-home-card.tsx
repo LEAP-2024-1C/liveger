@@ -1,11 +1,10 @@
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { BsHeart } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
@@ -26,7 +25,7 @@ export function UserCard({
   price: string;
   review: number;
   distance: string;
-  carouselItems: any;
+  carouselItems: React.ReactNode[];
   guestFav: boolean;
   id: number;
 }) {
