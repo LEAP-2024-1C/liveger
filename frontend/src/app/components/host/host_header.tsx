@@ -24,7 +24,7 @@ import { FaRegUser } from "react-icons/fa";
 
 function Host_header() {
 	return (
-		<div className="h-12 flex flex-row justify-between items-center py-4 sm:py-8 px-4 md:px-8 border-b bg-white border-gray-200 fixed z- top-0 w-full shadow-lg">
+		<div className="h-12 flex flex-row justify-between items-center py-4 sm:py-8 px-4 md:px-8 border-b bg-white border-gray-200 fixed z-50 top-0 w-full shadow-lg">
 			<div className="flex items-center">
 				<Image
 					src="/ger.jpg"
