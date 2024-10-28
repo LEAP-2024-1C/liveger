@@ -19,3 +19,14 @@ export const createService = async (req: Request, res: Response) => {
       .json({ message: "service uusehed aldaa garlaa tottotototo" });
   }
 };
+export const getServices = async (req: Request, res: Response) => {
+  try {
+    const getServices = await UServices.find({});
+    res.status(201).json({ message: "amjilttai", getServices });
+  } catch (error) {
+    console.error("serviceuudiig harahad yamar negen aldaa garlaa", error);
+    res
+      .status(400)
+      .json({ message: "serviceuudiig harahad aldaa garlaa tottotototo" });
+  }
+};
