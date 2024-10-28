@@ -10,7 +10,7 @@ import { FaShareAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 
 export default function Place() {
-  const [rating, setRating] = useState(5);
+  // const [rating, setRating] = useState(5);
   const params = useParams();
   const paramId = +params.id;
   console.log("paramiig harah", paramId);
@@ -36,42 +36,27 @@ export default function Place() {
           {maplakhData[paramId].images.map((image, index) => {
             return (
               <>
-                {index === 0 && (
+                {index === 0 ? (
+                  <div className="col-span-2 row-span-2">
+                    {/* <Image
+                      key={index}
+                      src={image}
+                      alt="zurguud"
+                      layout="fill"
+                      objectFit="cover"
+                      className=" rounded-xl"
+                    /> */}
+                  </div>
+                ) : (
                   <Image
+                    key={index}
                     src={image}
                     alt="zurguud"
-                    width={800}
-                    height={800}
-                    className="col-span-2 row-span-2 rounded-l-xl"
+                    layout="fill"
+                    objectFit="cover"
+                    className=" rounded-xl"
                   />
                 )}
-                {index === 2 && (
-                  <Image
-                    src={image}
-                    alt="zurguud"
-                    width={400}
-                    height={400}
-                    className="object-cover rounded-tr-xl"
-                  />
-                )}
-                {index === 4 && (
-                  <Image
-                    src={image}
-                    alt="zurguud"
-                    width={400}
-                    height={400}
-                    className="object-cover rounded-br-xl"
-                  />
-                )}
-                {index === 1 || index === 3 ? (
-                  <Image
-                    src={image}
-                    alt="zurguud"
-                    width={400}
-                    height={400}
-                    className="object-cover"
-                  />
-                ) : null}
               </>
             );
           })}
