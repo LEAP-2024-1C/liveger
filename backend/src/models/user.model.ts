@@ -9,8 +9,6 @@ interface IUser {
   phoneNumber: string;
   password: string;
   role: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 const userSchema = new Schema<IUser>(
@@ -38,14 +36,6 @@ const userSchema = new Schema<IUser>(
       type: String,
       enum: ["user", "host"],
       default: "user",
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
     },
   },
   {

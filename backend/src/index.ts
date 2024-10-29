@@ -6,7 +6,7 @@ import { logger } from "./middlewares/logger";
 import serviceRouter from "./routes/service.route";
 import authRouter from "./routes/auth.route";
 import placeRouter from "./routes/places.route";
-
+import calendarRouter from "./routes/calendar.route";
 dotenv.config();
 const PORT = process.env.PORT;
 const mongoUrl = process.env.URL || "";
@@ -18,6 +18,7 @@ app.use(logger());
 app.use("/api/v1/service", serviceRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/places", placeRouter);
+app.use("/api/v1/calendar", calendarRouter);
 
 connectDatabase(mongoUrl);
 app.listen(PORT, () => {
