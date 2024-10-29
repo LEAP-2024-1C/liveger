@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
 interface Places {
   _id: Schema.Types.ObjectId;
@@ -10,7 +10,7 @@ interface Places {
   status: boolean;
   location: string;
   price: number;
-  calendar: Schema.Types.ObjectId;
+  // calendar: Schema.Types.ObjectId;
   services: Schema.Types.ObjectId;
   updated_at: Date;
   created_at: Date;
@@ -24,7 +24,8 @@ const placeSchema = new Schema<Places>(
     status: { type: Boolean, default: true },
     location: { type: String, required: true },
     price: { type: Number, required: true },
-
+    // calendar: { type: Schema.Types.ObjectId, required: true, ref: "Calendar" },
+    services: { type: Schema.Types.ObjectId, required: true, ref: "UServices" },
     updated_at: {
       type: Date,
       default: Date.now,
@@ -36,3 +37,4 @@ const placeSchema = new Schema<Places>(
   },
   { timestamps: true }
 );
+export const Places = model<Places>("Places", placeSchema);

@@ -10,7 +10,7 @@ export const createService = async (req: Request, res: Response) => {
       isChecked,
     });
     res
-      .status(200)
+      .status(201)
       .json({ message: "service amjilttai uuslee", createService });
   } catch (error) {
     console.error("service uusgehed yamar negen aldaa garlaa", error);
