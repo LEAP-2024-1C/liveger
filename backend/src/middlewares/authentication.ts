@@ -9,7 +9,11 @@ declare global {
   }
 }
 
-export const auth = (req: Request, res: Response, next: NextFunction) => {
+export const authentication = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   if (!req.headers.authorization) {
     return res.status(401).json({
       message: "зөвхөн нэвтэрсэн хэрэглэгч дараах үйлдлийг хийж болно",
