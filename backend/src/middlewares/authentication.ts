@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { decodeToken } from "../utils/jsonwebtoken";
+import User from "../models/user.model";
 
 declare global {
   namespace Express {
@@ -9,7 +10,7 @@ declare global {
   }
 }
 
-export const authentication = (
+export const authentication = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -20,7 +21,8 @@ export const authentication = (
     });
   }
   const token = req.headers.authorization.split(" ")[1];
-  const user = decodeToken(token);
-  req.user = user;
+  const user: any = decodeToken(token);
+  const findUser = await User.findById(user.id);
+  req.user = findUser;
   next();
 };

@@ -7,13 +7,8 @@ export const authorize = async (
   next: NextFunction
 ) => {
   try {
-    const { id } = req.user;
-    console.log("id iig harah", id);
-    if (!id) {
-      return res.status(401).json({ message: "заавал нэвтэрч орно уу" });
-    }
-    const user = await User.findById(id);
-    console.log("useriig harah", user);
+    const user = req.user;
+
     if (!user || user.role !== "host") {
       return res
         .status(403)

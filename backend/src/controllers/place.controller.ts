@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import { Places } from "../models/places.model";
 
 export const createPlace = async (req: Request, res: Response) => {
-  const { title, info, images, status, location, price, services } = req.body;
+  const { hostName, title, info, images, status, location, price, services } =
+    req.body;
   try {
     const placeUusgekh = await Places.create({
+      hostName,
       title,
       info,
       images,
