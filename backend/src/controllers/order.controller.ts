@@ -1,32 +1,39 @@
 import { Request, Response } from "express";
 import { Order } from "../models/order.model";
 import { Places } from "../models/places.model";
-import { intervalToDuration } from "date-fns";
 
-interface placePriceInterface {}
 export const createOrder = async (req: Request, res: Response) => {
   const { userId, place, numberOfPeople, startDate, endDate } = req.body;
+  const sDate = new Date(startDate);
+  const eDate = new Date(endDate);
+
   try {
     const findPrice = await Places.findOne({ _id: place });
-    const placesPrice: number | undefined = findPrice?.price;
-    const dateRange = intervalToDuration({ start: startDate, end: endDate });
-    const days = dateRange?.days;
-    // const niitHuniiNegUdriinTulbur = Math.ceil(
-    //   numberOfPeople * placesPrice * days
-    // );
+    if (!findPrice) {
+      return res
+        .status(400)
+        .json({ message: "tani songoson place oldohgui bna" });
+    }
+    const placesPrice = findPrice?.price;
+    const dateRangeInMillSec: number = Math.abs(
+      eDate.getTime() - sDate.getTime()
+    );
+    const millsecInDay: number = 1000 * 60 * 60 * 24;
+    const dateRange: number = Math.floor(dateRangeInMillSec / millsecInDay);
+    const niitHuniiNiitUdriinTulbur = Math.ceil(
+      numberOfPeople * placesPrice * dateRange
+    );
     const addOrder = await Order.create({
       userId,
       place,
       numberOfPeople,
       startDate,
       endDate,
+      totalPrice: niitHuniiNiitUdriinTulbur,
     });
     res.status(200).json({
       message: "zahialga amjilttai uusgesen",
       addOrder,
-      placesPrice,
-      dateRange,
-      days,
     });
   } catch (error) {
     console.log("zahialga uusgehed yamar negen aldaa garlaa", error);
