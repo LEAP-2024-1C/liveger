@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { formatDuration } from "date-fns";
 import { model, Schema } from "mongoose";
 
 interface Places {
@@ -10,7 +10,7 @@ interface Places {
   status: boolean;
   location: string;
   price: number;
-  // calendar: Schema.Types.ObjectId;
+  calendar: Schema.Types.ObjectId;
   services: Schema.Types.ObjectId;
 }
 
@@ -23,7 +23,11 @@ const placeSchema = new Schema<Places>(
     status: { type: Boolean, default: true },
     location: { type: String, required: true },
     price: { type: Number, required: true },
-    // calendar: { type: Schema.Types.ObjectId, required: true, ref: "Calendar" },
+    calendar: {
+      type: Schema.Types.ObjectId,
+      default: { startDate: Date.now, dateRange: formatDuration({ years: 1 }) },
+      ref: "Calendar",
+    },
     services: { type: Schema.Types.ObjectId, required: true, ref: "UServices" },
   },
   { timestamps: true }

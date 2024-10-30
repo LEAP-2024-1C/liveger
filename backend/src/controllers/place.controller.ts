@@ -2,8 +2,17 @@ import { Request, Response } from "express";
 import { Places } from "../models/places.model";
 
 export const createPlace = async (req: Request, res: Response) => {
-  const { hostName, title, info, images, status, location, price, services } =
-    req.body;
+  const {
+    hostName,
+    title,
+    info,
+    images,
+    status,
+    location,
+    price,
+    services,
+    calendar,
+  } = req.body;
   try {
     const placeUusgekh = await Places.create({
       hostName,
@@ -14,6 +23,7 @@ export const createPlace = async (req: Request, res: Response) => {
       location,
       price,
       services,
+      calendar,
     });
     res.status(201).json({ message: "place uusgekh amjilttai", placeUusgekh });
   } catch (error) {
@@ -25,7 +35,9 @@ export const createPlace = async (req: Request, res: Response) => {
 };
 export const getPlaces = async (req: Request, res: Response) => {
   try {
-    const getPlaces = await Places.find({}).populate("services");
+    const getPlaces = await Places.find({})
+      .populate("services")
+      .populate("calendar");
     res.status(201).json({ message: "placeuudiig harah amjilttai", getPlaces });
   } catch (error) {
     console.error("placeuudiig harahad yamar negen aldaa garlaa", error);

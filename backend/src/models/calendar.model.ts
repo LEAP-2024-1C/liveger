@@ -1,15 +1,15 @@
 import { model, Schema } from "mongoose";
 
 interface Calendar {
-  id: Schema.Types.ObjectId;
-  startDay: Date;
-  howManyDays: number;
+  startDate: Date;
+  endDate: Date;
+  dateRange: object;
 }
 
 const calendarSchema = new Schema<Calendar>(
   {
-    startDay: { type: Date, required: true },
-    howManyDays: { type: Number, required: true },
+    startDate: { type: Date, default: Date.now },
+    endDate: { type: Date, default: },
   },
   { timestamps: true }
 );
