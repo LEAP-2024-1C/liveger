@@ -112,7 +112,7 @@ const Month: React.FC<MonthProps> = ({
 	return (
 		<div className="mb-8 p-2 border-green-400 border-4 shadow-2xl rounded-2xl">
 			<h2 className="text-xl sm:text-2xl font-bold mb-4">
-				{monthName} {year}
+				{year} оны {monthName} сар
 			</h2>
 			<div className="grid grid-cols-7 gap-1 sm:gap-2 mb-2">
 				{weekdays.map((day) => (
