@@ -40,9 +40,6 @@ function Host_header() {
 					<Link href="/host">Таны жагсаалт</Link>
 				</Button>
 				<Button>
-					<Link href="/host/calendar">Хуанли</Link>
-				</Button>
-				<Button>
 					<Link href="/host/dashboard">Хяналтын самбар</Link>
 				</Button>
 				<Button>
@@ -61,9 +58,6 @@ function Host_header() {
 						<DropdownMenuContent className="w-56">
 							<DropdownMenuItem>
 								<Link href="/host">Таны жагсаалт</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Link href="/host/calendar">Хуанли</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem>
 								<Link href="/host/dashboard">Хяналтын самбар</Link>

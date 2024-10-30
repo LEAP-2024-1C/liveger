@@ -42,7 +42,7 @@ function Calendar({
 	const nextMonths = getNextMonths(currentMonth, currentYear, 12);
 
 	return (
-		<div className="container mx-auto px-2 sm:px-4 box-border w-4/5">
+		<div className="container mx-auto px-2 sm:px-4 box-border w-4/5 ">
 			<div className="space-y-8">
 				{nextMonths.map(({ monthIndex, year }) => (
 					<Month
