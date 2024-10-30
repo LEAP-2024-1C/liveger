@@ -3,7 +3,7 @@ import { Places } from "../models/places.model";
 
 export const createPlace = async (req: Request, res: Response) => {
   const {
-    hostName,
+    hostId,
     title,
     info,
     images,
@@ -15,7 +15,7 @@ export const createPlace = async (req: Request, res: Response) => {
   } = req.body;
   try {
     const placeUusgekh = await Places.create({
-      hostName,
+      hostId,
       title,
       info,
       images,

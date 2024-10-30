@@ -1,3 +1,4 @@
+import { formatDuration, intervalToDuration } from "date-fns";
 import { model, Schema } from "mongoose";
 
 interface Calendar {
@@ -9,7 +10,11 @@ interface Calendar {
 const calendarSchema = new Schema<Calendar>(
   {
     startDate: { type: Date, default: Date.now },
-    endDate: { type: Date, default: },
+    endDate: { type: Date, required: true },
+    dateRange: {
+      type: Object,
+      default: {},
+    },
   },
   { timestamps: true }
 );
