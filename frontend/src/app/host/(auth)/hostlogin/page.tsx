@@ -1,12 +1,40 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { UserContext } from "@/app/context/user.context";
+import { useRouter } from "next/navigation";
+
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const HostLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { setToken } = useContext(UserContext);
+  const router = useRouter();
+  const [HostData, setHostData] = useState({
+    email: "",
+    password: "",
+  });
+  const hostlogin = async () => {
+    const { email, password } = HostData;
+    try {
+      const res = await axios.post(`http://localhost:9002/api/v1/auth/login`, {
+        email,
+        password,
+      });
+      if (res.status === 200) {
+        toast.success("Амжилттай нэвтэрлээ", { autoClose: 1000 });
+        const { token } = res.data;
+        localStorage.setItem("token", token);
+        setToken(token);
+        router.push("/host");
+      }
+    } catch (error) {
+      console.log("There was an error  in:", error);
+      toast.error("Нэвтрэхэд алдаа гарлаа");
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,10 +75,11 @@ const HostLogin = () => {
                 type="email"
                 id="email"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={HostData.email}
+                onChange={(e) =>
+                  setHostData({ ...HostData, email: e.target.value })
+                }
                 placeholder="И-мэйл хаягаа оруулна уу"
-                required
               />
             </div>
             <div className="mb-6">
@@ -64,16 +93,18 @@ const HostLogin = () => {
                 type="password"
                 id="password"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={HostData.password}
+                onChange={(e) =>
+                  setHostData({ ...HostData, password: e.target.value })
+                }
                 placeholder="Нууц үгээ оруулна уу"
-                required
               />
             </div>
             <div className="flex items-center justify-between mb-6">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
                 type="submit"
+                onClick={hostlogin}
               >
                 Нэвтрэх
               </button>
