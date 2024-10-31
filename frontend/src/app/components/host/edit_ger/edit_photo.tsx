@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Trash2Icon, PlusIcon } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
+import { CldUploadWidget } from "next-cloudinary";
+import { Result } from "postcss";
 
 type imageData = {
 	image: string;
@@ -48,6 +50,17 @@ function Add_photo({ image_data }: { image_data: imageData[] }) {
 					</div>
 				))}
 				<Button className="h-48 sm:h-64 bg-slate-200  rounded-xl flex justify-center items-center">
+					<CldUploadWidget
+						uploadPreset="liveger_public"
+						onSuccess={(results) => {
+							console.log("URL :", results);
+						}}
+					>
+						{({ open }) => {
+							return <button onClick={() => open()}>Upload an Image</button>;
+						}}
+					</CldUploadWidget>
+
 					<PlusIcon className="w-10 h-10" />
 				</Button>
 			</div>
