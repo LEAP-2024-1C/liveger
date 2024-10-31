@@ -2,48 +2,36 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Link from "next/link";
-import image from "@/app/media/images_mock_data/baigal 1.jpg";
-import image2 from "@/app/media/images_mock_data/baigal 2.jpg";
-import image3 from "@/app/media/images_mock_data/aaruul hiih.jpg";
-import image4 from "@/app/media/images_mock_data/ger baigal 1.jpg";
-// mock data
-const cards = [
-	{
-		id: "sd1f45",
-		title: "bataas home",
-		image: image,
-		info: "you can live here with your family we have 3 bedrooms and 2 bathrooms. the house is in the center of the city.",
-		status: "published",
-		action: "Edit",
-	},
-	{
-		id: "akshdbfue234",
-		title: "mongolian home",
-		image: image2,
-		info: "you can live here with your family we have 3 bedrooms and 2 bathrooms. the house is in the center of the city.",
-		status: "unpublished",
-		action: "Edit",
-	},
-	{
-		id: "6351fdvdf45g",
-		title: "korean home",
-		image: image3,
-		info: "you can live here with your family we have 3 bedrooms and 2 bathrooms. the house is in the center of the city.",
-		status: "unpublished",
-		action: "Edit",
-	},
-	{
-		id: "65sdf165dff",
-		title: "japanese home",
-		image: image4,
-		info: "you can live here with your family we have 3 bedrooms and 2 bathrooms. the house is in the center of the city.",
-		status: "published",
-		action: "Edit",
-	},
-];
+interface CardProps {
+	id: string;
+	title: string;
+	image: string[];
+	info: string;
+	status: string;
+	action: string;
+}
+const getList = async (): Promise<object[]> => {
+	try {
+		const response = await axios.get("http://localhost:9002/api/v1/places", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+			},
+		});
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return []; // Return an empty array in case of an error
+	}
+};
 
 function Page() {
+	const [cards, setCards] = useState(getList());
+	console.log(cards);
+
 	return (
 		<div className="container  mx-auto p-4">
 			<div className="list-header flex flex-col sm:flex-row justify-between items-center mt-8">
@@ -54,14 +42,14 @@ function Page() {
 			</div>
 			<div className="list-container">
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-					{cards.map((card) => (
+					{/* {cards.map((card) => (
 						<div
 							key={card.id}
 							className="card mx-auto flex flex-col justify-between w-full max-w-sm h-[28rem] border-4 rounded-xl shadow-lg"
 						>
 							<div className="list-item-image relative h-48 sm:h-64">
 								<Image
-									src={card.image}
+									src={card.image[0]}
 									alt={card.title}
 									layout="fill"
 									objectFit="cover"
@@ -96,7 +84,7 @@ function Page() {
 								</div>
 							</div>
 						</div>
-					))}
+					))} */}
 				</div>
 			</div>
 		</div>

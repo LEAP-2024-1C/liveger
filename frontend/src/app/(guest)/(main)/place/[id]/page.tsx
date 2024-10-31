@@ -1,6 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
 // import { useState } from "react";
 import { Rate } from "antd";
@@ -8,44 +6,44 @@ import { maplakhData } from "@/app/components/home";
 import { useParams } from "next/navigation";
 import { FaShareAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
-import { FaStarHalf } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
 import GuestDetailGridZurag from "@/app/components/guest_detail_grid_zurag";
 import BookingCard from "@/app/components/booking-card";
 import HostProfile from "@/app/components/host-profile";
 import AvailableActivities from "@/app/components/available-activities";
 import PlaceDescription from "@/app/components/place-description";
+import { routeModule } from "next/dist/build/templates/app-page";
+import { useRouter } from "next/navigation";
 
 interface Todo {
-	id: number;
+	id: string;
 	name: string;
 	Description: string;
 }
 
 const available_todo_mockdata = [
 	{
-		id: 1,
+		id: "1",
 		name: "ride horse",
 		Description: "you can ride horse anywhere anytime in the day",
 	},
 	{
-		id: 2,
+		id: "2",
 		name: "make yoghurt",
 		Description: "you can make yoghurt every morning",
 	},
 	{
-		id: 3,
+		id: "3",
 		name: "make tea",
 		Description: "you can make tea every morning",
 	},
 	{
-		id: 4,
+		id: "4",
 		name: "make coffee",
 		Description: "you can make coffee every morning",
 	},
 	{
-		id: 5,
+		id: "5",
 		name: "make bread",
 		Description: "you can make bread every morning",
 	},
@@ -53,13 +51,53 @@ const available_todo_mockdata = [
 
 export default function Place() {
 	// const [rating, setRating] = useState(5);
+	const router = useRouter();
 	const params = useParams();
 	const paramId = +params.id;
 	console.log("paramiig harah", paramId);
 
-	const handleBookingRequest = () => {
-		// Add booking request logic here
-		console.log("Booking requested");
+	const handleBookingRequest = (
+		startDate: string,
+		endDate: string,
+		numberOfGuests: Number,
+		thisParamid: string
+	) => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			console.log("token bna", token);
+			console.log(
+				"startDate: ",
+				startDate,
+				"endDate: ",
+				endDate,
+				"numberOfGuests: ",
+				numberOfGuests,
+				"thisParamid ",
+				thisParamid
+			);
+			fetch("http://localhost:9002/api/v1/order/add", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify({
+					place: "6723059985721dd0bee8cb42",
+					startDate: startDate,
+					endDate: endDate,
+					numberOfPeople: numberOfGuests,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log("Booking request successful:", data);
+				})
+				.catch((error) => {
+					console.error("Error sending booking request:", error);
+				});
+		} else {
+			router.push("/login");
+		}
 	};
 
 	return (
@@ -107,7 +145,10 @@ export default function Place() {
 							}
 						/>
 					</div>
-					<BookingCard onBookingRequest={handleBookingRequest} />
+					<BookingCard
+						thisplaceId={paramId.toString()}
+						onBookingRequest={handleBookingRequest}
+					/>
 				</div>
 			</div>
 		</div>
