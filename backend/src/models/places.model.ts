@@ -11,7 +11,14 @@ interface Places {
   location: string;
   price: number;
   availableDateRange: object;
-  calendar: [Schema.Types.ObjectId];
+  calendar: [
+    {
+      userOrderDates: [
+        { orderId: Schema.Types.ObjectId; startDate: Date; endDate: Date }
+      ];
+    },
+    { blockedDate: [{ sDate: Date; eDate: Date }] }
+  ];
   services: Schema.Types.ObjectId;
 }
 
@@ -25,11 +32,29 @@ const placeSchema = new Schema<Places>(
     location: { type: String, required: true },
     price: { type: Number, required: true },
     availableDateRange: { type: Object, default: formatDuration({ years: 1 }) },
-    calendar: {
-      type: [Schema.Types.ObjectId],
-      required: true,
-      ref: "Calendar",
-    },
+    calendar: [
+      {
+        userOrderDates: [
+          {
+            orderId: {
+              type: Schema.Types.ObjectId,
+              required: true,
+              ref: "Order",
+            },
+            startDate: { type: Date, required: true },
+            endDate: { type: Date, required: true },
+          },
+        ],
+      },
+      {
+        blockedDate: [
+          {
+            sDate: { type: Date, default: 0 },
+            eDate: { type: Date, default: 0 },
+          },
+        ],
+      },
+    ],
     services: { type: Schema.Types.ObjectId, required: true, ref: "UServices" },
   },
   { timestamps: true }

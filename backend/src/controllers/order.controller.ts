@@ -9,6 +9,7 @@ export const createOrder = async (req: Request, res: Response) => {
 
   try {
     const findPrice = await Places.findOne({ _id: place });
+    console.log("FP", findPrice?.calendar[0]);
     if (!findPrice) {
       return res
         .status(400)
@@ -16,7 +17,7 @@ export const createOrder = async (req: Request, res: Response) => {
     }
     const placesPrice = findPrice?.price;
     const dateRangeInMillSec: number = Math.abs(
-      eDate.getTime() - sDate.getTime()
+      eDate.getTime() - sDate.getTime() + 1000 * 60 * 60 * 24
     );
     const millsecInDay: number = 1000 * 60 * 60 * 24;
     const dateRange: number = Math.floor(dateRangeInMillSec / millsecInDay);
@@ -31,6 +32,15 @@ export const createOrder = async (req: Request, res: Response) => {
       endDate,
       totalPrice: niitHuniiNiitUdriinTulbur,
     });
+    // console.log("addOrder", addOrder);
+
+    findPrice.calendar.userOrderDates.push({
+      orderId: addOrder._id,
+      startDate: addOrder.startDate,
+      endDate: addOrder.endDate,
+    });
+
+    // findPrice.hostId = addOrder.;
     res.status(200).json({
       message: "zahialga amjilttai uusgesen",
       addOrder,
