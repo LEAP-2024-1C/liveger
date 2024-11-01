@@ -49,8 +49,8 @@ const placeSchema = new Schema<Places>(
       {
         blockedDate: [
           {
-            sDate: { type: Date, default: 0 },
-            eDate: { type: Date, default: 0 },
+            sDate: { type: Date, default: Date.now },
+            eDate: { type: Date, default: Date.now },
           },
         ],
       },

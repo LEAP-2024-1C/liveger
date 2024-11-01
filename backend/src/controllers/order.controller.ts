@@ -15,6 +15,11 @@ export const createOrder = async (req: Request, res: Response) => {
         .status(400)
         .json({ message: "tani songoson place oldohgui bna" });
     }
+    const calendarEnter = findPrice.calendar[0];
+    console.log(
+      "calendarenterdotorhuseroderdate",
+      calendarEnter.userOrderDates
+    );
     const placesPrice = findPrice?.price;
     const dateRangeInMillSec: number = Math.abs(
       eDate.getTime() - sDate.getTime() + 1000 * 60 * 60 * 24
@@ -33,14 +38,25 @@ export const createOrder = async (req: Request, res: Response) => {
       totalPrice: niitHuniiNiitUdriinTulbur,
     });
     // console.log("addOrder", addOrder);
-
-    findPrice.calendar.userOrderDates.push({
+    if (!calendarEnter.userOrderDates) {
+      return (
+        (calendarEnter.userOrderDates = [
+          {
+            orderId: addOrder._id,
+            startDate: addOrder.startDate,
+            endDate: addOrder.endDate,
+          },
+        ]),
+        await findPrice.save()
+      );
+    }
+    calendarEnter.userOrderDates.push({
       orderId: addOrder._id,
       startDate: addOrder.startDate,
       endDate: addOrder.endDate,
     });
-
-    // findPrice.hostId = addOrder.;
+    console.log("ceorderdate", calendarEnter.userOrderDates);
+    await findPrice.save();
     res.status(200).json({
       message: "zahialga amjilttai uusgesen",
       addOrder,
