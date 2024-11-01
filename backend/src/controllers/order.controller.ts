@@ -9,17 +9,12 @@ export const createOrder = async (req: Request, res: Response) => {
 
   try {
     const findPrice = await Places.findOne({ _id: place });
-    console.log("FP", findPrice?.calendar[0]);
     if (!findPrice) {
       return res
         .status(400)
         .json({ message: "tani songoson place oldohgui bna" });
     }
-    const calendarEnter = findPrice.calendar[0];
-    console.log(
-      "calendarenterdotorhuseroderdate",
-      calendarEnter.userOrderDates
-    );
+    console.log("findPrice===========", findPrice);
     const placesPrice = findPrice?.price;
     const dateRangeInMillSec: number = Math.abs(
       eDate.getTime() - sDate.getTime() + 1000 * 60 * 60 * 24
@@ -37,25 +32,50 @@ export const createOrder = async (req: Request, res: Response) => {
       endDate,
       totalPrice: niitHuniiNiitUdriinTulbur,
     });
-    // console.log("addOrder", addOrder);
-    if (!calendarEnter.userOrderDates) {
-      return (
-        (calendarEnter.userOrderDates = [
-          {
+
+    //ehnii arga
+    const createPlace = await Places.findOneAndUpdate(
+      { _id: place },
+      {
+        $push: {
+          "calendar.userOrderDates": {
             orderId: addOrder._id,
-            startDate: addOrder.startDate,
-            endDate: addOrder.endDate,
+            startDate: sDate,
+            endDate: eDate,
           },
-        ]),
-        await findPrice.save()
-      );
-    }
-    calendarEnter.userOrderDates.push({
-      orderId: addOrder._id,
-      startDate: addOrder.startDate,
-      endDate: addOrder.endDate,
-    });
-    console.log("ceorderdate", calendarEnter.userOrderDates);
+        },
+      },
+      { new: true } //update lasan huvilbariig uzuuldeg
+    );
+    //2 doh arga
+    // const createAndPushPlacesUserOrderDate = await Places.findOneAndUpdate(
+    //   { _id: place },
+    //   {
+    //     $push: {
+    //       userOrderDates: {
+    //         $each: [
+    //           { orderId: addOrder._id, startDate: startDate, endDate: endDate },
+    //         ],
+    //       },
+    //     },
+    //   },
+    //   { upsert: true, new: true }
+    // );
+
+    // const pushOrderId = findPrice.calendar.userOrderDates.push({
+    //   orderId: addOrder._id,
+    //   startDate: addOrder.startDate,
+    //   endDate: addOrder.endDate,
+    // });
+    // host: open: 10-11 - 10-20, appointed: [10.15 - 10.19, 10.12 - 10.16]
+    // gust: 10-15 -10-19
+    // gest2: 10.12 - 10.16
+    // const pushOrderIdBlocked = findPrice.calendar.blockedDate.push({
+    //   sDate: new Date(),
+    //   eDate: new Date(),
+    // });
+    console.log("findPlaces", findPrice);
+    console.log("createPlace", createPlace);
     await findPrice.save();
     res.status(200).json({
       message: "zahialga amjilttai uusgesen",

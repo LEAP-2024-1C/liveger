@@ -11,15 +11,14 @@ interface Places {
   location: string;
   price: number;
   availableDateRange: object;
-  calendar: [
-    {
-      userOrderDates: [
-        { orderId: Schema.Types.ObjectId; startDate: Date; endDate: Date }
-      ];
-    },
-    { blockedDate: [{ sDate: Date; eDate: Date }] }
-  ];
-  services: Schema.Types.ObjectId;
+  calendar: {
+    userOrderDates: [
+      { orderId: Schema.Types.ObjectId; startDate: Date; endDate: Date }
+    ];
+    blockedDate: [{ sDate: Date; eDate: Date }];
+  };
+
+  services: [Schema.Types.ObjectId];
 }
 
 const placeSchema = new Schema<Places>(
@@ -32,30 +31,28 @@ const placeSchema = new Schema<Places>(
     location: { type: String, required: true },
     price: { type: Number, required: true },
     availableDateRange: { type: Object, default: formatDuration({ years: 1 }) },
-    calendar: [
-      {
-        userOrderDates: [
-          {
-            orderId: {
-              type: Schema.Types.ObjectId,
-              required: true,
-              ref: "Order",
-            },
-            startDate: { type: Date, required: true },
-            endDate: { type: Date, required: true },
+    calendar: {
+      userOrderDates: [
+        {
+          orderId: {
+            type: Schema.Types.ObjectId,
+            ref: "Order",
           },
-        ],
-      },
-      {
-        blockedDate: [
-          {
-            sDate: { type: Date, default: Date.now },
-            eDate: { type: Date, default: Date.now },
-          },
-        ],
-      },
+          startDate: { type: Date },
+          endDate: { type: Date },
+        },
+      ],
+      blockedDate: [
+        {
+          sDate: { type: Date, required: false },
+          eDate: { type: Date, required: false },
+        },
+      ],
+    },
+
+    services: [
+      { type: Schema.Types.ObjectId, required: true, ref: "UServices" },
     ],
-    services: { type: Schema.Types.ObjectId, required: true, ref: "UServices" },
   },
   { timestamps: true }
 );
