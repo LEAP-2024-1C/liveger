@@ -3,7 +3,8 @@ import { Order } from "../models/order.model";
 import { Places } from "../models/places.model";
 
 export const createOrder = async (req: Request, res: Response) => {
-  const { userId, place, numberOfPeople, startDate, endDate } = req.body;
+  const { place, numberOfPeople, startDate, endDate } = req.body;
+  const userId = req.user._id;
   const sDate = new Date(startDate);
   const eDate = new Date(endDate);
 
