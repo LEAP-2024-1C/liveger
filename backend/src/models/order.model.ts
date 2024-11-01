@@ -1,6 +1,7 @@
 import { model, Schema } from "mongoose";
 
 interface Order {
+  _id: Schema.Types.ObjectId;
   userId: Schema.Types.ObjectId;
   place: Schema.Types.ObjectId;
   numberOfPeople: number;
