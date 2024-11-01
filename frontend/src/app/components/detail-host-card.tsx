@@ -19,8 +19,8 @@ export function HostCard({
   id: number;
 }) {
   return (
-    <div>
-      <Card className="relative w-[450px] h-[250px] border-green-500 flex flex-col justify-center items-center">
+    <div className="p-4">
+      <Card className="relative w-[450px] h-[250px] border-2 border-green-400 rounded-xl shadow-xl flex flex-col justify-center items-center">
         <div className="h-36 w-36 relative mt-1">
           <Image
             className="rounded-full object-cover"

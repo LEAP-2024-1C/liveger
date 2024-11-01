@@ -37,7 +37,8 @@ export const getPlaces = async (req: Request, res: Response) => {
   try {
     const getPlaces = await Places.find({})
       .populate("services")
-      .populate("calendar");
+      .populate("calendar")
+      .populate("User");
     res.status(201).json({ message: "placeuudiig harah amjilttai", getPlaces });
   } catch (error) {
     console.error("placeuudiig harahad yamar negen aldaa garlaa", error);

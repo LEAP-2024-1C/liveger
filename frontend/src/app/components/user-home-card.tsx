@@ -31,7 +31,7 @@ export function UserCard({
 }) {
   return (
     <Link href={`/place/${id}`} className="relative">
-      <Card className="relative w-full min-h-fit border-green-500">
+      <Card className="relative w-full min-h-fit border-green-400">
         <Carousel className="min-h-[80%] rounded-xl">
           <CarouselContent className="min-w-full h-48 sm:h-64 rounded-xl">
             {carouselItems}
