@@ -22,12 +22,12 @@ export function UserCard({
 }: {
   placeName: string;
   date: string;
-  price: string;
+  price: number;
   review: number;
   distance: string;
   carouselItems: React.ReactNode[];
   guestFav: boolean;
-  id: number;
+  id: string;
 }) {
   return (
     <Link href={`/place/${id}`} className="relative">
