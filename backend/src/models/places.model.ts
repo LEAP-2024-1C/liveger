@@ -9,7 +9,9 @@ interface Places {
   images: [string];
   status: boolean;
   location: string;
+  distance: string;
   price: number;
+  guestFav: boolean;
   availableDateRange: object;
   calendar: {
     userOrderDates: [
@@ -29,7 +31,9 @@ const placeSchema = new Schema<Places>(
     images: { type: [String], default: ["zurag"] },
     status: { type: Boolean, default: true },
     location: { type: String, required: true },
+    distance: { type: String, required: true },
     price: { type: Number, required: true },
+    guestFav: { type: Boolean, required: true },
     availableDateRange: { type: Object, default: formatDuration({ years: 1 }) },
     calendar: {
       userOrderDates: [

@@ -7,17 +7,18 @@ import { RiHandbagLine } from "react-icons/ri";
 import { WiTime5 } from "react-icons/wi";
 import { IoMdHeartEmpty } from "react-icons/io";
 
-export function HostCard({
-  name,
-  image,
-  start,
-  id,
-}: {
-  name: string;
-  image: string;
-  start: string;
-  id: number;
-}) {
+export function HostCard() {
+  // {
+  //     name,
+  //     image,
+  //     start,
+  //     id,
+  //   }: {
+  //     name: string;
+  //     image: string;
+  //     start: string;
+  //     id: number;
+  // }
   return (
     <div>
       <Card className="relative w-[450px] h-[250px] border-green-500 flex flex-col justify-center items-center">
