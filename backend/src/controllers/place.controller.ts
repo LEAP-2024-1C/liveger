@@ -9,7 +9,9 @@ export const createPlace = async (req: Request, res: Response) => {
     images,
     status,
     location,
+    distance,
     price,
+    guestFav,
     services,
     calendar,
   } = req.body;
@@ -21,7 +23,9 @@ export const createPlace = async (req: Request, res: Response) => {
       images,
       status,
       location,
+      distance,
       price,
+      guestFav,
       services,
       calendar,
     });
@@ -37,7 +41,7 @@ export const getPlaces = async (req: Request, res: Response) => {
   try {
     const getPlaces = await Places.find({})
       .populate("services")
-      .populate("calendar");
+      .populate("hostId");
     res.status(201).json({ message: "placeuudiig harah amjilttai", getPlaces });
   } catch (error) {
     console.error("placeuudiig harahad yamar negen aldaa garlaa", error);

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import UserHome from "../components/home";
-import { HostCard } from "../components/detail-host-card";
 
 export default function Home() {
   return (
@@ -22,7 +21,6 @@ export default function Home() {
       <h1></h1>
       <div className="">
         <UserHome />
-        <HostCard />
       </div>
     </div>
   );

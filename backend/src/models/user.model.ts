@@ -6,6 +6,7 @@ interface IUser {
   email: string;
   firstName: string;
   lastName: string;
+  profileImg: string;
   phoneNumber: string;
   password: string;
   role: string;
@@ -25,6 +26,10 @@ const userSchema = new Schema<IUser>(
     lastName: {
       type: String,
       required: [true, "Last name is required"],
+    },
+    profileImg: {
+      type: String,
+      default: "https://i.ibb.co/4pDNDk1/avatar.png",
     },
     phoneNumber: String,
     password: {
