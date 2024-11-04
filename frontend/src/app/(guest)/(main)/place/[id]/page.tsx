@@ -15,6 +15,7 @@ import PlaceDescription from "@/app/components/place-description";
 import { routeModule } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
 import { HostCard } from "@/app/components/detail-host-card";
+import { useState } from "react";
 
 interface Todo {
   id: string;
@@ -54,9 +55,8 @@ export default function Place() {
   // const [rating, setRating] = useState(5);
   const router = useRouter();
   const params = useParams();
-  const paramId = +params.id;
-  console.log("paramiig harah", paramId);
-
+  console.log("paramiig harah", params.id);
+  const [onePlace, setOnePlace] = useState({});
   const handleBookingRequest = (
     startDate: string,
     endDate: string,
@@ -105,9 +105,7 @@ export default function Place() {
     <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28">
       <div className="w-full space-y-5">
         <div className="flex flex-row justify-between items-center">
-          <h1 className="font-bold text-4xl">
-            {maplakhData[paramId].placeName}
-          </h1>
+          <h1 className="font-bold text-4xl"></h1>
           <div className="flex flex-row items-center space-x-3">
             <section className="flex text-2xl flex-row items-center space-x-1">
               <FaShareAlt />
@@ -119,12 +117,10 @@ export default function Place() {
             </section>
           </div>
         </div>
-        <GuestDetailGridZurag images={maplakhData[paramId].images} />
+        {/* <GuestDetailGridZurag image={}/> */}
         <div className="flex justify-between items-start space-y-4">
           <div className="w-full p-4">
-            <h1 className="text-4xl font-bold">
-              {maplakhData[paramId].placeName}
-            </h1>
+            <h1 className="text-4xl font-bold">{}</h1>
             <div className="flex flex-row gap-2 text-xl">
               <p className="py-1 flex flex-row items-center">
                 8 guest <GoDotFill className="text-green-400" /> 1 гэрт 4 ортой{" "}
@@ -134,22 +130,22 @@ export default function Place() {
             <div>
               <Rate
                 allowHalf
-                value={maplakhData[paramId].review}
+                // value={}
                 className="md:flex md:flex-row text-2xl font-bold"
               />
             </div>
             <HostProfile name="Ганболдын Эрдэнийн гэр бүл" />
-            <AvailableActivities activities={available_todo_mockdata} />
-            <PlaceDescription
+            {/* <AvailableActivities activities={} /> */}
+            {/* <PlaceDescription
               description={
-                maplakhData[paramId].description || "No description available"
+                 || "No description available"
               }
-            />
+            /> */}
           </div>
-          <BookingCard
-            thisplaceId={paramId.toString()}
+          {/* <BookingCard
+            thisplaceId={}
             onBookingRequest={handleBookingRequest}
-          />
+          /> */}
         </div>
         <HostCard />
       </div>

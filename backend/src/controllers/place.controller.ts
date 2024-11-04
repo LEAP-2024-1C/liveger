@@ -50,3 +50,21 @@ export const getPlaces = async (req: Request, res: Response) => {
       .json({ message: "placeuudiig harahad aldaa garlaa tottotototo" });
   }
 };
+
+export const getOnePlace = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const getOnePlace = await Places.findById({ _id: id })
+      .populate("services")
+      .populate("hostId");
+    res.status(201).json({
+      message: "zuvhun ali neg place iig harah amjilttai",
+      getOnePlace,
+    });
+  } catch (error) {
+    console.error("placeiig harahad yamar negen aldaa garlaa", error);
+    res
+      .status(400)
+      .json({ message: "placeiig harahad aldaa garlaa aldaaaaaaaaaa" });
+  }
+};

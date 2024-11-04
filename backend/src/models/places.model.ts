@@ -12,6 +12,7 @@ interface Places {
   distance: string;
   price: number;
   guestFav: boolean;
+  review: [number];
   availableDateRange: object;
   calendar: {
     userOrderDates: [
@@ -34,6 +35,7 @@ const placeSchema = new Schema<Places>(
     distance: { type: String, required: true },
     price: { type: Number, required: true },
     guestFav: { type: Boolean, required: true },
+    review: [{ type: Number, required: true }],
     availableDateRange: { type: Object, default: formatDuration({ years: 1 }) },
     calendar: {
       userOrderDates: [

@@ -1,6 +1,9 @@
 "use client";
 
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 import React, {
   createContext,
   Dispatch,
@@ -23,6 +26,7 @@ interface IUserContext {
   fetchUserData: () => void;
   setToken: Dispatch<SetStateAction<string | null>>;
   setUser: Dispatch<SetStateAction<IUser | null>>;
+  signOut: () => Promise<void>;
 }
 
 const defaultContextValue: IUserContext = {
@@ -30,6 +34,7 @@ const defaultContextValue: IUserContext = {
   fetchUserData: () => {},
   setToken: () => {},
   setUser: () => {},
+  signOut: async () => {},
 };
 
 export const UserContext = createContext<IUserContext>(defaultContextValue);
@@ -37,7 +42,7 @@ export const UserContext = createContext<IUserContext>(defaultContextValue);
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
-
+  const router = useRouter();
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -69,6 +74,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const signOut = async () => {
+    await localStorage.removeItem("token");
+    toast.success("Хэрэглэгч та системээс амжилттай гарлаа", {
+      autoClose: 1000,
+    });
+    router.push("/");
+  };
   useEffect(() => {
     if (token) {
       fetchUserData();
@@ -79,7 +91,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   }, [token]);
 
   return (
-    <UserContext.Provider value={{ user, fetchUserData, setToken, setUser }}>
+    <UserContext.Provider
+      value={{ user, fetchUserData, setToken, setUser, signOut }}
+    >
       {children}
     </UserContext.Provider>
   );
