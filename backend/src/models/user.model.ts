@@ -10,6 +10,8 @@ interface IUser {
   phoneNumber: string;
   password: string;
   role: string;
+  resetPasswordToken: string;
+  resetPasswordExpires: Date;
 }
 
 const userSchema = new Schema<IUser>(
@@ -41,6 +43,12 @@ const userSchema = new Schema<IUser>(
       type: String,
       enum: ["user", "host"],
       default: "user",
+    },
+    resetPasswordExpires: {
+      type: Date,
+    },
+    resetPasswordToken: {
+      type: String,
     },
   },
   {
