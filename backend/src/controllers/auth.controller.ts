@@ -56,6 +56,7 @@ export const forgetPassword = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     const findUser = await User.findOne({ email });
+    console.log("emialiig harah", email);
     console.log("email", email);
 
     if (!findUser) {
@@ -93,6 +94,7 @@ export const forgetPassword = async (req: Request, res: Response) => {
 export const verifyPassword = async (req: Request, res: Response) => {
   try {
     const { password, resetToken } = req.body;
+    console.log("pass bolon reset tokeniig harah", password, resetToken);
     const hashedResetToken = crypto
       .createHash("sha256")
       .update(resetToken)

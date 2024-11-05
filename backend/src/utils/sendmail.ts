@@ -16,10 +16,10 @@ export const sendPasswordResetEmail = async (
   email: string,
   resetToken: string
 ) => {
-  const resetUrl = `http://localhost:3000/reset.password?token=${resetToken}`;
-
+  const resetUrl = `http://localhost:3000/resetpassword?token=${resetToken}`;
+  console.log("emailiig harah======", email);
   await transporter.sendMail({
-    from: "LiveGer2024@gmail.com",
+    from: "liveGer2024@gmail.com",
     to: email,
     subject: "Нууц үг сэргээх хүсэлт - LiveGer",
     html: `
