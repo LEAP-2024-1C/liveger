@@ -10,6 +10,8 @@ interface IUser {
   phoneNumber: string;
   password: string;
   role: string;
+  resetPasswordToken: string;
+  resetPasswordExpires: Date;
   hostInfo: {
     startedHostingDate: Date;
     myWork: string;
@@ -18,8 +20,6 @@ interface IUser {
     obsessedWith: string;
     detailDefination: string;
   };
-  resetPasswordToken: string;
-  resetPasswordExpires: Date;
 }
 
 const userSchema = new Schema<IUser>(
@@ -52,18 +52,19 @@ const userSchema = new Schema<IUser>(
       enum: ["user", "host"],
       default: "user",
     },
-    hostInfo: {
-      startedHostingDate: { type: Date, default: Date.now },
-      myWork: { type: String, required: true },
-      skill: { type: String, required: true },
-      timeToSpend: { type: String, required: true },
-      obsessedWith: { type: String, required: true },
-      detailDefination: { type: String, required: true },
     resetPasswordExpires: {
       type: Date,
     },
     resetPasswordToken: {
       type: String,
+    },
+    hostInfo: {
+      startedHostingDate: { type: Date, default: Date.now },
+      myWork: { type: String },
+      skill: { type: String },
+      timeToSpend: { type: String },
+      obsessedWith: { type: String },
+      detailDefination: { type: String },
     },
   },
   {
