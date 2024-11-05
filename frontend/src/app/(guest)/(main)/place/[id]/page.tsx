@@ -15,7 +15,8 @@ import PlaceDescription from "@/app/components/place-description";
 import { routeModule } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
 import { HostCard } from "@/app/components/detail-host-card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface Todo {
   id: string;
@@ -56,7 +57,28 @@ export default function Place() {
   const router = useRouter();
   const params = useParams();
   console.log("paramiig harah", params.id);
-  const [onePlace, setOnePlace] = useState({});
+  const [onePlace, setOnePlace] = useState({
+    _id: "",
+    title: "",
+    images: [""],
+    info: "",
+    review: [],
+    hostId: { firstName: "" },
+    services: [{ id: "", name: "", description: "" }],
+    location: "",
+    distance: "",
+  });
+  const getOnePlace = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:9002/api/v1/places/${params.id}`
+      );
+      setOnePlace(response.data.getOnePlace);
+      console.log("one placeiig harah", response.data.getOnePlace);
+    } catch (error) {
+      console.error("darsan one place iin datag harahad aldaa garsan", error);
+    }
+  };
   const handleBookingRequest = (
     startDate: string,
     endDate: string,
@@ -100,12 +122,14 @@ export default function Place() {
       router.push("/login");
     }
   };
-
+  useEffect(() => {
+    getOnePlace();
+  }, []);
   return (
     <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28">
       <div className="w-full space-y-5">
         <div className="flex flex-row justify-between items-center">
-          <h1 className="font-bold text-4xl"></h1>
+          <h1 className="font-bold text-4xl">{onePlace.title}</h1>
           <div className="flex flex-row items-center space-x-3">
             <section className="flex text-2xl flex-row items-center space-x-1">
               <FaShareAlt />
@@ -117,10 +141,10 @@ export default function Place() {
             </section>
           </div>
         </div>
-        {/* <GuestDetailGridZurag image={}/> */}
+        <GuestDetailGridZurag images={onePlace.images} />
         <div className="flex justify-between items-start space-y-4">
           <div className="w-full p-4">
-            <h1 className="text-4xl font-bold">{}</h1>
+            <h1 className="text-4xl font-bold">{onePlace.title}</h1>
             <div className="flex flex-row gap-2 text-xl">
               <p className="py-1 flex flex-row items-center">
                 8 guest <GoDotFill className="text-green-400" /> 1 гэрт 4 ортой{" "}
@@ -130,22 +154,20 @@ export default function Place() {
             <div>
               <Rate
                 allowHalf
-                // value={}
+                // value={onePlace.review}
                 className="md:flex md:flex-row text-2xl font-bold"
               />
             </div>
-            <HostProfile name="Ганболдын Эрдэнийн гэр бүл" />
-            {/* <AvailableActivities activities={} /> */}
-            {/* <PlaceDescription
-              description={
-                 || "No description available"
-              }
-            /> */}
+            <HostProfile name={`${onePlace.hostId.firstName}'s family`} />
+            <AvailableActivities activities={onePlace.services} />
+            <PlaceDescription
+              description={onePlace.info || "No description available"}
+            />
           </div>
-          {/* <BookingCard
-            thisplaceId={}
+          <BookingCard
+            thisplaceId={onePlace._id}
             onBookingRequest={handleBookingRequest}
-          /> */}
+          />
         </div>
         <HostCard />
       </div>

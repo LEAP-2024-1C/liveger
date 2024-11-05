@@ -14,6 +14,10 @@ export const createPlace = async (req: Request, res: Response) => {
     guestFav,
     services,
     calendar,
+    luxLevel,
+    possibleGuestNumber,
+    totalGerNumber,
+    totalBedOfPerGer,
   } = req.body;
   try {
     const placeUusgekh = await Places.create({
@@ -28,6 +32,10 @@ export const createPlace = async (req: Request, res: Response) => {
       guestFav,
       services,
       calendar,
+      luxLevel,
+      possibleGuestNumber,
+      totalGerNumber,
+      totalBedOfPerGer,
     });
     res.status(201).json({ message: "place uusgekh amjilttai", placeUusgekh });
   } catch (error) {
