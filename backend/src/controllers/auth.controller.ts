@@ -52,20 +52,27 @@ export const login = async (req: Request, res: Response) => {
 export const updateHost = async (req: Request, res: Response) => {
   const { _id } = req.user;
   const {
-    hostInfo: {startedHostingDate,
+    hostInfo: {
+      startedHostingDate,
       myWork,
       skill,
       timeToSpend,
       obsessedWith,
-      detailDefination
+      detailDefination,
+    },
   } = req.body;
   try {
-    const findHostAndUpdate = await User.findByIdAndUpdate({_id:_id}, {startedHostingDate,
-      myWork,
-      skill,
-      timeToSpend,
-      obsessedWith,
-      detailDefination});
-      res.status
+    const findHostAndUpdate = await User.findByIdAndUpdate(
+      { _id: _id },
+      {
+        startedHostingDate,
+        myWork,
+        skill,
+        timeToSpend,
+        obsessedWith,
+        detailDefination,
+      }
+    );
+    res.status;
   } catch {}
 };
