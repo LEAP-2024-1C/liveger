@@ -31,7 +31,7 @@ export function HostCard({
 }) {
   return (
     <div>
-      <Card className="relative w-[450px] h-[250px] border-green-500 flex flex-col justify-center items-center">
+      <Card className="relative w-[450px] h-[250px] border-green-500 flex flex-col justify-center items-center max-sm:w-[410px]">
         <div className="h-36 w-36 relative mt-1">
           <Image
             className="rounded-full object-cover"
@@ -47,7 +47,7 @@ export function HostCard({
         <h2 className="font-bold text-l">Started hosting in {startHostDate}</h2>
       </Card>
 
-      <div className="flex flex-row ">
+      <div className="flex flex-row mt-2">
         <RiHandbagLine />
         <h5>My work: {myWork}</h5>
       </div>

@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { FiAlignJustify } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa";
+import { MdOutlineLogin } from "react-icons/md";
+import { IoMdPersonAdd } from "react-icons/io";
 import { Input } from "@/components/ui/input";
 import { TbWorld } from "react-icons/tb";
 import { IoSearch } from "react-icons/io5";
@@ -37,8 +39,8 @@ export default function Header() {
       </label>
       <div className="flex flex-row items-center space-x-4">
         <div className="flex flex-row items-center space-x-8">
-          <p>Live Ger</p>
-          <p className="flex flex-row items-center">
+          <p className="max-sm:hidden">Live Ger</p>
+          <p className="flex flex-row items-center max-sm:hidden">
             Mongolia
             <TbWorld />
           </p>
@@ -46,11 +48,15 @@ export default function Header() {
         {!user && (
           <div className="flex flex-row space-x-2">
             <Link href="/login">
-              <Button className="w-[18vh]">Нэвтрэх</Button>
+              <Button className="w-[18vh] max-sm:w-[24px]">
+                <MdOutlineLogin />
+                <p className="max-sm:hidden"> Нэвтрэх</p>
+              </Button>
             </Link>
             <Link href="/signup">
-              <Button className="w-[18vh]" variant="outline">
-                Бүртгүүлэх
+              <Button className="w-[18vh] max-sm:w-[24px]" variant="outline">
+                <IoMdPersonAdd />
+                <p className="max-sm:hidden"> Бүртгүүлэх</p>
               </Button>
             </Link>
           </div>

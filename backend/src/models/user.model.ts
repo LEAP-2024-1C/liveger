@@ -18,6 +18,8 @@ interface IUser {
     obsessedWith: string;
     detailDefination: string;
   };
+  resetPasswordToken: string;
+  resetPasswordExpires: Date;
 }
 
 const userSchema = new Schema<IUser>(
@@ -57,6 +59,11 @@ const userSchema = new Schema<IUser>(
       timeToSpend: { type: String, required: true },
       obsessedWith: { type: String, required: true },
       detailDefination: { type: String, required: true },
+    resetPasswordExpires: {
+      type: Date,
+    },
+    resetPasswordToken: {
+      type: String,
     },
   },
   {
