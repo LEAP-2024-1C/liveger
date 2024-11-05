@@ -3,7 +3,7 @@ import UserHome from "../components/home";
 
 export default function Home() {
   return (
-    <div className="container min-w-full mx-auto flex flex-col space-y-5 mb-10">
+    <div className="container min-w-full mx-auto flex flex-col space-y-5 mb-10 max-sm:p-3">
       <div className="relative">
         <Image
           src="/sarlag.jpg"
@@ -14,7 +14,7 @@ export default function Home() {
           objectFit="cover"
           className="rounded-xl"
         />
-        <div className="absolute text-white z-10 left-[50%] top-[50%] translate-x-[-50%] text-5xl font-bold">
+        <div className="absolute text-white z-10 left-[50%] top-[50%] translate-x-[-50%] text-5xl font-bold max-sm:text-2xl">
           Come to Mongolia feel the nomadic life
         </div>
       </div>
