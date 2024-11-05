@@ -15,6 +15,8 @@ import PlaceDescription from "@/app/components/place-description";
 import { routeModule } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
 import { HostCard } from "@/app/components/detail-host-card";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface Todo {
   id: string;
@@ -54,9 +56,45 @@ export default function Place() {
   // const [rating, setRating] = useState(5);
   const router = useRouter();
   const params = useParams();
-  const paramId = +params.id;
-  console.log("paramiig harah", paramId);
-
+  console.log("paramiig harah", params.id);
+  const [onePlace, setOnePlace] = useState({
+    _id: "",
+    title: "",
+    images: [""],
+    info: "",
+    review: [],
+    hostId: {
+      firstName: "",
+      lastName: "",
+      image: "",
+      hostInfo: {
+        startedHostingDate: "",
+        myWork: "",
+        skill: "",
+        timeToSpend: "",
+        obsessedWith: "",
+        detailDefination: "",
+      },
+    },
+    services: [{ id: "", name: "", description: "" }],
+    location: "",
+    distance: "",
+    possibleGuestNumber: "",
+    totalBedOfPerGer: "",
+    totalGerNumber: "",
+    luxLevel: "",
+  });
+  const getOnePlace = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:9002/api/v1/places/${params.id}`
+      );
+      setOnePlace(response.data.getOnePlace);
+      console.log("one placeiig harah", response.data.getOnePlace);
+    } catch (error) {
+      console.error("darsan one place iin datag harahad aldaa garsan", error);
+    }
+  };
   const handleBookingRequest = (
     startDate: string,
     endDate: string,
@@ -100,14 +138,14 @@ export default function Place() {
       router.push("/login");
     }
   };
-
+  useEffect(() => {
+    getOnePlace();
+  }, []);
   return (
     <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">
         <div className="flex flex-row justify-between items-center">
-          <h1 className="font-bold text-4xl">
-            {maplakhData[paramId].placeName}
-          </h1>
+          <h1 className="font-bold text-4xl">{onePlace.title}</h1>
           <div className="flex flex-row items-center space-x-3">
             <section className="flex text-2xl flex-row items-center space-x-1">
               <FaShareAlt />
@@ -119,33 +157,50 @@ export default function Place() {
             </section>
           </div>
         </div>
-        <GuestDetailGridZurag images={maplakhData[paramId].images} />
+        <GuestDetailGridZurag images={onePlace.images} />
         <div className="flex justify-between items-start space-y-4">
           <div className="w-full p-4">
-            <h1 className="text-4xl font-bold">
-              {maplakhData[paramId].placeName}
-            </h1>
+            <h1 className="text-4xl font-bold">{onePlace.title}</h1>
             <div className="flex flex-row gap-2 text-xl">
               <p className="py-1 flex flex-row items-center">
-                8 guest <GoDotFill className="text-green-400" /> 1 гэрт 4 ортой{" "}
-                <GoDotFill className="text-green-400" /> Хагас льюкс
+                хүлээн авах боломжтой хамгийн их зочны тоо{" "}
+                {onePlace.possibleGuestNumber}
+                <GoDotFill className="text-green-400" /> нийт{" "}
+                {onePlace.totalGerNumber} гэртэй
+                <GoDotFill className="text-green-400" /> 1 гэрт{" "}
+                {onePlace.totalBedOfPerGer} ортой{" "}
+                <GoDotFill className="text-green-400" /> {onePlace.luxLevel}
               </p>
             </div>
             <div>
               <Rate
                 allowHalf
-                value={maplakhData[paramId].review}
+                // value={onePlace.review}
                 className="md:flex md:flex-row text-2xl font-bold"
               />
             </div>
-            <HostProfile name="Ганболдын Эрдэнийн гэр бүл" />
-            <AvailableActivities activities={available_todo_mockdata} />
+            <HostProfile name={`${onePlace.hostId.firstName}'s family`} />
+            <AvailableActivities activities={onePlace.services} />
             <PlaceDescription
-              description={
-                maplakhData[paramId].description || "No description available"
-              }
+              description={onePlace.info || "No description available"}
             />
           </div>
+          <BookingCard
+            thisplaceId={onePlace._id}
+            onBookingRequest={handleBookingRequest}
+          />
+        </div>
+        <HostCard
+          image={onePlace.hostId.image}
+          firstName={onePlace.hostId.firstName}
+          lastName={onePlace.hostId.lastName}
+          startHostDate={onePlace.hostId.hostInfo.startedHostingDate}
+          myWork={onePlace.hostId.hostInfo.myWork}
+          skills={onePlace.hostId.hostInfo.skill}
+          timeToSpend={onePlace.hostId.hostInfo.timeToSpend}
+          obsessedWith={onePlace.hostId.hostInfo.obsessedWith}
+          detailDescription={onePlace.hostId.hostInfo.detailDefination}
+        />
         </div>
         <BookingCard
           thisplaceId={paramId.toString()}

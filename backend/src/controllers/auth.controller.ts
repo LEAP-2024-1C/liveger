@@ -52,6 +52,76 @@ export const login = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Серверийн алдаа", error });
   }
 };
+export const updateHost = async (req: Request, res: Response) => {
+  const { _id } = req.user;
+  console.log("idiig harah ======", _id);
+  const {
+    startedHostingDate,
+    myWork,
+    skill,
+    timeToSpend,
+    obsessedWith,
+    detailDefination,
+  } = req.body;
+  try {
+    const findHost = await User.findById(_id);
+    if (!findHost) {
+      return res.status(400).json({ message: "Хэрэглэгч олдсонгүй" });
+    }
+    const checkHostInfo = findHost.hostInfo;
+    if (!checkHostInfo) {
+      const findHostAndPushInfo = await User.findOneAndUpdate(
+        { _id: _id },
+        {
+          $push: {
+            hostInfo: {
+              startedHostingDate,
+              myWork,
+              skill,
+              timeToSpend,
+              obsessedWith,
+              detailDefination,
+            },
+          },
+        },
+        { new: true }
+      );
+      res.status(201).json({
+        message: "update host information is successful",
+        findHostAndPushInfo,
+      });
+    }
+    const findHostAndUpdateHost = await User.findOneAndUpdate(
+      { _id: _id },
+      {
+        startedHostingDate,
+        myWork,
+        skill,
+        timeToSpend,
+        obsessedWith,
+        detailDefination,
+      },
+      { new: true }
+    );
+    res.status(201).json({
+      message: "update host information is successful",
+      findHostAndUpdateHost,
+    });
+  } catch (error) {
+    console.log("hostiin medeeleld medeelel nemehed aldaa garlaa", error);
+    res
+      .status(400)
+      .json({ message: "hostiin medeeleld medeelel nemehed aldaa garlaa" });
+  }
+};
+
+export const getAllUser = async (req: Request, res: Response) => {
+  try {
+    const getAllUser = await User.find({});
+    res.status(200).json({ message: "amjilttai", getAllUser });
+  } catch (error) {
+    console.log("buh useriig harahad amjiltgui", error);
+    res.status(400).json({ message: "buh useriig harahad amjiltgui" });
 export const forgetPassword = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;

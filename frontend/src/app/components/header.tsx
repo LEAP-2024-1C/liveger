@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { FiAlignJustify } from "react-icons/fi";
@@ -22,8 +24,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "@/app/context/user.context";
 export default function Header() {
+  const { user, signOut } = useContext(UserContext);
   return (
     <div className="h-12 flex flex-row justify-between items-center px-8">
       <Image src="/ger.jpg" alt="zurag1" width={30} height={30} className="" />
@@ -41,24 +45,26 @@ export default function Header() {
             <TbWorld />
           </p>
         </div>
-
-        <div className="flex flex-row space-x-2">
-          <Link href="/login">
-            <Button className="w-[18vh] max-sm:w-[24px]">
-              <MdOutlineLogin />
-              <p className="max-sm:hidden"> Нэвтрэх</p>
-            </Button>
-          </Link>
-          <Link href="/signup">
-            <Button className="w-[18vh] max-sm:w-[24px]" variant="outline">
-              <IoMdPersonAdd />
-              <p className="max-sm:hidden"> Бүртгүүлэх</p>
-            </Button>
-          </Link>
-        </div>
+        {!user && (
+          <div className="flex flex-row space-x-2">
+            <Link href="/login">
+              <Button className="w-[18vh] max-sm:w-[24px]">
+                <MdOutlineLogin />
+                <p className="max-sm:hidden"> Нэвтрэх</p>
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button className="w-[18vh] max-sm:w-[24px]" variant="outline">
+                <IoMdPersonAdd />
+                <p className="max-sm:hidden"> Бүртгүүлэх</p>
+              </Button>
+            </Link>
+          </div>
+        )}
 
         {/* Nevtersen ued haragdah user logo */}
-        {/* <DropdownMenu>
+        {user && (
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className=" rounded-3xl p-2 text-xl ">
                 <FiAlignJustify className="text-gray-600" />
@@ -127,11 +133,12 @@ export default function Header() {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <span>Log out</span>
+                <span onClick={signOut}>Log out</span>
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu> */}
+          </DropdownMenu>
+        )}
       </div>
     </div>
   );
