@@ -63,7 +63,19 @@ export default function Place() {
     images: [""],
     info: "",
     review: [],
-    hostId: { firstName: "" },
+    hostId: {
+      firstName: "",
+      lastName: "",
+      image: "",
+      hostInfo: {
+        startedHostingDate: "",
+        myWork: "",
+        skill: "",
+        timeToSpend: "",
+        obsessedWith: "",
+        detailDefination: "",
+      },
+    },
     services: [{ id: "", name: "", description: "" }],
     location: "",
     distance: "",
@@ -178,7 +190,17 @@ export default function Place() {
             onBookingRequest={handleBookingRequest}
           />
         </div>
-        <HostCard />
+        <HostCard
+          image={onePlace.hostId.image}
+          firstName={onePlace.hostId.firstName}
+          lastName={onePlace.hostId.lastName}
+          startHostDate={onePlace.hostId.hostInfo.startedHostingDate}
+          myWork={onePlace.hostId.hostInfo.myWork}
+          skills={onePlace.hostId.hostInfo.skill}
+          timeToSpend={onePlace.hostId.hostInfo.timeToSpend}
+          obsessedWith={onePlace.hostId.hostInfo.obsessedWith}
+          detailDescription={onePlace.hostId.hostInfo.detailDefination}
+        />
       </div>
     </div>
   );

@@ -12,10 +12,10 @@ interface IUser {
   role: string;
   hostInfo: {
     startedHostingDate: Date;
-    myWork: [string];
-    skill: [string];
-    timeToSpend: [string];
-    obsessedWith: [string];
+    myWork: string;
+    skill: string;
+    timeToSpend: string;
+    obsessedWith: string;
     detailDefination: string;
   };
 }
@@ -52,10 +52,10 @@ const userSchema = new Schema<IUser>(
     },
     hostInfo: {
       startedHostingDate: { type: Date, default: Date.now },
-      myWork: { type: [String], required: true },
-      skill: { type: [String], required: true },
-      timeToSpend: { type: [String], required: true },
-      obsessedWith: { type: [String], required: true },
+      myWork: { type: String, required: true },
+      skill: { type: String, required: true },
+      timeToSpend: { type: String, required: true },
+      obsessedWith: { type: String, required: true },
       detailDefination: { type: String, required: true },
     },
   },
