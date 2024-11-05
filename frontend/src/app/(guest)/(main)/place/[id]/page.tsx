@@ -102,7 +102,7 @@ export default function Place() {
   };
 
   return (
-    <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28">
+    <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">
         <div className="flex flex-row justify-between items-center">
           <h1 className="font-bold text-4xl">
@@ -111,11 +111,11 @@ export default function Place() {
           <div className="flex flex-row items-center space-x-3">
             <section className="flex text-2xl flex-row items-center space-x-1">
               <FaShareAlt />
-              <p>Share</p>
+              <p className="max-sm:hidden">Share</p>
             </section>
             <section className="flex text-2xl flex-row items-center space-x-1">
               <FaHeart className="text-red-400" />
-              <p className="">Save</p>
+              <p className="max-sm:hidden">Save</p>
             </section>
           </div>
         </div>
@@ -146,11 +146,11 @@ export default function Place() {
               }
             />
           </div>
-          <BookingCard
-            thisplaceId={paramId.toString()}
-            onBookingRequest={handleBookingRequest}
-          />
         </div>
+        <BookingCard
+          thisplaceId={paramId.toString()}
+          onBookingRequest={handleBookingRequest}
+        />
         <HostCard />
       </div>
     </div>

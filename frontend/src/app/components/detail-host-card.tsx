@@ -21,7 +21,7 @@ export function HostCard() {
   // }
   return (
     <div>
-      <Card className="relative w-[450px] h-[250px] border-green-500 flex flex-col justify-center items-center">
+      <Card className="relative w-[450px] h-[250px] border-green-500 flex flex-col justify-center items-center max-sm:w-[410px]">
         <div className="h-36 w-36 relative mt-1">
           <Image
             className="rounded-full object-cover"
@@ -35,7 +35,7 @@ export function HostCard() {
         <h2 className="font-bold text-l">Started hosting in 2024</h2>
       </Card>
 
-      <div className="flex flex-row ">
+      <div className="flex flex-row mt-2">
         <RiHandbagLine />
         <h5>My work: Musician / Composer</h5>
       </div>
@@ -55,7 +55,7 @@ export function HostCard() {
         <h5>I'm obsessed with: Music, art and animals, Baseball </h5>
       </div>
 
-      <h1 className="w-[450px] text-xl text-wrap">
+      <h1 className="w-[450px] text-xl text-wrap max-sm:w-[410px]">
         Hey—it’s Wendy and Lisa. We’re an award-winning music duo, childhood
         friends, and proud members of the legendary rock band The Revolution.
         Back in the ’80s, we teamed up with our close friend and Revolution
