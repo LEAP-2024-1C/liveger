@@ -67,6 +67,10 @@ export default function Place() {
     services: [{ id: "", name: "", description: "" }],
     location: "",
     distance: "",
+    possibleGuestNumber: "",
+    totalBedOfPerGer: "",
+    totalGerNumber: "",
+    luxLevel: "",
   });
   const getOnePlace = async () => {
     try {
@@ -147,8 +151,13 @@ export default function Place() {
             <h1 className="text-4xl font-bold">{onePlace.title}</h1>
             <div className="flex flex-row gap-2 text-xl">
               <p className="py-1 flex flex-row items-center">
-                8 guest <GoDotFill className="text-green-400" /> 1 гэрт 4 ортой{" "}
-                <GoDotFill className="text-green-400" /> Хагас льюкс
+                хүлээн авах боломжтой хамгийн их зочны тоо{" "}
+                {onePlace.possibleGuestNumber}
+                <GoDotFill className="text-green-400" /> нийт{" "}
+                {onePlace.totalGerNumber} гэртэй
+                <GoDotFill className="text-green-400" /> 1 гэрт{" "}
+                {onePlace.totalBedOfPerGer} ортой{" "}
+                <GoDotFill className="text-green-400" /> {onePlace.luxLevel}
               </p>
             </div>
             <div>
