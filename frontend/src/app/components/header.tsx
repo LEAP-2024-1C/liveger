@@ -28,6 +28,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "@/app/context/user.context";
 export default function Header() {
   const { user, signOut } = useContext(UserContext);
+  console.log("useriig harah", user);
   return (
     <div className="h-12 flex flex-row justify-between items-center px-8">
       <Image src="/ger.jpg" alt="zurag1" width={30} height={30} className="" />
@@ -72,7 +73,9 @@ export default function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>
+                {user?.firstName} {user?.lastName}
+              </DropdownMenuLabel>
               <DropdownMenuSeparator className="" />
               <DropdownMenuGroup>
                 <DropdownMenuItem>
