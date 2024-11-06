@@ -40,7 +40,7 @@ export const createPlace = async (req: Request, res: Response) => {
 			totalBedOfPerGer
 		);
 		const placeUusgekh = await Places.create({
-			hostId,
+			hostId: req.user.id,
 			title,
 			info,
 			images,
