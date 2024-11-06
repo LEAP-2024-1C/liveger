@@ -14,8 +14,8 @@ import React, {
 
 interface IUser {
   _id: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phonenumber: string;
   role: string;

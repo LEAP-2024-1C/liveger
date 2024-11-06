@@ -80,7 +80,6 @@ export default function Header() {
               <DropdownMenuGroup>
                 <DropdownMenuItem>
                   <span>Profile</span>
-                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <span>Billing</span>
