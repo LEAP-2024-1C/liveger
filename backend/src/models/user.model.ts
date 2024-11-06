@@ -60,11 +60,11 @@ const userSchema = new Schema<IUser>(
     },
     hostInfo: {
       startedHostingDate: { type: Date, default: Date.now },
-      myWork: { type: String },
-      skill: { type: String },
-      timeToSpend: { type: String },
-      obsessedWith: { type: String },
-      detailDefination: { type: String },
+      myWork: { type: String, default: "" },
+      skill: { type: String, default: "" },
+      timeToSpend: { type: String, default: "" },
+      obsessedWith: { type: String, default: "" },
+      detailDefination: { type: String, default: "" },
     },
   },
   {
