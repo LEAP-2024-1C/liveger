@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 import { HostCard } from "@/app/components/detail-host-card";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { format } from "date-fns";
 interface Todo {
   id: string;
   name: string;
@@ -66,9 +66,9 @@ export default function Place() {
     hostId: {
       firstName: "",
       lastName: "",
-      image: "",
+      profileImg: "",
       hostInfo: {
-        startedHostingDate: "",
+        startedHostingDate: new Date(),
         myWork: "",
         skill: "",
         timeToSpend: "",
@@ -141,6 +141,10 @@ export default function Place() {
   useEffect(() => {
     getOnePlace();
   }, []);
+  const formatedStartDate = format(
+    new Date(onePlace.hostId.hostInfo.startedHostingDate),
+    "yyyy 'оны' MM 'сар'"
+  );
   return (
     <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">
@@ -191,22 +195,16 @@ export default function Place() {
           />
         </div>
         <HostCard
-          image={onePlace.hostId.image}
+          image={onePlace.hostId.profileImg}
           firstName={onePlace.hostId.firstName}
           lastName={onePlace.hostId.lastName}
-          startHostDate={onePlace.hostId.hostInfo.startedHostingDate}
+          startHostDate={formatedStartDate}
           myWork={onePlace.hostId.hostInfo.myWork}
           skills={onePlace.hostId.hostInfo.skill}
           timeToSpend={onePlace.hostId.hostInfo.timeToSpend}
           obsessedWith={onePlace.hostId.hostInfo.obsessedWith}
           detailDescription={onePlace.hostId.hostInfo.detailDefination}
         />
-        </div>
-        <BookingCard
-          thisplaceId={paramId.toString()}
-          onBookingRequest={handleBookingRequest}
-        />
-        <HostCard />
       </div>
     </div>
   );
