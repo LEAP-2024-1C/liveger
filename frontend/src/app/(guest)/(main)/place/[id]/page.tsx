@@ -18,6 +18,7 @@ import { HostCard } from "@/app/components/detail-host-card";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 interface Todo {
   id: string;
   name: string;
@@ -121,7 +122,7 @@ export default function Place() {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          place: "6723059985721dd0bee8cb42",
+          place: params.id,
           startDate: startDate,
           endDate: endDate,
           numberOfPeople: numberOfGuests,
@@ -134,6 +135,8 @@ export default function Place() {
         .catch((error) => {
           console.error("Error sending booking request:", error);
         });
+      toast.success("Таны захиалгыг амжилттай бүртгэлээ");
+      router.push(`/place/${params.id}/confirm-order`);
     } else {
       router.push("/login");
     }

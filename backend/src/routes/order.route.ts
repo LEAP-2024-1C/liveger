@@ -4,4 +4,5 @@ import { authentication } from "../middlewares/authentication";
 
 const router = Router();
 router.route("/add").post(authentication, createOrder);
+router.route("/add").post(authentication, createOrder);
 export default router;
