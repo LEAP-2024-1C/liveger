@@ -17,9 +17,10 @@ async function fetchMntUsdCompare() {
 // Add props interface
 interface EditPriceProps {
 	price: number;
+	setPrice: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function EditPrice({ price }: EditPriceProps) {
+function EditPrice({ price, setPrice }: EditPriceProps) {
 	const [priceusd, setPriceusd] = useState(price); //default value from backend
 	const [mntUsdCompare, setMntUsdCompare] = useState(3400); //default value for compare
 	const [pricemn, setPricemn] = useState(price * mntUsdCompare * 0.9);
@@ -48,7 +49,14 @@ function EditPrice({ price }: EditPriceProps) {
 				/>
 			</div>
 			<div className="flex justify-end">
-				<Button className="min-m-4 my-auto">Хадгалах</Button>
+				<Button
+					className="min-m-4 my-auto"
+					onClick={() => {
+						setPrice(priceusd);
+					}}
+				>
+					Хадгалах
+				</Button>
 			</div>
 		</div>
 	);

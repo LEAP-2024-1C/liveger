@@ -9,10 +9,14 @@ import { Button } from "@/components/ui/button";
 // Add props interface
 interface EditDescriptionProps {
 	description: string;
+	setDescription: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function EditDescription({ description }: EditDescriptionProps) {
-	const [descriptionState, setDescription] = useState(description);
+function EditDescription({
+	description,
+	setDescription,
+}: EditDescriptionProps) {
+	const [descriptionState, setDescriptionState] = useState(description);
 	return (
 		<div className="container mx-auto border border-green-400 rounded-xl p-6">
 			<h1 className="font-bold text-2xl">Тайлбар: {descriptionState}</h1>
@@ -23,11 +27,18 @@ function EditDescription({ description }: EditDescriptionProps) {
 			<Input
 				type="text"
 				value={descriptionState}
-				onChange={(e) => setDescription(e.target.value)}
+				onChange={(e) => setDescriptionState(e.target.value)}
 				placeholder="Тайлбар"
 			/>
 			<div className="flex justify-end">
-				<Button className="min-m-4 my-auto">Хадгалах</Button>
+				<Button
+					className="min-m-4 my-auto"
+					onClick={() => {
+						setDescription(descriptionState);
+					}}
+				>
+					Хадгалах
+				</Button>
 			</div>
 		</div>
 	);

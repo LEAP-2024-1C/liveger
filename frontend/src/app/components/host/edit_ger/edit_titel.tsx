@@ -10,9 +10,10 @@ import { Button } from "@/components/ui/button";
 // Add props interface
 interface EditTitelProps {
 	title: string;
+	setTitle: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function EditTitel({ title }: EditTitelProps) {
+function EditTitel({ title, setTitle }: EditTitelProps) {
 	const [garchig, setGarchig] = useState(title);
 	return (
 		<div className="container mx-auto border border-green-400 rounded-xl p-6">
@@ -32,7 +33,14 @@ function EditTitel({ title }: EditTitelProps) {
 				/>
 			</div>
 			<div className="flex justify-end">
-				<Button className="min-m-4 my-auto">Хадгалах</Button>
+				<Button
+					className="min-m-4 my-auto"
+					onClick={() => {
+						setTitle(garchig);
+					}}
+				>
+					Хадгалах
+				</Button>
 			</div>
 		</div>
 	);
