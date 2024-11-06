@@ -9,18 +9,22 @@ import { Checkbox } from "@/components/ui/checkbox";
 interface Todo {
 	id: number;
 	name: string;
-	Description: string;
-	checked: boolean;
+	description: string;
+	isChecked: boolean;
 }
 
 interface EditAvailableTodoProps {
 	available_todo: Todo[];
+	setAvailableTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-function EditAvailableTodo({ available_todo }: EditAvailableTodoProps) {
+function EditAvailableTodo({
+	available_todo,
+	setAvailableTodo,
+}: EditAvailableTodoProps) {
 	const [todoDescription, setTodoDescription] = useState("");
 	const [checkedTodo, setCheckedTodo] = useState<Todo[]>([]);
-	const [availableTodo, setAvailableTodo] = useState<Todo[]>(available_todo);
+	console.log(checkedTodo);
 	const [newTodo, setNewTodo] = useState("");
 
 	return (
@@ -30,26 +34,32 @@ function EditAvailableTodo({ available_todo }: EditAvailableTodoProps) {
 				Гэрийн үйлдэлүүдийг сонгоно уу.
 			</p>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-				{availableTodo.map((todo: Todo, index: number) => (
+				{available_todo.map((todo: Todo, index: number) => (
 					<div
 						key={index}
 						className="flex items-center gap-2 border border-green-400 rounded-xl"
 					>
 						<Checkbox
 							key={todo.id}
-							checked={todo.checked}
+							checked={todo.isChecked}
 							onClick={() => {
-								const updatedTodo = { ...todo, checked: !todo.checked };
-								const updatedAvailableTodo = availableTodo.map((t) =>
+								const updatedTodo = { ...todo, isChecked: !todo.isChecked };
+								const updatedAvailableTodo = available_todo.map((t) =>
 									t.id === todo.id ? updatedTodo : t
 								);
 								setAvailableTodo(updatedAvailableTodo);
-								setCheckedTodo([...checkedTodo, updatedTodo]);
+								if (updatedTodo.isChecked) {
+									setCheckedTodo((prev) => [...prev, updatedTodo]);
+								} else {
+									setCheckedTodo((prev) =>
+										prev.filter((t) => t.id !== todo.id)
+									);
+								}
 							}}
 						/>
 						<div className="flex flex-col">
 							<h1 className="text-sm font-bold">{todo.name}:</h1>
-							<p className="text-sm">{todo.Description}</p>
+							<p className="text-sm">{todo.description}</p>
 						</div>
 					</div>
 				))}
@@ -65,17 +75,21 @@ function EditAvailableTodo({ available_todo }: EditAvailableTodoProps) {
 						onChange={(e) => setTodoDescription(e.target.value)}
 					/>
 					<Button
-						onClick={() =>
-							setAvailableTodo([
-								...availableTodo,
-								{
-									id: availableTodo.length + 1,
-									name: newTodo,
-									checked: false,
-									Description: todoDescription,
-								},
-							])
-						}
+						onClick={() => {
+							if (newTodo && todoDescription) {
+								setAvailableTodo([
+									...available_todo,
+									{
+										id: available_todo.length + 1,
+										name: newTodo,
+										isChecked: false,
+										description: todoDescription,
+									},
+								]);
+								setNewTodo("");
+								setTodoDescription("");
+							}
+						}}
 					>
 						Нэмэх
 					</Button>

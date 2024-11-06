@@ -9,10 +9,14 @@ import { Button } from "@/components/ui/button";
 // Add props interface
 interface EditGuestNumberProps {
 	guest_number: number;
+	setGuestNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function EditGuestNumber({ guest_number }: EditGuestNumberProps) {
-	const [guestNumber, setGuestNumber] = useState(guest_number);
+function EditGuestNumber({
+	guest_number,
+	setGuestNumber,
+}: EditGuestNumberProps) {
+	const [guestNumber, setGuestNumberState] = useState(guest_number);
 	return (
 		<div className="container mx-auto border border-green-400 rounded-xl p-6">
 			<h1 className="font-bold text-2xl">Зочдын дээд тоо: {guestNumber}</h1>
@@ -22,12 +26,19 @@ function EditGuestNumber({ guest_number }: EditGuestNumberProps) {
 			</p>
 			<Input
 				type="number"
-				onChange={(e) => setGuestNumber(Number(e.target.value))}
+				onChange={(e) => setGuestNumberState(Number(e.target.value))}
 				min={1}
 				placeholder="Зочдын дээд тоо"
 			/>
 			<div className="flex justify-end">
-				<Button className="min-m-4 my-auto">Хадгалах</Button>
+				<Button
+					className="min-m-4 my-auto"
+					onClick={() => {
+						setGuestNumber(guestNumber);
+					}}
+				>
+					Хадгалах
+				</Button>
 			</div>
 		</div>
 	);

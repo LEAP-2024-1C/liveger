@@ -1,8 +1,8 @@
 import { Router } from "express";
 import {
-  createPlace,
-  getOnePlace,
-  getPlaces,
+	createPlace,
+	getOnePlace,
+	getPlaces,
 } from "../controllers/place.controller";
 import { authentication } from "../middlewares/authentication";
 import { authorize } from "../middlewares/authorize";
