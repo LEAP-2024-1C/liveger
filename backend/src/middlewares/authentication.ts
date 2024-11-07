@@ -23,6 +23,7 @@ export const authentication = async (
   const token = req.headers.authorization.split(" ")[1];
   const user: any = decodeToken(token);
   const findUser = await User.findById(user.id);
+  console.log("finduseriig harah", findUser);
   req.user = findUser;
   next();
 };

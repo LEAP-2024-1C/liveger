@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createOrderRequest } from "../controllers/order.controller";
+import { createOrderRequest, getOrder } from "../controllers/order.controller";
 import { authentication } from "../middlewares/authentication";
 
 const router = Router();
 router.route("/add").post(authentication, createOrderRequest);
-// router.route("/add").post(authentication, createOrder);
+router.route("/:placeId/get-order").get(authentication, getOrder);
 export default router;

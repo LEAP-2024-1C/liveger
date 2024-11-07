@@ -90,8 +90,10 @@ export default function Place() {
       const response = await axios.get(
         `http://localhost:9002/api/v1/places/${params.id}`
       );
-      setOnePlace(response.data.getOnePlace);
-      console.log("one placeiig harah", response.data.getOnePlace);
+      if (response.status === 201) {
+        setOnePlace(response.data.getOnePlace);
+        console.log("one placeiig harah", response.data.getOnePlace);
+      }
     } catch (error) {
       console.error("darsan one place iin datag harahad aldaa garsan", error);
     }
@@ -135,8 +137,10 @@ export default function Place() {
         .catch((error) => {
           console.error("Error sending booking request:", error);
         });
-      toast.success("Таны захиалгыг амжилттай бүртгэлээ");
-      router.push(`/place/${params.id}/confirm-order`);
+      toast.success(
+        "Таны захиалгыг амжилттай хадгаллаа, төлбөрөө төлж захиалгаа баталгаажуулна уу."
+      );
+      router.push(`/order/${params.id}`);
     } else {
       router.push("/login");
     }
@@ -148,6 +152,7 @@ export default function Place() {
     new Date(onePlace.hostId.hostInfo.startedHostingDate),
     "yyyy 'оны' MM 'сар'"
   );
+  console.log("one placeiig harah", onePlace);
   return (
     <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">

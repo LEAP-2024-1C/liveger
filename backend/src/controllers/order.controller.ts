@@ -90,13 +90,26 @@ export const createOrderRequest = async (req: Request, res: Response) => {
   }
 };
 
-export const getOrder = async (res: Response, req: Request) => {
-  const { userId, place } = req.body;
+export const getOrder = async (req: Request, res: Response) => {
+  console.log("req iin useriin id iig harah", req.user);
+  console.log("hhhhdhdhdhdh");
+  const hostId = req.user._id;
+
+  const { placeId } = req.params;
   try {
-    const findOrder = await Order.find({ userId, place });
+    const findOnlyOrder = await Order.find(
+      {
+        userId: hostId,
+        place: placeId,
+        isConfirmed: false,
+      },
+      { sort: { timestamp: -1 }, limit: 1 }
+    )
+      .populate("place")
+      .populate("userId");
     res
       .status(200)
-      .json({ message: "orderiig haij oloh amjilttai", findOrder });
+      .json({ message: "orderiig haij oloh amjilttai", findOnlyOrder });
   } catch (error) {
     console.log("orderiig harah amjiltgui", error);
     res.status(400).json({ message: "orderiig harah amjiltgui" });

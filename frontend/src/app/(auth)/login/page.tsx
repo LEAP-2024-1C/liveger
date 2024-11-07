@@ -29,7 +29,7 @@ const Login: React.FC = () => {
         localStorage.setItem("token", token);
         setToken(token);
         router.push("/");
-      }
+      } else res.status;
     } catch (error) {
       console.log("There was an error  in:", error);
       toast.error("Нэвтрэхэд алдаа гарлаа");
