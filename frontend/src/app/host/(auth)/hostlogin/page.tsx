@@ -22,6 +22,7 @@ const HostLogin = () => {
       const res = await axios.post(`http://localhost:9002/api/v1/auth/login`, {
         email,
         password,
+        type_login: "host",
       });
       if (res.status === 200) {
         toast.success("Амжилттай нэвтэрлээ", { autoClose: 1000 });
@@ -108,12 +109,12 @@ const HostLogin = () => {
               >
                 Нэвтрэх
               </button>
-              <a
+              <Link
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                href="#"
+                href="/forgotpassword"
               >
                 Нууц үгээ мартсан?
-              </a>
+              </Link>
             </div>
             <div className="text-center">
               <Link href="/host/hostsignup">
