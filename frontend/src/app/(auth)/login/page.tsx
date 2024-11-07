@@ -17,12 +17,22 @@ const Login: React.FC = () => {
   });
   const login = async () => {
     const { email, password } = UserData;
+    console.log("first2", email, password);
     try {
       const res = await axios.post(`http://localhost:9002/api/v1/auth/login`, {
         email,
         password,
+        type_login: "user",
       });
-      console.log("respons", res);
+      console.log("res", res);
+
+      if (res.status === 400) {
+        return toast.error("Нэвтрэх нэр эсвэл нууц үг буруу байна");
+      }
+      if (res.status === 401) {
+        return toast.error("Нэвтрэх нэр эсвэл нууц үг буруу байна");
+      }
+
       if (res.status === 200) {
         toast.success("Амжилттай нэвтэрлээ", { autoClose: 1000 });
         const { token } = res.data;
@@ -30,12 +40,10 @@ const Login: React.FC = () => {
         setToken(token);
         router.push("/");
       }
-    } catch (error) {
-      console.log("There was an error  in:", error);
-      toast.error("Нэвтрэхэд алдаа гарлаа");
+    } catch (error: any) {
+      console.error("алдаа гарлаа", error);
     }
   };
-
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
