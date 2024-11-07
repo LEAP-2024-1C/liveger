@@ -25,7 +25,7 @@ export const createOrderRequest = async (req: Request, res: Response) => {
     const niitHuniiNiitUdriinTulbur = Math.ceil(
       numberOfPeople * placesPrice * dateRange
     );
-    const addOrder = await Order.create({
+    const addOrderRequest = await Order.create({
       userId,
       place,
       numberOfPeople,
@@ -35,19 +35,19 @@ export const createOrderRequest = async (req: Request, res: Response) => {
     });
 
     //ehnii arga
-    const createPlace = await Places.findOneAndUpdate(
-      { _id: place },
-      {
-        $push: {
-          "calendar.userOrderDates": {
-            orderId: addOrder._id,
-            startDate: sDate,
-            endDate: eDate,
-          },
-        },
-      },
-      { new: true } //update lasan huvilbariig uzuuldeg
-    );
+    // const createPlace = await Places.findOneAndUpdate(
+    //   { _id: place },
+    //   {
+    //     $push: {
+    //       "calendar.userOrderDates": {
+    //         orderId: addOrder._id,
+    //         startDate: sDate,
+    //         endDate: eDate,
+    //       },
+    //     },
+    //   },
+    //   { new: true } //update lasan huvilbariig uzuuldeg
+    // );
     //2 doh arga
     // const createAndPushPlacesUserOrderDate = await Places.findOneAndUpdate(
     //   { _id: place },
@@ -76,11 +76,11 @@ export const createOrderRequest = async (req: Request, res: Response) => {
     //   eDate: new Date(),
     // });
     console.log("findPlaces", findPlace);
-    console.log("createPlace", createPlace);
+    // console.log("createPlace", createPlace);
     await findPlace.save();
     res.status(200).json({
       message: "zahialga amjilttai uusgesen",
-      addOrder,
+      addOrderRequest,
     });
   } catch (error) {
     console.log("zahialga uusgehed yamar negen aldaa garlaa", error);
