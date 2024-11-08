@@ -1,11 +1,18 @@
 "use client";
+import OrderInfoCart from "@/app/components/order-info-cart";
 import axios from "axios";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function ConfirmOrderPage() {
   const params = useParams();
-  const [getOneOrder, setGetOneOrder] = useState();
+  const [getOneOrder, setGetOneOrder] = useState([
+    {
+      place: { images: [], title: "" },
+    },
+  ]);
   const getOrder = async () => {
     const token = localStorage.getItem("token");
     try {
@@ -28,12 +35,25 @@ export default function ConfirmOrderPage() {
     getOrder();
   }, []);
   console.log("get one orderiig harah ------", getOneOrder);
+  const objectGetOneOrder = { ...getOneOrder };
+  console.log("get one orderiig harah ------", objectGetOneOrder);
+
   return (
     <div className="px-48">
-      <div>Өмнөх хуудас руу буцах</div>
+      <Link href={`/place/${params.id}`}>
+        <div className="flex flex-row items-center space-x-3">
+          <IoMdArrowRoundBack />
+          <h1>Өмнөх хуудас руу буцах</h1>
+        </div>
+      </Link>
       <div className="grid grid-cols-2 gap-x-12">
         <div className="w-full bg-slate-600"></div>
-        <div className="w-full bg-orange-300">dsfds</div>
+        <div className="">
+          <OrderInfoCart
+            // image={getOneOrder[0].place?.images[0]}
+            title={getOneOrder[0].place?.title}
+          />
+        </div>
       </div>
     </div>
   );
