@@ -95,3 +95,8 @@ export const getPlace = async (req: Request, res: Response) => {
       .json({ message: "placeiig harahad aldaa garlaa aldaaaaaaaaaa" });
   }
 };
+
+export const getPlacesbyHostId = async (req: Request, res: Response) => {
+  try {
+  } catch {}
+};

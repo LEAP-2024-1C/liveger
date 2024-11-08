@@ -31,7 +31,18 @@ export default function Header() {
   console.log("useriig harah", user);
   return (
     <div className="h-12 flex flex-row justify-between items-center px-8">
-      <Image src="/ger.jpg" alt="zurag1" width={30} height={30} className="" />
+      <Link href="/">
+        <div className="flex flex-row items-center space-x-3">
+          <Image
+            src="/ger.png"
+            alt="zurag1"
+            width={30}
+            height={30}
+            className=""
+          />
+          <p className="max-sm:hidden font-bold">Live Ger</p>
+        </div>
+      </Link>
       <label className="relative flex flex-row items-center w-[30%]">
         <Input placeholder="Search" className="rounded-3xl" />
         <div className="bg-green-400 absolute right-2 p-1 rounded-full">
@@ -40,7 +51,6 @@ export default function Header() {
       </label>
       <div className="flex flex-row items-center space-x-4">
         <div className="flex flex-row items-center space-x-8">
-          <p className="max-sm:hidden">Live Ger</p>
           <p className="flex flex-row items-center max-sm:hidden">
             Mongolia
             <TbWorld />
