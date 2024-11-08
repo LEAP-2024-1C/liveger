@@ -30,19 +30,20 @@ export const signup = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, type_login } = req.body;
+
     if (!email || !password) {
       return res
-        .status(400)
+        .status(404)
         .json({ message: "Нэр эсвэл нууц үг хоосон байж болохгүй." });
     }
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, role: type_login });
     if (!user) {
       return res.status(400).json({ message: "burtgel uusgegui bnaa" });
     }
-    const isCheck = bcrypt.compareSync(password, user.password);
-    if (!isCheck) {
-      return res.status(400).json({
+    const isPasswordValid = bcrypt.compareSync(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
         message: "Хэрэглэгчийн имэйл эсвэл нууц үг тохирохгүй байна.",
       });
     }
@@ -179,6 +180,7 @@ export const verifyPassword = async (req: Request, res: Response) => {
       resetPasswordToken: hashedResetToken,
       resetPasswordExpires: { $gt: Date.now() },
     });
+    console.log("useeer", findUser);
 
     if (!findUser) {
       return res.status(400).json({
@@ -191,6 +193,7 @@ export const verifyPassword = async (req: Request, res: Response) => {
     await findUser.save();
 
     res.status(200).json({
+      role: findUser.role,
       success: true,
       message: "Нууц үг амжилттай сэргээгдлээ",
     });

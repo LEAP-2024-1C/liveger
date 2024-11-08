@@ -20,6 +20,25 @@ export const createPlace = async (req: Request, res: Response) => {
     totalBedOfPerGer,
   } = req.body;
   try {
+    console.log(
+      req.user._id,
+      title,
+      info,
+      images,
+      status,
+      location,
+
+      distance,
+      price,
+      guestFav,
+      services,
+      calendar,
+      luxLevel,
+
+      possibleGuestNumber,
+      totalGerNumber,
+      totalBedOfPerGer
+    );
     const placeUusgekh = await Places.create({
       hostId: _id,
       title,

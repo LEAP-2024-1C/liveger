@@ -1,14 +1,14 @@
 "use client";
+
 import React, { useState } from "react";
-import { Image } from "antd";
 import { useRouter, useSearchParams } from "next/navigation";
-import { toast } from "react-toastify";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ResetPassword: React.FC = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
+  const router = useRouter();
 
   const [passwords, setPasswords] = useState({
     newPassword: "",
@@ -44,10 +44,15 @@ const ResetPassword: React.FC = () => {
           password: passwords.newPassword,
         }
       );
+      console.log("response", response);
 
       if (response.status === 200) {
         toast.success("Нууц үг амжилттай шинэчлэгдлээ");
-        router.push("/login");
+        if (response.data.role === "host") {
+          router.push("/host/hostlogin");
+        } else {
+          router.push("/login");
+        }
       }
     } catch (error) {
       console.error("Error:", error);
@@ -60,60 +65,40 @@ const ResetPassword: React.FC = () => {
   return (
     <div className="h-screen flex justify-center items-center bg-white">
       <div className="w-96 p-6">
-        <div className="justify-center mb-6 flex flex-row items-center gap-1">
-          <Image
-            src="https://cdn-icons-png.flaticon.com/128/5333/5333676.png"
-            alt="logo"
-            width={30}
-            height={30}
-          />
-          <h3 className="font-bold text-3xl">
-            Mongolian <span className="text-green-400">Live Ger</span>
-          </h3>
-        </div>
-
-        <h2 className="text-2xl font-bold mb-2">Шинэ нууц үг тохируулах</h2>
-        <p className="text-gray-600 mb-6">Шинэ нууц үгээ оруулна уу</p>
-
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input
-            type="password"
-            placeholder="Шинэ нууц үг"
-            value={passwords.newPassword}
-            onChange={(e) =>
-              setPasswords({
-                ...passwords,
-                newPassword: e.target.value,
-              })
-            }
-            className="border-2 border-green-400 rounded-lg p-2 text-xl focus:outline-none"
-            required
-            minLength={6}
-          />
-
-          <input
-            type="password"
-            placeholder="Нууц үг давтах"
-            value={passwords.confirmPassword}
-            onChange={(e) =>
-              setPasswords({
-                ...passwords,
-                confirmPassword: e.target.value,
-              })
-            }
-            className="border-2 border-green-400 rounded-lg p-2 text-xl focus:outline-none"
-            required
-            minLength={6}
-          />
-
+        <h2 className="text-2xl font-bold mb-2">Нууц үг сэргээх</h2>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Шинэ нууц үг
+            </label>
+            <input
+              type="password"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={(e) =>
+                setPasswords({ ...passwords, newPassword: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Нууц үг давтах
+            </label>
+            <input
+              type="password"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={(e) =>
+                setPasswords({ ...passwords, confirmPassword: e.target.value })
+              }
+              required
+            />
+          </div>
           <button
             type="submit"
+            className="bg-blue-500 text-white py-2 px-4 rounded"
             disabled={isLoading}
-            className="w-full bg-green-400 rounded-lg text-xl p-2 border-none 
-                     focus:outline-none hover:bg-green-500 text-white font-bold 
-                     transition duration-300 disabled:bg-green-200"
           >
-            {isLoading ? "Хадгалж байна..." : "Хадгалах"}
+            {isLoading ? "Түр хүлээнэ үү..." : "Шинэчлэх"}
           </button>
         </form>
       </div>

@@ -1,19 +1,15 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Trash2Icon, PlusIcon } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
-import { CldUploadWidget } from "next-cloudinary";
-import { Result } from "postcss";
+import Image from "next/image";
+// import { CldUploadWidget } from "next-cloudinary";
+// import { Result } from "postcss";
 
-type imageData = {
-	image: string;
-	id: number;
-};
 //delete image api
 //add image api
 //get all image api
 
-function Add_photo({ image_data }: { image_data: imageData[] }) {
+function Add_photo({ image_data }: { image_data: string[] }) {
 	return (
 		<div className="container mx-auto border border-green-400 rounded-xl p-6 col-span-2">
 			<div className="flex justify-between items-center mb-6">
@@ -30,14 +26,16 @@ function Add_photo({ image_data }: { image_data: imageData[] }) {
 			</p>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-				{image_data.map((image) => (
+				{image_data.map((image, index) => (
 					<div
-						className="card mx-auto flex flex-col justify-between w-full max-w-sm h-48 sm:h-64 border-4 shadow-lg rounded-xl"
-						key={image.id}
+						key={index}
+						className={
+							"card mx-auto flex flex-col justify-between w-full max-w-sm h-48 sm:h-64 border-4 shadow-lg rounded-xl"
+						}
 					>
 						<div className="list-item-image relative h-48 sm:h-64 border  p-4 border-green-400 rounded-xl">
 							<Image
-								src={image.image}
+								src={image}
 								alt="image"
 								layout="fill"
 								objectFit="cover"
@@ -50,7 +48,7 @@ function Add_photo({ image_data }: { image_data: imageData[] }) {
 					</div>
 				))}
 				<Button className="h-48 sm:h-64 bg-slate-200  rounded-xl flex justify-center items-center">
-					<CldUploadWidget
+					{/* <CldUploadWidget
 						uploadPreset="liveger_public"
 						onSuccess={(results) => {
 							console.log("URL :", results);
@@ -59,7 +57,7 @@ function Add_photo({ image_data }: { image_data: imageData[] }) {
 						{({ open }) => {
 							return <button onClick={() => open()}>Upload an Image</button>;
 						}}
-					</CldUploadWidget>
+					</CldUploadWidget> */}
 
 					<PlusIcon className="w-10 h-10" />
 				</Button>
