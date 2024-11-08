@@ -8,6 +8,7 @@ interface Order {
   startDate: Date;
   endDate: Date;
   totalPrice: number;
+  isConfirmed: boolean;
 }
 
 const schemaOrder = new Schema<Order>(
@@ -18,6 +19,7 @@ const schemaOrder = new Schema<Order>(
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     totalPrice: { type: Number, default: 0 },
+    isConfirmed: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

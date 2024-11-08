@@ -126,9 +126,11 @@ export default function UserHome() {
       console.error("fetch products data error", error);
     }
   };
+
   useEffect(() => {
     getPlacesFunc();
   }, []);
+  console.log("placeuudiig harah", getPlaces);
   return (
     <div className="container h-full mx-auto flex flex-col">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-16">

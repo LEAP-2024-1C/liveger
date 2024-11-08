@@ -18,6 +18,7 @@ import { HostCard } from "@/app/components/detail-host-card";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 interface Todo {
   id: string;
   name: string;
@@ -89,13 +90,15 @@ export default function Place() {
       const response = await axios.get(
         `http://localhost:9002/api/v1/places/${params.id}`
       );
-      setOnePlace(response.data.getOnePlace);
-      console.log("one placeiig harah", response.data.getOnePlace);
+      if (response.status === 201) {
+        setOnePlace(response.data.place);
+        console.log("one placeiig harah", response.data.place);
+      }
     } catch (error) {
       console.error("darsan one place iin datag harahad aldaa garsan", error);
     }
   };
-  const handleBookingRequest = (
+  const handleBookingRequest = async (
     startDate: string,
     endDate: string,
     numberOfGuests: Number,
@@ -114,14 +117,14 @@ export default function Place() {
         "thisParamid ",
         thisParamid
       );
-      fetch("http://localhost:9002/api/v1/order/add", {
+      fetch("http://localhost:9002/api/v1/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          place: "6723059985721dd0bee8cb42",
+          place: params.id,
           startDate: startDate,
           endDate: endDate,
           numberOfPeople: numberOfGuests,
@@ -130,6 +133,10 @@ export default function Place() {
         .then((response) => response.json())
         .then((data) => {
           console.log("Booking request successful:", data);
+          router.push(`/order/${data.addOrder._id}`);
+          toast.success(
+            "Таны захиалгыг амжилттай хадгаллаа, төлбөрөө төлж захиалгаа баталгаажуулна уу."
+          );
         })
         .catch((error) => {
           console.error("Error sending booking request:", error);
@@ -145,6 +152,7 @@ export default function Place() {
     new Date(onePlace.hostId.hostInfo.startedHostingDate),
     "yyyy 'оны' MM 'сар'"
   );
+  console.log("one placeiig harah", onePlace);
   return (
     <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">

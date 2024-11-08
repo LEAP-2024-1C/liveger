@@ -39,6 +39,11 @@ const Login: React.FC = () => {
         localStorage.setItem("token", token);
         setToken(token);
         router.push("/");
+      } else if (res.status === 400) {
+        return toast.error(
+          "Нууц үг эсвэл хэрэглэгчийн нэвтрэх имэйл хаяг буруу байна.",
+          { autoClose: 1000 }
+        );
       }
     } catch (error: any) {
       console.error("алдаа гарлаа", error);
