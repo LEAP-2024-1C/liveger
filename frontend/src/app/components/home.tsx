@@ -9,7 +9,7 @@ import image14 from "../../../public/image.webp";
 import image15 from "../../../public/image15.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Proofcard } from "./host/batalgaajuulah-card";
+import { Proofcard } from "./batalgaajuulah-card";
 
 interface MapLakhDataType {
   _id: string;
