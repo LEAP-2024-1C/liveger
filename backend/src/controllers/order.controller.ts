@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Order } from "../models/order.model";
 import { Places } from "../models/places.model";
 
-export const createOrderRequest = async (req: Request, res: Response) => {
+export const createOrder = async (req: Request, res: Response) => {
   const { place, numberOfPeople, startDate, endDate } = req.body;
   const userId = req.user._id;
   const sDate = new Date(startDate);
@@ -25,7 +25,7 @@ export const createOrderRequest = async (req: Request, res: Response) => {
     const niitHuniiNiitUdriinTulbur = Math.ceil(
       numberOfPeople * placesPrice * dateRange
     );
-    const addOrderRequest = await Order.create({
+    const addOrder = await Order.create({
       userId,
       place,
       numberOfPeople,
@@ -80,7 +80,7 @@ export const createOrderRequest = async (req: Request, res: Response) => {
     await findPlace.save();
     res.status(200).json({
       message: "zahialga amjilttai uusgesen",
-      addOrderRequest,
+      addOrder,
     });
   } catch (error) {
     console.log("zahialga uusgehed yamar negen aldaa garlaa", error);
@@ -95,11 +95,11 @@ export const getOrder = async (req: Request, res: Response) => {
   console.log("hhhhdhdhdhdh");
   const uId = req.user._id;
 
-  const { placeId } = req.params;
+  const { orderId } = req.params;
   try {
-    const findOnlyOrder = await Order.find({
+    const findOnlyOrder = await Order.findOne({
+      _id: orderId,
       userId: uId,
-      place: placeId,
       isConfirmed: false,
     })
       .sort({ createdAt: 1 })

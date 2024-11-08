@@ -8,20 +8,22 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function ConfirmOrderPage() {
   const params = useParams();
-  const [getOneOrder, setGetOneOrder] = useState([
-    {
-      place: { images: [], title: "" },
-    },
-  ]);
+  const [order, setOrder] = useState({
+    numberOfPeople: 0,
+    place: { images: [], title: "", price: 0 },
+    startDate: "",
+    endDate: "",
+    totalPrice: 0,
+  });
   const getOrder = async () => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.get(
-        ` http://localhost:9002/api/v1/order/${params.id}/get-order`,
+        ` http://localhost:9002/api/v1/order/${params.id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.status === 200) {
-        setGetOneOrder(response.data.findOnlyOrder);
+        setOrder(response.data.findOnlyOrder);
         console.log(
           "hamgiin suuld hiisen orderiig harah amjilttai",
           response.data.findOnlyOrder
@@ -34,10 +36,16 @@ export default function ConfirmOrderPage() {
   useEffect(() => {
     getOrder();
   }, []);
-  console.log("get one orderiig harah ------", getOneOrder);
-  const objectGetOneOrder = { ...getOneOrder };
-  console.log("get one orderiig harah ------", objectGetOneOrder);
-
+  console.log("get one orderiig harah ------", order);
+  const objectOrder = { ...order };
+  console.log("get one orderiig harah ------", objectOrder);
+  const sDate = new Date(order.startDate);
+  const eDate = new Date(order.endDate);
+  const dateRangeInMillSec: number = Math.abs(
+    eDate.getTime() - sDate.getTime() + 1000 * 60 * 60 * 24
+  );
+  const millsecInDay: number = 1000 * 60 * 60 * 24;
+  const dateRange: number = Math.floor(dateRangeInMillSec / millsecInDay);
   return (
     <div className="px-48">
       <Link href={`/place/${params.id}`}>
@@ -51,7 +59,11 @@ export default function ConfirmOrderPage() {
         <div className="">
           <OrderInfoCart
             // image={getOneOrder[0].place?.images[0]}
-            title={getOneOrder[0].place?.title}
+            title={order.place.title}
+            guestNumber={order.numberOfPeople}
+            dateDuration={dateRange}
+            totalPrice={order.totalPrice}
+            price={order.place.price}
           />
         </div>
       </div>

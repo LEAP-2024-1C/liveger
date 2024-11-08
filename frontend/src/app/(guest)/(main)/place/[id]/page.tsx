@@ -91,14 +91,14 @@ export default function Place() {
         `http://localhost:9002/api/v1/places/${params.id}`
       );
       if (response.status === 201) {
-        setOnePlace(response.data.getOnePlace);
-        console.log("one placeiig harah", response.data.getOnePlace);
+        setOnePlace(response.data.place);
+        console.log("one placeiig harah", response.data.place);
       }
     } catch (error) {
       console.error("darsan one place iin datag harahad aldaa garsan", error);
     }
   };
-  const handleBookingRequest = (
+  const handleBookingRequest = async (
     startDate: string,
     endDate: string,
     numberOfGuests: Number,
@@ -117,7 +117,7 @@ export default function Place() {
         "thisParamid ",
         thisParamid
       );
-      fetch("http://localhost:9002/api/v1/order/add", {
+      fetch("http://localhost:9002/api/v1/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,14 +133,14 @@ export default function Place() {
         .then((response) => response.json())
         .then((data) => {
           console.log("Booking request successful:", data);
+          router.push(`/order/${data.addOrder._id}`);
+          toast.success(
+            "Таны захиалгыг амжилттай хадгаллаа, төлбөрөө төлж захиалгаа баталгаажуулна уу."
+          );
         })
         .catch((error) => {
           console.error("Error sending booking request:", error);
         });
-      toast.success(
-        "Таны захиалгыг амжилттай хадгаллаа, төлбөрөө төлж захиалгаа баталгаажуулна уу."
-      );
-      router.push(`/order/${params.id}`);
     } else {
       router.push("/login");
     }
