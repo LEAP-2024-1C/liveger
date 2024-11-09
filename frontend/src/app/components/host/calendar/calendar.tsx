@@ -7,7 +7,7 @@ interface HostBlockedData {
 }
 
 interface GuestData {
-	id: number;
+	id: string;
 	howmany_guests: number;
 	startdate: string;
 	enddate: string;
