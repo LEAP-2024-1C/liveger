@@ -18,7 +18,7 @@ const HostSignup = () => {
     role: "host",
   });
 
-  const hostSigup = async () => {
+  const hostSignup = async () => {
     const { firstName, lastName, phoneNumber, email, password, role } =
       HostData;
     try {
@@ -31,12 +31,12 @@ const HostSignup = () => {
         role: "host",
       });
       if (res.status === 201) {
-        toast.success("Host successfully signed up", { autoClose: 1000 });
+        toast.success("Host амжилттай бүртгэгдлээ", { autoClose: 1000 });
         router.push("/host/hostlogin");
       }
     } catch (error) {
-      console.error("There was an error signing up:", error);
-      toast.error("Failed to sign up. Please try again.");
+      console.error("Бүртгэл үүсгэхэд алдаа гарлаа:", error);
+      toast.error("Бүртгэл үүсгэж чадсангүй. Дахин оролдоно уу.");
     }
   };
 
@@ -48,10 +48,10 @@ const HostSignup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!HostData.firstName || !HostData.email) {
-      toast.error("Please fill in all required fields.");
+      toast.error("Шаардлагатай бүх талбарыг бөглөнө үү.");
       return;
     }
-    await hostSigup();
+    await hostSignup();
   };
 
   return (

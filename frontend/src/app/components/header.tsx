@@ -26,9 +26,11 @@ import {
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { UserContext } from "@/app/context/user.context";
+import { useRouter } from "next/navigation";
 export default function Header() {
-  const { user, signOut } = useContext(UserContext);
+  const { user, setToken, setUser } = useContext(UserContext);
   console.log("useriig harah", user);
+  const router = useRouter();
   return (
     <div className="h-12 flex flex-row justify-between items-center px-8">
       <Link href="/">
@@ -145,7 +147,16 @@ export default function Header() {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <span onClick={signOut}>Log out</span>
+                <span
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    setUser(null);
+                    setToken(null);
+                    router.push("/");
+                  }}
+                >
+                  Log out
+                </span>
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuContent>

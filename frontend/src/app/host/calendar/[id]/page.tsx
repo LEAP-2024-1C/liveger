@@ -1,39 +1,83 @@
 "use client";
-import React from "react";
+import { useEffect, useState } from "react";
 import Calendar from "@/app/components/host/calendar/calendar";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-// import { Button } from "@/components/ui/button";
-// import Link from "next/link";
+import axios from "axios";
+{/* interface HostBlockedData {
+	startdate: string;
+	enddate: string;
+}
 
-const mockData_host_blocked = [
-  {
-    startdate: "2024-10-27",
-    enddate: "2024-10-28",
-  },
-];
-import ger from "@/app/media/images_mock_data/ger baigal 1.jpg";
-const mockData_guests = [
-  {
-    guestId: 1,
-    howmany_guests: 2,
-    startdate: "2024-10-30",
-    enddate: "2024-11-01",
-    photo: "/placeholder-image-1.jpg",
-  },
-];
+interface GuestData {
+	id: string;
+	howmany_guests: number;
+	startdate: string;
+	enddate: string;
+	photo: string;
+} */}
+interface UserOrderDate {
+  orderId: string;
+  startDate: string;
+  endDate: string;
+  _id: string;
+}
+
+interface CalendarData {
+  userOrderDates: UserOrderDate[];
+  blockedDate: string[];
+}
+
+interface CardProps {
+  _id: string;
+  title: string;
+  images: string[];
+  info: string;
+  status: boolean;
+  calendar: CalendarData;
+}
+
+const useGetPlace = (id: string) => {
+  const [place, setPlace] = useState<CardProps | null>(null);
+
+  useEffect(() => {
+    const fetchPlace = async () => {
+      try {
+        const response = await axios.get(`http://localhost:9002/api/v1/places/${id}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setPlace(response.data); // Assuming the response is the place object
+      } catch (error) {
+        console.log(error);
+        setPlace(null);
+      }
+    };
+
+    fetchPlace();
+  }, [id]);
+
+  return place;
+};
 
 function Page() {
   const params = useParams();
-  const cardId = params.id;
+  const cardId = params.id as string; // Ensure cardId is a string
+  const place = useGetPlace(cardId); // Fetch the place data
+
+  if (!place) {
+    return <div>Loading...</div>; // Show loading state while fetching
+  }
 
   return (
     <div className={`py-4 sm:py-8 flex card-${cardId}`}>
       <div className="w-full container h-full flex justify-between p-8 fixed">
         <div className="relative h-32 w-32 rounded-xl opacity-50">
           <Image
-            src={ger}
-            alt="mock data"
+            src={place.images && place.images.length > 0 ? place.images[0] : ''} // Use the first image from the images array if it exists
+            alt={place.title}
             layout="fill"
             objectFit="cover"
             className="rounded-xl"
@@ -43,11 +87,11 @@ function Page() {
           Хүлээгдэж буй мөнгө: 1,000,000₮
         </h1>
       </div>
-
-      <Calendar
-        hostBlockedData={mockData_host_blocked}
-        guestData={mockData_guests}
-      />
+      
+      {/* <Calendar
+        hostBlockedData={}
+        guestData={}
+      /> */}
     </div>
   );
 }
