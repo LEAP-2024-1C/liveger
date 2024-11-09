@@ -11,7 +11,7 @@ export const signup = async (req: Request, res: Response) => {
     const { email, firstName, lastName, phoneNumber, password, role } =
       req.body;
     if (!firstName || !email || !password) {
-      return res.status(400).json({ message: "Хоосон утга байж болохгүй." });
+      return res.status(400).json({ message: "Value cannot be empty." });
     }
     const createdUser = await User.create({
       email,
@@ -35,23 +35,28 @@ export const login = async (req: Request, res: Response) => {
     if (!email || !password) {
       return res
         .status(404)
-        .json({ message: "Нэр эсвэл нууц үг хоосон байж болохгүй." });
+        .json({ message: "Email or password cannot be empty." });
     }
     const user = await User.findOne({ email, role: type_login });
     console.log(user)
     if (!user) {
-      return res.status(400).json({ message: "burtgel uusgegui bnaa" });
+      return res.status(400).json({ message: "Account not registered." });
     }
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({
-        message: "Хэрэглэгчийн имэйл эсвэл нууц үг тохирохгүй байна.",
+        message: "Email or password does not match.",
       });
     }
     const token = generateToken({ id: user._id });
     res.status(200).json({ message: "success", token });
   } catch (error) {
-    res.status(500).json({ message: "Серверийн алдаа", error });
+    res
+      .status(500)
+      .json({
+        message: "Network error or unable to connect to server.",
+        error,
+      });
   }
 };
 export const updateHost = async (req: Request, res: Response) => {

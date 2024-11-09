@@ -76,6 +76,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = async () => {
     await localStorage.removeItem("token");
+    setToken(null);
+    setUser(null);
     toast.success("Хэрэглэгч та системээс амжилттай гарлаа", {
       autoClose: 1000,
     });
