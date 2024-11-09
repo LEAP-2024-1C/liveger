@@ -27,6 +27,9 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { UserContext } from "@/app/context/user.context";
 import { useRouter } from "next/navigation";
+import LoginModalContent from "./login_dropdownMenu_content";
+import LoginDropDownMenuContent from "./login_dropdownMenu_content";
+import SignUpDropDownMenuContent from "./signup_dropdownMenu_content";
 export default function Header() {
   const { user, setToken, setUser } = useContext(UserContext);
   console.log("useriig harah", user);
@@ -60,18 +63,26 @@ export default function Header() {
         </div>
         {!user && (
           <div className="flex flex-row space-x-2">
-            <Link href="/login">
-              <Button className="w-[18vh] max-sm:w-[24px]">
-                <MdOutlineLogin />
-                <p className="max-sm:hidden"> Нэвтрэх</p>
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button className="w-[18vh] max-sm:w-[24px]" variant="outline">
-                <IoMdPersonAdd />
-                <p className="max-sm:hidden"> Бүртгүүлэх</p>
-              </Button>
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button className="max-w-fit">
+                  <MdOutlineLogin />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <LoginDropDownMenuContent />
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button className="max-w-fit" variant="outline">
+                  <IoMdPersonAdd />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <SignUpDropDownMenuContent />
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         )}
 
