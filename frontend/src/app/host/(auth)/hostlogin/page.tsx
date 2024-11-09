@@ -29,11 +29,27 @@ const HostLogin = () => {
         const { token } = res.data;
         localStorage.setItem("token", token);
         setToken(token);
-        router.push("/host");
+        router.push("/");
       }
-    } catch (error) {
-      console.log("There was an error  in:", error);
-      toast.error("Нэвтрэхэд алдаа гарлаа");
+    } catch (error: any) {
+      console.error("алдаа гарлаа", error);
+
+      if (error.response) {
+        // Серверээс ирсэн статус кодыг шалгах хэсэг
+        if (error.response.status === 400) {
+          toast.error("Бүртгэл үүсгээгүй байна");
+        } else if (error.response.status === 401) {
+          toast.error("Хэрэглэгчийн имэйл эсвэл нууц үг тохирохгүй байна.");
+        } else if (error.response.status === 404) {
+          toast.error("Нэр эсвэл нууц үг хоосон байж болохгүй.");
+        } else {
+          toast.error(
+            "Алдаа: " + (error.response.data.message || "Серверийн алдаа")
+          );
+        }
+      } else {
+        toast.error("Сүлжээний алдаа эсвэл сервертэй холбогдож чадсангүй");
+      }
     }
   };
 

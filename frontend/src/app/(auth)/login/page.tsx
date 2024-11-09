@@ -26,29 +26,35 @@ const Login: React.FC = () => {
       });
       console.log("res", res);
 
-      if (res.status === 400) {
-        return toast.error("Нэвтрэх нэр эсвэл нууц үг буруу байна");
-      }
-      if (res.status === 401) {
-        return toast.error("Нэвтрэх нэр эсвэл нууц үг буруу байна");
-      }
-
       if (res.status === 200) {
-        toast.success("Амжилттай нэвтэрлээ", { autoClose: 1000 });
+        toast.success("Login successful", { autoClose: 1000 });
         const { token } = res.data;
         localStorage.setItem("token", token);
         setToken(token);
         router.push("/");
-      } else if (res.status === 400) {
-        return toast.error(
-          "Нууц үг эсвэл хэрэглэгчийн нэвтрэх имэйл хаяг буруу байна.",
-          { autoClose: 1000 }
-        );
       }
     } catch (error: any) {
-      console.error("алдаа гарлаа", error);
+      console.error("Error occurred", error);
+
+      if (error.response) {
+        // Check the status code from the server response
+        if (error.response.status === 400) {
+          toast.error("Account not registered.");
+        } else if (error.response.status === 401) {
+          toast.error("Email or password does not match.");
+        } else if (error.response.status === 404) {
+          toast.error("Email or password cannot be empty.");
+        } else {
+          toast.error(
+            "Error: " + (error.response.data.message || "Server error")
+          );
+        }
+      } else {
+        toast.error("Network error or unable to connect to server.");
+      }
     }
   };
+
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
