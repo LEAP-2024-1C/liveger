@@ -123,7 +123,7 @@ export default function UserHome() {
       setGetPlaces(response.data.getPlaces);
       console.log("all places", response.data.getPlaces);
     } catch (error) {
-      console.error("fetch products data error", error);
+      console.error("fetch places data error", error);
     }
   };
 

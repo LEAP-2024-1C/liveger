@@ -11,5 +11,5 @@ const router = Router();
 router.route("/add").post(authentication, authorize, createPlace);
 router.route("/").get(getPlaces);
 // router.route("/:id").get(getPlace);
-router.route("/host").get(authentication, authorize, getPlacesbyHostId);
+router.route("/by-host").get(authentication, authorize, getPlacesbyHostId);
 export default router;

@@ -92,7 +92,7 @@ export const getPlaces = async (req: Request, res: Response) => {
 //   } catch (error) {
 //     console.error("placeiig harahad yamar negen aldaa garlaa", error);
 //     res
-//       .status(400)
+//       .status(404)
 //       .json({ message: "placeiig harahad aldaa garlaa aldaaaaaaaaaa" });
 //   }
 // };
@@ -104,7 +104,7 @@ export const getPlacesbyHostId = async (req: Request, res: Response) => {
     const placesByHost = await Places.find({ hostId: _id })
       .populate("services")
       .populate("hostId");
-    res.status(201).json({
+    res.status(200).json({
       message: "hostiin idtai placeuudiig amjilttai olloo",
       placesByHost,
     });
