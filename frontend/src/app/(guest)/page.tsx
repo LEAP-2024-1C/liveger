@@ -14,7 +14,7 @@ export default function Home() {
           objectFit="cover"
           className="rounded-xl"
         />
-        <div className="absolute text-white z-10 left-[50%] top-[50%] translate-x-[-50%] text-5xl font-bold max-sm:text-2xl">
+        <div className="absolute text-white z-10 left-[50%] top-[50%] translate-x-[-50%] md:text-3xl text-5xl font-bold max-sm:text-2xl">
           Come to Mongolia feel the nomadic life
         </div>
       </div>

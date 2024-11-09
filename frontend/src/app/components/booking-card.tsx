@@ -24,7 +24,7 @@ export default function BookingCard({
 
   return (
     <Card className="shadow-xl border-4 border-green-600 rounded-xl p-4">
-      <CardHeader className="text-2xl font-bold">Захиалгатай</CardHeader>
+      <CardHeader className="text-2xl font-bold">Захиалга</CardHeader>
       <CardContent className="flex flex-col space-y-4">
         <input
           type="date"

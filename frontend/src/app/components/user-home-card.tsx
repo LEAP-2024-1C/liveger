@@ -61,7 +61,7 @@ export function UserCard({
           </div>
           <h6 className="text-sm text-gray-600">{distance}</h6>
           <h6 className="text-sm text-gray-600">{date}</h6>
-          <h6 className="text-sm">{price}</h6>
+          <h6 className="text-sm">{price}$</h6>
         </div>
       </Card>
     </Link>

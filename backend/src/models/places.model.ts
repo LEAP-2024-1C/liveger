@@ -22,11 +22,7 @@ interface Places {
   };
 
   services: [Schema.Types.ObjectId];
-  luxLevel: string;
   possibleGuestNumber: number;
-  totalBedNumber: number;
-  totalGerNumber: number;
-  totalBedOfPerGer: number;
 }
 
 const placeSchema = new Schema<Places>(
@@ -64,20 +60,8 @@ const placeSchema = new Schema<Places>(
     services: [
       { type: Schema.Types.ObjectId, required: true, ref: "UServices" },
     ],
-    luxLevel: {
-      type: String,
-      enum: [
-        "энгийн",
-        "хагас льюкс",
-        "льюкс",
-        "тансаг зэрэглэлийн",
-        "яахав дээ л",
-      ],
-      default: "хагас льюкс",
-    },
+
     possibleGuestNumber: { type: Number, required: true },
-    totalGerNumber: { type: Number, required: true },
-    totalBedOfPerGer: { type: Number, required: true },
   },
   { timestamps: true }
 );

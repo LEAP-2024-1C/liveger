@@ -123,7 +123,7 @@ export default function UserHome() {
       setGetPlaces(response.data.getPlaces);
       console.log("all places", response.data.getPlaces);
     } catch (error) {
-      console.error("fetch products data error", error);
+      console.error("fetch places data error", error);
     }
   };
 
@@ -132,7 +132,7 @@ export default function UserHome() {
   }, []);
   console.log("placeuudiig harah", getPlaces);
   return (
-    <div className="container h-full mx-auto flex flex-col">
+    <div className="container md:px-8 h-full mx-auto flex flex-col">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-16">
         {getPlaces.map((place) => (
           <UserCard

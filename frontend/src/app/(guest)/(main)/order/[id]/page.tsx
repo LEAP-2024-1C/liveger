@@ -10,7 +10,7 @@ export default function ConfirmOrderPage() {
   const params = useParams();
   const [order, setOrder] = useState({
     numberOfPeople: 0,
-    place: { images: [], title: "", price: 0 },
+    place: { images: [""], title: "", price: 0 },
     startDate: "",
     endDate: "",
     totalPrice: 0,
@@ -55,10 +55,10 @@ export default function ConfirmOrderPage() {
         </div>
       </Link>
       <div className="grid grid-cols-2 gap-x-12">
-        <div className="w-full bg-slate-600"></div>
+        <div className="w-full"></div>
         <div className="">
           <OrderInfoCart
-            // image={getOneOrder[0].place?.images[0]}
+            // image={order.place.images[0]}
             title={order.place.title}
             guestNumber={order.numberOfPeople}
             dateDuration={dateRange}

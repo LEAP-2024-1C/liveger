@@ -21,8 +21,8 @@ export const createService = async (req: Request, res: Response) => {
 };
 export const getServices = async (req: Request, res: Response) => {
   try {
-    const getServices = await UServices.find({});
-    res.status(201).json({ message: "amjilttai", getServices });
+    const services = await UServices.find({});
+    res.status(201).json({ message: "amjilttai", services });
   } catch (error) {
     console.error("serviceuudiig harahad yamar negen aldaa garlaa", error);
     res
