@@ -10,7 +10,7 @@ import EditAvailableTodo from "@/app/components/host/edit_ger/edit_available_tod
 import EditDescription from "@/app/components/host/edit_ger/edit_description";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { Todo } from "@/path/to/todo/type"; // Adjust the path as necessary
+// Adjust the path as necessary
 
 function EditListingPage() {
   const params = useParams();

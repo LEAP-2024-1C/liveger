@@ -7,15 +7,15 @@ import { Button } from "@/components/ui/button";
 //put guest number api
 
 // Add props interface
-interface EditGuestNumberProps {
+interface AddGuestNumberProps {
   guest_number: number;
   setGuestNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function EditGuestNumber({
+export default function AddPoGuestNumber({
   guest_number,
   setGuestNumber,
-}: EditGuestNumberProps) {
+}: AddGuestNumberProps) {
   const [guestNumber, setGuestNumberState] = useState(guest_number);
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6">
@@ -43,5 +43,3 @@ function EditGuestNumber({
     </div>
   );
 }
-
-export default EditGuestNumber;

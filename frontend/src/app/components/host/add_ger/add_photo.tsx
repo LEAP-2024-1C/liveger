@@ -9,7 +9,7 @@ import Image from "next/image";
 //add image api
 //get all image api
 
-function Add_photo({ image_data }: { image_data: string[] }) {
+export default function AddPhoto({ image_data }: { image_data: string[] }) {
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6 col-span-2">
       <div className="flex justify-between items-center mb-6">
@@ -65,5 +65,3 @@ function Add_photo({ image_data }: { image_data: string[] }) {
     </div>
   );
 }
-
-export default Add_photo;

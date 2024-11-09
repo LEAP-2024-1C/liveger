@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 //put titel api
 
 // Add props interface
-interface EditTitelProps {
+interface AddTitleProps {
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function EditTitel({ title, setTitle }: EditTitelProps) {
+export default function AddTitle({ title, setTitle }: AddTitleProps) {
   const [garchig, setGarchig] = useState(title);
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6">
@@ -45,5 +45,3 @@ function EditTitel({ title, setTitle }: EditTitelProps) {
     </div>
   );
 }
-
-export default EditTitel;

@@ -7,15 +7,15 @@ import { Button } from "@/components/ui/button";
 //get description api
 
 // Add props interface
-interface EditDescriptionProps {
+interface AddDescriptionProps {
   description: string;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function EditDescription({
+export default function AddDescription({
   description,
   setDescription,
-}: EditDescriptionProps) {
+}: AddDescriptionProps) {
   const [descriptionState, setDescriptionState] = useState(description);
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6">
@@ -43,4 +43,3 @@ function EditDescription({
     </div>
   );
 }
-export default EditDescription;

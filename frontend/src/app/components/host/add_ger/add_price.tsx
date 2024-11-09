@@ -15,12 +15,12 @@ async function fetchMntUsdCompare() {
 }
 
 // Add props interface
-interface EditPriceProps {
+interface AddPriceProps {
   price: number;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function EditPrice({ price, setPrice }: EditPriceProps) {
+export default function AddPrice({ price, setPrice }: AddPriceProps) {
   const [priceusd, setPriceusd] = useState(price); //default value from backend
   const [mntUsdCompare, setMntUsdCompare] = useState(3400); //default value for compare
   const [pricemn, setPricemn] = useState(price * mntUsdCompare * 0.9);
@@ -61,5 +61,3 @@ function EditPrice({ price, setPrice }: EditPriceProps) {
     </div>
   );
 }
-
-export default EditPrice;

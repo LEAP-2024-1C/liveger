@@ -43,7 +43,7 @@ function Page() {
       <div className="container  mx-auto p-4">
         <div className="list-header flex flex-col sm:flex-row justify-between items-center mt-8">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">Таны жагсаалт</h1>
-          <Link href="/add-place">
+          <Link href="/host/add-place">
             <Button className="w-full sm:w-auto mb-4 sm:mb-0">
               Жагсаалт нэмэх
             </Button>
