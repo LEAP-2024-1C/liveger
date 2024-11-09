@@ -15,10 +15,7 @@ export const createPlace = async (req: Request, res: Response) => {
     guestFav,
     services,
     calendar,
-    luxLevel,
     possibleGuestNumber,
-    totalGerNumber,
-    totalBedOfPerGer,
   } = req.body;
   try {
     console.log(
@@ -34,11 +31,7 @@ export const createPlace = async (req: Request, res: Response) => {
       guestFav,
       services,
       calendar,
-      luxLevel,
-
-      possibleGuestNumber,
-      totalGerNumber,
-      totalBedOfPerGer
+      possibleGuestNumber
     );
     const placeUusgekh = await Places.create({
       hostId: _id,
@@ -52,10 +45,7 @@ export const createPlace = async (req: Request, res: Response) => {
       guestFav,
       services,
       calendar,
-      luxLevel,
       possibleGuestNumber,
-      totalGerNumber,
-      totalBedOfPerGer,
     });
     res.status(201).json({ message: "place uusgekh amjilttai", placeUusgekh });
   } catch (error) {

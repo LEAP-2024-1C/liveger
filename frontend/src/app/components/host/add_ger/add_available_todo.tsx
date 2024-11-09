@@ -1,13 +1,14 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import axios from "axios";
 
 // Add props interface
-interface Todo {
-  id: number;
+export interface Todo {
+  _id: string;
   name: string;
   description: string;
   isChecked: boolean;
@@ -26,24 +27,40 @@ export default function AddAvailableTodo({
   const [checkedTodo, setCheckedTodo] = useState<Todo[]>([]);
   console.log(checkedTodo);
   const [newTodo, setNewTodo] = useState("");
-
+  const [hutulburs, setHutulburs] = useState<Todo[]>([]);
+  const getHutulburs = async () => {
+    try {
+      const respo = await axios.get("http://localhost:9002/api/v1/service");
+      if (respo.status === 201) {
+        setHutulburs(respo.data.services);
+      }
+    } catch (error) {
+      console.error("serviceuudiig harahad yamar negen aldaa garlaa", error);
+    }
+  };
+  useEffect(() => {
+    getHutulburs();
+  }, []);
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6">
-      <h1 className="font-bold text-2xl">Үйлдэлүүд</h1>
+      <h1 className="font-bold text-2xl">Хөтөлбөрүүд</h1>
       <p className="text-muted-foreground mb-8">
         Гэрийн үйлдэлүүдийг сонгоно уу.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {available_todo.map((todo: Todo, index: number) => (
+        {hutulburs.map((hutulbur: Todo, index: number) => (
           <div
             key={index}
             className="flex items-center gap-2 border border-green-400 rounded-xl"
           >
             <Checkbox
-              key={todo.id}
-              checked={todo.isChecked}
+              key={hutulbur._id}
+              checked={hutulbur.isChecked}
               onClick={() => {
-                const updatedTodo = { ...todo, isChecked: !todo.isChecked };
+                const updatedTodo = {
+                  ...hutulbur,
+                  isChecked: !hutulbur.isChecked,
+                };
                 const updatedAvailableTodo = available_todo.map((t) =>
                   t.id === todo.id ? updatedTodo : t
                 );
@@ -58,8 +75,8 @@ export default function AddAvailableTodo({
               }}
             />
             <div className="flex flex-col">
-              <h1 className="text-sm font-bold">{todo.name}:</h1>
-              <p className="text-sm">{todo.description}</p>
+              <h1 className="text-sm font-bold">{hutulbur.name}:</h1>
+              <p className="text-sm">{hutulbur.description}</p>
             </div>
           </div>
         ))}

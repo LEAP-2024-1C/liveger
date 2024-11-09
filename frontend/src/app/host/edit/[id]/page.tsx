@@ -10,6 +10,8 @@ import EditAvailableTodo from "@/app/components/host/edit_ger/edit_available_tod
 import EditDescription from "@/app/components/host/edit_ger/edit_description";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
+import { Todo } from "@/app/components/host/add_ger/add_available_todo";
+
 // Adjust the path as necessary
 
 function EditListingPage() {
@@ -51,37 +53,37 @@ function EditListingPage() {
     fetchData();
   }, [homeId]);
 
-  const handleSubmit = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:9002/api/v1/places/add",
-        {
-          hostId: localStorage.getItem("token"),
-          title,
-          info: description,
-          images,
-          status: true,
-          location: "isdgb", // Add location if needed
-          distance: "dfv", // Add distance if needed
-          price,
-          guestFav: false, // Set as needed
-          services: availableTodo, // Send available todos
-          possibleGuestNumber: guestNumber,
-          totalGerNumber: 0, // Set as needed
-          totalBedOfPerGer: 0, // Set as needed
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("Place created successfully:", response.data);
-    } catch (error) {
-      console.error("Error creating place:", error);
-    }
-  };
+  //   const handleSubmit = async () => {
+  //     try {
+  //       const token = localStorage.getItem("token");
+  //       const response = await axios.post(
+  //         "http://localhost:9002/api/v1/places/add",
+  //         {
+  //           hostId: localStorage.getItem("token"),
+  //           title,
+  //           info: description,
+  //           images,
+  //           status: true,
+  //           location: "isdgb", // Add location if needed
+  //           distance: "dfv", // Add distance if needed
+  //           price,
+  //           guestFav: false, // Set as needed
+  //           services: availableTodo, // Send available todos
+  //           possibleGuestNumber: guestNumber,
+  //           totalGerNumber: 0, // Set as needed
+  //           totalBedOfPerGer: 0, // Set as needed
+  //         },
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+  //       console.log("Place created successfully:", response.data);
+  //     } catch (error) {
+  //       console.error("Error creating place:", error);
+  //     }
+  //   };
 
   return (
     <div
