@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 //drop down menu
@@ -21,8 +21,13 @@ import {
 // import { TbWorld } from "react-icons/tb";
 import { FiAlignJustify } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa";
+import { UserContext } from "@/app/context/user.context";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 function Host_header() {
+  const { user, setToken, setUser } = useContext(UserContext);
+  const router = useRouter();
   return (
     <div className="h-12 flex flex-row justify-between items-center py-4 sm:py-8 px-4 md:px-8 border-b bg-white border-gray-200 fixed z-50 top-0 w-full shadow-lg">
       <div className="flex items-center">
@@ -115,7 +120,17 @@ function Host_header() {
               <span>Тусламж</span>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <span>Гарах</span>
+              <span
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  setUser(null);
+                  setToken(null);
+                  toast.success("Та вебээс амжилттай гарлаа.");
+                  router.push("/");
+                }}
+              >
+                Гарах
+              </span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // Add props interface
 export interface Todo {
@@ -36,6 +37,30 @@ export default function AddAvailableTodo({
       }
     } catch (error) {
       console.error("serviceuudiig harahad yamar negen aldaa garlaa", error);
+    }
+  };
+  const createService = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const respo = await axios.post(
+        "http://localhost:9002/api/v1/service/create",
+        { name: newTodo, description: todoDescription, isChecked: true },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (respo.status === 201) {
+        toast.success("шинэ хөтөлбөрийг амжилттай үүсгэлээ.", {
+          autoClose: 1000,
+        });
+      }
+    } catch (error) {
+      console.error("шинэ хөтөлбөр нэмэхэд ямар нэгэн алдаа гарлаа", error);
+      toast.error("шинэ хөтөлбөр нэмэхэд ямар нэгэн алдаа гарлаа", {
+        autoClose: 1000,
+      });
     }
   };
   useEffect(() => {
@@ -92,21 +117,24 @@ export default function AddAvailableTodo({
             onChange={(e) => setTodoDescription(e.target.value)}
           />
           <Button
-            onClick={() => {
-              if (newTodo && todoDescription) {
-                setAvailableTodo([
-                  ...available_todo,
-                  {
-                    id: available_todo.length + 1,
-                    name: newTodo,
-                    isChecked: false,
-                    description: todoDescription,
-                  },
-                ]);
-                setNewTodo("");
-                setTodoDescription("");
-              }
-            }}
+            onClick={
+              createService
+              //   () => {
+              //   if (newTodo && todoDescription) {
+              //     setAvailableTodo([
+              //       ...available_todo,
+              //       {
+              //         id: available_todo.length + 1,
+              //         name: newTodo,
+              //         isChecked: false,
+              //         description: todoDescription,
+              //       },
+              //     ]);
+              //     setNewTodo("");
+              //     setTodoDescription("");
+              //   }
+              // }
+            }
           >
             Нэмэх
           </Button>

@@ -29,7 +29,7 @@ const HostLogin = () => {
         const { token } = res.data;
         localStorage.setItem("token", token);
         setToken(token);
-        router.push("/");
+        router.push("/host/list");
       }
     } catch (error: any) {
       console.error("алдаа гарлаа", error);

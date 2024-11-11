@@ -30,6 +30,7 @@ import { useRouter } from "next/navigation";
 import LoginModalContent from "./login_dropdownMenu_content";
 import LoginDropDownMenuContent from "./login_dropdownMenu_content";
 import SignUpDropDownMenuContent from "./signup_dropdownMenu_content";
+import { toast } from "react-toastify";
 export default function Header() {
   const { user, setToken, setUser } = useContext(UserContext);
   console.log("useriig harah", user);
@@ -163,6 +164,7 @@ export default function Header() {
                     localStorage.removeItem("token");
                     setUser(null);
                     setToken(null);
+                    toast.success("Хэрэглэгч та вебээс гарч байна.");
                     router.push("/");
                   }}
                 >

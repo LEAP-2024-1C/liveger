@@ -19,6 +19,11 @@ export const createService = async (req: Request, res: Response) => {
       .json({ message: "service uusehed aldaa garlaa tottotototo" });
   }
 };
+export const addServiceToPlace = (req: Request, res: Response) => {
+  const { name, description, isChecked } = req.body;
+  try {
+  } catch {}
+};
 export const getServices = async (req: Request, res: Response) => {
   try {
     const services = await UServices.find({});

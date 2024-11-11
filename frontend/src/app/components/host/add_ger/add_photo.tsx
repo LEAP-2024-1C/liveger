@@ -15,8 +15,7 @@ export default function AddPhoto({ image_data }: { image_data: string[] }) {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Зургийн цомог</h1>
         <div className="flex gap-2">
-          <Button variant="outline">Бүх зураг</Button>
-          <Button>Зураг нэмэх</Button>
+          <Button>Зураг оруулах</Button>
         </div>
       </div>
 
