@@ -69,23 +69,23 @@ export const getPlaces = async (req: Request, res: Response) => {
   }
 };
 
-// export const getPlace = async (req: Request, res: Response) => {
-//   const { id } = req.params;
-//   try {
-//     const place = await Places.findById(id)
-//       .populate("services")
-//       .populate("hostId");
-//     res.status(201).json({
-//       message: "zuvhun ali neg place iig harah amjilttai",
-//       place,
-//     });
-//   } catch (error) {
-//     console.error("placeiig harahad yamar negen aldaa garlaa", error);
-//     res
-//       .status(404)
-//       .json({ message: "placeiig harahad aldaa garlaa aldaaaaaaaaaa" });
-//   }
-// };
+export const getPlace = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const place = await Places.findById(id)
+      .populate("services")
+      .populate("hostId");
+    res.status(201).json({
+      message: "zuvhun ali neg place iig harah amjilttai",
+      place,
+    });
+  } catch (error) {
+    console.error("placeiig harahad yamar negen aldaa garlaa", error);
+    res
+      .status(404)
+      .json({ message: "placeiig harahad aldaa garlaa aldaaaaaaaaaa" });
+  }
+};
 
 export const getPlacesbyHostId = async (req: Request, res: Response) => {
   const { _id } = req.user;

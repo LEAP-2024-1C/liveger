@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   createPlace,
-  // getPlace,
+  getPlace,
   getPlaces,
   getPlacesbyHostId,
 } from "../controllers/place.controller";
@@ -10,6 +10,6 @@ import { authorize } from "../middlewares/authorize";
 const router = Router();
 router.route("/add").post(authentication, authorize, createPlace);
 router.route("/").get(getPlaces);
-// router.route("/:id").get(getPlace);
 router.route("/by-host").get(authentication, authorize, getPlacesbyHostId);
+router.route("/:id").get(getPlace);
 export default router;
