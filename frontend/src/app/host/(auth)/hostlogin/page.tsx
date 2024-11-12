@@ -118,13 +118,6 @@ const HostLogin = () => {
               />
             </div>
             <div className="flex items-center justify-between mb-6">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
-                type="submit"
-                onClick={hostlogin}
-              >
-                Нэвтрэх
-              </button>
               <Link
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                 href="/forgotpassword"
@@ -132,10 +125,18 @@ const HostLogin = () => {
                 Нууц үгээ мартсан?
               </Link>
             </div>
-            <div className="text-center">
+            <div className=" flex flex-col justify-center space-y-4">
+              <button
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300"
+                type="button"
+                onClick={hostlogin}
+              >
+                Нэвтрэх
+              </button>
+
               <Link href="/host/hostsignup">
                 <button
-                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300"
+                  className="border border-green-500 hover:bg-green-100 text-green-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300"
                   type="button"
                 >
                   Бүртгүүлэх

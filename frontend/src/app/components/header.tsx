@@ -64,26 +64,16 @@ export default function Header() {
         </div>
         {!user && (
           <div className="flex flex-row space-x-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button className="max-w-fit">
-                  <MdOutlineLogin />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <LoginDropDownMenuContent />
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button className="max-w-fit" variant="outline">
-                  <IoMdPersonAdd />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <SignUpDropDownMenuContent />
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link href="/login">
+              <Button className="max-w-fit">
+                <MdOutlineLogin />
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button className="max-w-fit" variant="outline">
+                <IoMdPersonAdd />
+              </Button>
+            </Link>
           </div>
         )}
 
