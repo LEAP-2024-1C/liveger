@@ -48,6 +48,7 @@ export const createPlace = async (req: Request, res: Response) => {
       possibleGuestNumber,
     });
     res.status(201).json({ message: "place uusgekh amjilttai", placeUusgekh });
+    console.log("uussen")
   } catch (error) {
     console.error("placeuudiig uusgehed yamar negen aldaa garlaa", error);
     res

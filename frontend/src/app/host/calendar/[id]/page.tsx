@@ -1,21 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import Calendar from "@/app/components/host/calendar/calendar";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import axios from "axios";
-{/* interface HostBlockedData {
-	startdate: string;
-	enddate: string;
-}
+import Calendar from "@/app/components/host/calendar/calendar";
 
-interface GuestData {
-	id: string;
-	howmany_guests: number;
-	startdate: string;
-	enddate: string;
-	photo: string;
-} */}
 interface UserOrderDate {
   orderId: string;
   startDate: string;
@@ -34,7 +23,7 @@ interface CardProps {
   images: string[];
   info: string;
   status: boolean;
-  calendar: CalendarData;
+  calendar: CalendarData; // Ensure this is included
 }
 
 const useGetPlace = (id: string) => {
@@ -71,6 +60,11 @@ function Page() {
     return <div>Loading...</div>; // Show loading state while fetching
   }
 
+  // Check if calendar exists and has the expected structure
+  const { calendar } = place;
+  const blockedDates = calendar?.blockedDate || []; // Default to an empty array if undefined
+  const userOrderDates = calendar?.userOrderDates || []; // Default to an empty array if undefined
+
   return (
     <div className={`py-4 sm:py-8 flex card-${cardId}`}>
       <div className="w-full container h-full flex justify-between p-8 fixed">
@@ -88,10 +82,10 @@ function Page() {
         </h1>
       </div>
       
-      {/* <Calendar
-        hostBlockedData={}
-        guestData={}
-      /> */}
+      <Calendar
+        hostBlockedData={blockedDates} // Pass blocked dates
+        guestData={userOrderDates} // Pass user order dates
+      />
     </div>
   );
 }
