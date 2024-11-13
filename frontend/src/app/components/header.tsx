@@ -46,7 +46,9 @@ export default function Header() {
             height={30}
             className=""
           />
-          <p className="max-sm:hidden font-bold">Live Ger</p>
+          <p className="max-sm:hidden font-bold logo text-emerald-800">
+            Live Ger
+          </p>
         </div>
       </Link>
       <label className="relative flex flex-row items-center w-[30%]">
