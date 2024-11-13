@@ -24,8 +24,9 @@ export default function AddDistance({
 
         <Input
           type="number"
+          value={addDistance}
           onChange={(e) => {
-            setDistance(Number(e.target.value));
+            setaddDistance(Number(e.target.value));
           }}
           placeholder="100 км"
         />
