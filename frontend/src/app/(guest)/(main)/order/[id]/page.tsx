@@ -55,7 +55,9 @@ export default function ConfirmOrderPage() {
         </div>
       </Link>
       <div className="grid grid-cols-2 gap-x-12">
-        <div className="w-full"></div>
+        <div className="w-full">
+          <Button>Төлбөр төлөх</Button>
+        </div>
         <div className="">
           <OrderInfoCart
             // image={order.place.images[0]}
