@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 //get guest number api
 //put guest number api
 
@@ -37,6 +38,7 @@ export default function AddPoGuestNumber({
           className="min-m-4 my-auto"
           onClick={() => {
             setGuestNumber(guestNumberState);
+            toast.success("1 гэрдэх боломжтой зочны тоог амжилттай хадгаллаа.");
           }}
         >
           Хадгалах

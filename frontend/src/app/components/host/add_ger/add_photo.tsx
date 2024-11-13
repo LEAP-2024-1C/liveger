@@ -5,35 +5,33 @@ import Image from "next/image";
 // import { CldUploadWidget } from "next-cloudinary";
 // import { Result } from "postcss";
 import { CldUploadWidget } from "next-cloudinary";
+import { toast } from "react-toastify";
 
 //delete image api
 //add image api
 //get all image api
 interface ImageProps {
   images: string[];
-  imageData: string[];
   setImages: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export default function AddPhoto({ images, setImages }: ImageProps) {
-  const [imageData, setImageData] = useState<string[]>([]);
+  const [imageData, setImageData] = useState<string[]>(images);
   const addToImageData = (newData: string) => {
     setImageData((prevData) => [...prevData, newData]);
   };
-  console.log("images iig hevleh", imageData);
 
+  const saveImages = () => {
+    setImages(imageData);
+    toast.success("Таны оруулсан зургуудыг амжилттай хадгаллаа");
+  };
+  console.log("images iig hevleh", images);
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6 col-span-2">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Зургийн цомог</h1>
         <div className="flex gap-2">
-          <Button
-            onClick={() => {
-              setImages(imageData);
-            }}
-          >
-            Зураг оруулах
-          </Button>
+          <Button onClick={saveImages}>Зураг оруулах</Button>
         </div>
       </div>
 

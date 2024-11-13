@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 //put description api
 //get description api
 
@@ -35,6 +36,7 @@ export default function AddDescription({
           className="min-m-4 my-auto"
           onClick={() => {
             setDescription(descriptionState);
+            toast.success("Тайлбарыг амжилттай хадгаллаа");
           }}
         >
           Хадгалах

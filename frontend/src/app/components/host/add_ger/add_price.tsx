@@ -4,6 +4,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 //get price api
 //put price api
 
@@ -53,6 +54,7 @@ export default function AddPrice({ price, setPrice }: AddPriceProps) {
           className="min-m-4 my-auto"
           onClick={() => {
             setPrice(priceusd);
+            toast.success("Үнийн дүнг амжилттай хадгаллаа");
           }}
         >
           Хадгалах

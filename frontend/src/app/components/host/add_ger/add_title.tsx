@@ -3,6 +3,7 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 
 //get titel api
 //put titel api
@@ -15,6 +16,7 @@ interface AddTitleProps {
 
 export default function AddTitle({ title, setTitle }: AddTitleProps) {
   const [garchig, setGarchig] = useState(title);
+  console.log("garchigiig harah", title);
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6">
       <h1 className="font-bold text-2xl">Гарчиг:{garchig}</h1>
@@ -37,6 +39,7 @@ export default function AddTitle({ title, setTitle }: AddTitleProps) {
           className="min-m-4 my-auto"
           onClick={() => {
             setTitle(garchig);
+            toast.success("Газрын нэрийг амжилттай хадгаллаа");
           }}
         >
           Хадгалах
