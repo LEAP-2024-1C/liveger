@@ -31,8 +31,8 @@ export function UserCard({
   id: string;
 }) {
   return (
-    <div className="relative">
-      <Card className="relative w-full min-h-fit border-green-500">
+    <div className="">
+      <Card className="relative w-full min-h-fit border-green-500 shadow-xl">
         <Carousel className="min-h-[80%] rounded-xl p-2">
           <CarouselContent className="min-w-full h-48 sm:h-64 rounded-xl">
             {carouselItems}
@@ -54,7 +54,7 @@ export function UserCard({
         /> */}
         <div className="p-2">
           <div className="flex flex-row justify-between border-b border-green-400 pb-3 mb-3">
-            <h1 className="">{placeName}</h1>
+            <h1 className="font-semibold">{placeName}</h1>
             <div className="flex flex-row items-center gap-1 ml-4">
               <AiFillStar size={15} className="text-yellow-400" />
               <h6 className="text">{review}</h6>

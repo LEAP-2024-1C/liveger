@@ -154,7 +154,7 @@ export default function Place() {
   );
   console.log("one placeiig harah", onePlace);
   return (
-    <div className="flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
+    <div className="mt-12 flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">
         <div className="flex flex-row justify-between items-center">
           <h1 className="font-bold text-4xl">{onePlace.title}</h1>

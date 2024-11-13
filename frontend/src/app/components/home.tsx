@@ -132,7 +132,7 @@ export default function UserHome() {
   }, []);
   console.log("placeuudiig harah", getPlaces);
   return (
-    <div className="bg-slate-100 py-14 rounded-xl">
+    <div className="bg-slate-100 py-14 rounded-xl pb-32">
       <div className="container md:px-8 h-full mx-auto flex flex-col space-y-4">
         <h1 className="text-center font-extrabold text-3xl text-emerald-700 mb-8">
           BASIC SERVICES

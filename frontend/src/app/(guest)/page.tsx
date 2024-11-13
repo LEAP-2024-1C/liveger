@@ -2,25 +2,24 @@
 
 import Image from "next/image";
 import UserHome from "../components/home";
+import { GuestIntro } from "../components/guest_introduction";
 
 export default function Home() {
   return (
-    <div className="container min-w-full mx-auto flex flex-col space-y-5 mb-10 max-sm:p-3">
-      <div className="relative">
+    <div className="mt-12 container min-w-full mx-auto flex flex-col mb-10 max-sm:p-3">
+      <div className="w-full h-[75vh] relative">
         <Image
           src="/home1.jpg"
-          alt="sarlag"
-          layout="responsive"
-          width={100}
-          height={100}
-          objectFit="cover"
-          className="rounded-xl"
+          alt="homeiin zurag"
+          fill
+          className="absolute rounded-xl object-cover object-top"
+          // style={{ objectPosition: "0 0 0 5%" }}
         />
-        <div className="absolute text-white z-10 left-[50%] top-[30%] translate-x-[-50%] md:text-3xl text-5xl font-bold max-sm:text-2xl">
-          Come to Mongolia feel the nomadic life
+        <div className="w-full absolute text-white z-10 text-center top-[30%] md:text-3xl text-6xl font-bold max-sm:text-2xl">
+          Visit Mongolia and experience the nomadic life.
         </div>
       </div>
-      <h1></h1>
+      <GuestIntro />
       <div className="">
         <UserHome />
       </div>
