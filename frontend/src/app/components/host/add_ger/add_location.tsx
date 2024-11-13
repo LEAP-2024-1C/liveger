@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface AddLocationProps {
   location: string;
@@ -33,6 +34,7 @@ export default function AddLocation({
           className="min-m-4 my-auto"
           onClick={() => {
             setLocation(addLocation);
+            toast.success("Газрын байршилыг амжилттай хадгаллаа.");
           }}
         >
           Хадгалах

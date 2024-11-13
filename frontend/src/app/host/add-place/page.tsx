@@ -11,9 +11,12 @@ import AddPrice from "@/app/components/host/add_ger/add_price";
 import AddTitle from "@/app/components/host/add_ger/add_title";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function AddPlace() {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
@@ -21,7 +24,7 @@ export default function AddPlace() {
   const [distance, setDistance] = useState(0);
   const [guestNumber, setGuestNumber] = useState(0);
   const [availableTodo, setAvailableTodo] = useState<Todo[]>([]);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<string[]>([]);
 
   const createPlace = async () => {
     const token = localStorage.getItem("token");
@@ -36,7 +39,7 @@ export default function AddPlace() {
           location,
           distance,
           price,
-          services,
+          services: availableTodo,
           possibleGuestNumber: guestNumber,
         },
         {
@@ -45,13 +48,19 @@ export default function AddPlace() {
           },
         }
       );
+      if (response.status === 201) {
+        toast.success(
+          "Таны оруулсан газрыг амжилттай бүртгэлээ, нийтэлсэн төлөвтэй болох хүртэл хүлээнэ үү"
+        );
+        router.push("/host/list");
+      }
     } catch {}
   };
 
   return (
     <div className="py-4 flex flex-col gap-4 sm:py-8 min-h-[100vh]">
       <div className="grid grid-cols-1 container mx-auto md:grid-cols-2 gap-4">
-        <AddPhoto image_data={images} />
+        <AddPhoto images={images} setImages={setImages} />
         <AddTitle title={title} setTitle={setTitle} />
         <AddDescription
           description={description}
@@ -64,9 +73,12 @@ export default function AddPlace() {
         />
         <AddLocation location={location} setLocation={setLocation} />
         <AddDistance distance={distance} setDistance={setDistance} />
-        <AddAvailableTodo />
+        <AddAvailableTodo
+          available_todo={availableTodo}
+          setAvailableTodo={setAvailableTodo}
+        />
       </div>
-      <Button>Шинээр нэмэх</Button>
+      <Button onClick={createPlace}>Шинээр нэмэх</Button>
     </div>
   );
 }
