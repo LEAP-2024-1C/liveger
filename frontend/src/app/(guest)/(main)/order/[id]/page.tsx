@@ -1,5 +1,6 @@
 "use client";
 import OrderInfoCart from "@/app/components/order-info-cart";
+import { Button } from "@/components/ui/button";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -55,7 +56,9 @@ export default function ConfirmOrderPage() {
         </div>
       </Link>
       <div className="grid grid-cols-2 gap-x-12">
-        <div className="w-full"></div>
+        <div className="w-full">
+          <Button>Төлбөр төлөх</Button>
+        </div>
         <div className="">
           <OrderInfoCart
             // image={order.place.images[0]}
