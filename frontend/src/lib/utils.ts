@@ -1,6 +1,11 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+import dotenv from "dotenv";
+dotenv.config();
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
+
+export const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+export const apiKey = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY;
+export const secretApi = process.env.CLOUDINARY_API_SECRET;
