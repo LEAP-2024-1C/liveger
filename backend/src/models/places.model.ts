@@ -35,7 +35,7 @@ const placeSchema = new Schema<Places>(
     location: { type: String, required: true },
     distance: { type: String, required: true },
     price: { type: Number, required: true },
-    guestFav: { type: Boolean, required: true },
+    guestFav: { type: Boolean, required: true, default: false },
     review: [{ type: Number }],
     availableDateRange: { type: Object, default: formatDuration({ years: 1 }) },
     calendar: {

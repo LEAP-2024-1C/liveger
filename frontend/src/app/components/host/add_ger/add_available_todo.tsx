@@ -86,15 +86,15 @@ export default function AddAvailableTodo({
                   ...hutulbur,
                   isChecked: !hutulbur.isChecked,
                 };
-                const updatedAvailableTodo = available_todo.map((t) =>
-                  t.id === todo.id ? updatedTodo : t
+                const updatedAvailableTodo = available_todo?.map((t) =>
+                  t._id === todo._id ? updatedTodo : t
                 );
                 setAvailableTodo(updatedAvailableTodo);
                 if (updatedTodo.isChecked) {
                   setCheckedTodo((prev) => [...prev, updatedTodo]);
                 } else {
                   setCheckedTodo((prev) =>
-                    prev.filter((t) => t.id !== todo.id)
+                    prev.filter((t) => t._id !== todo._id)
                   );
                 }
               }}

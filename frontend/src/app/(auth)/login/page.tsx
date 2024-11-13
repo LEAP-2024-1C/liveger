@@ -128,12 +128,20 @@ const Login: React.FC = () => {
                 setUserData({ ...UserData, password: e.target.value })
               }
             />
-            <Link
-              href="/forgotpassword"
-              className="text-right text-sm text-green-500 hover:text-green-600"
-            >
-              Нууц үгээ мартсан уу?
-            </Link>
+            <div className="flex flex-row justify-between">
+              <Link
+                href="/host/hostlogin"
+                className="text-right text-sm text-green-500 hover:text-green-600"
+              >
+                Малчинаар нэвтрэх
+              </Link>
+              <Link
+                href="/forgotpassword"
+                className="text-right text-sm text-green-500 hover:text-green-600"
+              >
+                Forget password
+              </Link>
+            </div>
 
             <div className="flex flex-col gap-2">
               <button

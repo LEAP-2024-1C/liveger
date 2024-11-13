@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 //get guest number api
 //put guest number api
 
@@ -16,10 +17,12 @@ export default function AddPoGuestNumber({
   guest_number,
   setGuestNumber,
 }: AddGuestNumberProps) {
-  const [guestNumber, setGuestNumberState] = useState(guest_number);
+  const [guestNumberState, setGuestNumberState] = useState(guest_number);
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6">
-      <h1 className="font-bold text-2xl">Зочдын дээд тоо: {guestNumber}</h1>
+      <h1 className="font-bold text-2xl">
+        Зочдын дээд тоо: {guestNumberState}
+      </h1>
       <p className="text-muted-foreground mb-8">
         Гэрт хүлээн авах зочдын дээд тоог оруулна уу. Зочдын тоо нь чухал
         мэдээлэл юм.
@@ -34,7 +37,8 @@ export default function AddPoGuestNumber({
         <Button
           className="min-m-4 my-auto"
           onClick={() => {
-            setGuestNumber(guestNumber);
+            setGuestNumber(guestNumberState);
+            toast.success("1 гэрдэх боломжтой зочны тоог амжилттай хадгаллаа.");
           }}
         >
           Хадгалах

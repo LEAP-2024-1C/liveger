@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface AddDistanceProps {
   distance: number;
@@ -24,8 +25,9 @@ export default function AddDistance({
 
         <Input
           type="number"
+          value={addDistance}
           onChange={(e) => {
-            setDistance(Number(e.target.value));
+            setaddDistance(Number(e.target.value));
           }}
           placeholder="100 км"
         />
@@ -35,6 +37,9 @@ export default function AddDistance({
           className="min-m-4 my-auto"
           onClick={() => {
             setDistance(addDistance);
+            toast.success(
+              "Улаанбаатараас тус байршил хүртэлх зайг амжилттай хадгаллаа."
+            );
           }}
         >
           Хадгалах

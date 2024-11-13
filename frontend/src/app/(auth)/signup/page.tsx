@@ -124,7 +124,15 @@ const SignUp: React.FC = () => {
               className="border-2 border-green-400 rounded-lg p-2 text-xl focus:outline-none"
               onChange={handlechange}
             />
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-row justify-end">
+                <Link
+                  href="/host/hostsignup"
+                  className="text-right text-sm text-green-500 hover:text-green-600"
+                >
+                  Малчинаар бүртгүүлэх
+                </Link>
+              </div>
               <button
                 className="w-full bg-green-400 rounded-lg text-xl p-2 border-none focus:outline-none hover:bg-green-500 text-white font-bold transition duration-300"
                 onClick={signUp}

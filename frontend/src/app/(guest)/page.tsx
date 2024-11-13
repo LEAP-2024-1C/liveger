@@ -8,7 +8,7 @@ export default function Home() {
     <div className="container min-w-full mx-auto flex flex-col space-y-5 mb-10 max-sm:p-3">
       <div className="relative">
         <Image
-          src="/sarlag.jpg"
+          src="/home1.jpg"
           alt="sarlag"
           layout="responsive"
           width={100}
