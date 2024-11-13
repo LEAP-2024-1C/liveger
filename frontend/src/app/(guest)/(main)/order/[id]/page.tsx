@@ -57,7 +57,7 @@ export default function ConfirmOrderPage() {
       </Link>
       <div className="grid grid-cols-2 gap-x-12">
         <div className="w-full">
-          <Button>Төлбөр төлөх</Button>
+          <Button className="text-white">Төлбөр төлөх</Button>
         </div>
         <div className="">
           <OrderInfoCart

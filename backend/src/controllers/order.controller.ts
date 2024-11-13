@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Order } from "../models/order.model";
 import { Places } from "../models/places.model";
+import { ObjectId } from "mongodb";
 
 export const createOrder = async (req: Request, res: Response) => {
   const { place, numberOfPeople, startDate, endDate } = req.body;
@@ -114,3 +115,21 @@ export const getOrder = async (req: Request, res: Response) => {
     res.status(400).json({ message: "orderiig harah amjiltgui" });
   }
 };
+
+// export const confirmOrder = async (req: Request, res: Response) => {
+//   const { _id } = req.params;
+//   try {
+//     const findOrderById = await Order.findById(_id);
+//     const changeOrderConfirm = await Order.findByIdAndUpdate(
+//       _id,
+//       {
+//         isConfirmed: true,
+//       },
+//       { upsert: true, new: true }
+//     );
+//     if (!findOrderById) {
+//       return res.status(400).json("message:Захиалгын дугаар олдсонгүй");
+//     }
+//     const placeiinId: ObjectId = findOrderById.place._id as ObjectId;
+//   } catch {}
+// };
