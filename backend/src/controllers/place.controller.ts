@@ -12,7 +12,6 @@ export const createPlace = async (req: Request, res: Response) => {
     location,
     distance,
     price,
-    guestFav,
     services,
     calendar,
     possibleGuestNumber,
@@ -28,7 +27,6 @@ export const createPlace = async (req: Request, res: Response) => {
 
       distance,
       price,
-      guestFav,
       services,
       calendar,
       possibleGuestNumber
@@ -42,7 +40,6 @@ export const createPlace = async (req: Request, res: Response) => {
       location,
       distance,
       price,
-      guestFav,
       services,
       calendar,
       possibleGuestNumber,
