@@ -1,6 +1,7 @@
 "use client";
 import OrderInfoCart from "@/app/components/order-info-cart";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -34,6 +35,13 @@ export default function ConfirmOrderPage() {
       console.error("hamgiin suuld hiisen orderiig harah amjiltgui", error);
     }
   };
+
+  // const confirmOrderAndPushDates = async () => {
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     const responce = await axios.put("");
+  //   } catch {}
+  // };
   useEffect(() => {
     getOrder();
   }, []);
@@ -48,16 +56,26 @@ export default function ConfirmOrderPage() {
   const millsecInDay: number = 1000 * 60 * 60 * 24;
   const dateRange: number = Math.floor(dateRangeInMillSec / millsecInDay);
   return (
-    <div className="mt-12 px-48">
+    <div className="mt-24 px-48">
       <Link href={`/place/${params.id}`}>
-        <div className="flex flex-row items-center space-x-3">
+        <div className="flex flex-row text-2xl font-semibold items-center space-x-3">
           <IoMdArrowRoundBack />
-          <h1>Өмнөх хуудас руу буцах</h1>
+          <h1>Back</h1>
         </div>
       </Link>
       <div className="grid grid-cols-2 gap-x-12">
-        <div className="w-full">
-          <Button className="text-white">Төлбөр төлөх</Button>
+        <div className="w-full ">
+          <div></div>
+          <div className="w-full border-t border-green-500">
+            <h1 className="font-semibold text-2xl">Pay with</h1>
+            <div>
+              <Input />
+              <Input />
+              <Input />
+              <h1>Billing address</h1>
+            </div>
+            <Button className="text-white">Төлбөр төлөх</Button>
+          </div>
         </div>
         <div className="">
           <OrderInfoCart
