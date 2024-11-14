@@ -116,20 +116,21 @@ export const getOrder = async (req: Request, res: Response) => {
   }
 };
 
-// export const confirmOrder = async (req: Request, res: Response) => {
-//   const { _id } = req.params;
-//   try {
-//     const findOrderById = await Order.findById(_id);
-//     const changeOrderConfirm = await Order.findByIdAndUpdate(
-//       _id,
-//       {
-//         isConfirmed: true,
-//       },
-//       { upsert: true, new: true }
-//     );
-//     if (!findOrderById) {
-//       return res.status(400).json("message:Захиалгын дугаар олдсонгүй");
-//     }
-//     const placeiinId: ObjectId = findOrderById.place._id as ObjectId;
-//   } catch {}
-// };
+export const confirmOrder = async (req: Request, res: Response) => {
+  const { _id } = req.params;
+  try {
+    const findOrderById = await Order.findById(_id);
+    const changeOrderConfirm = await Order.findByIdAndUpdate(
+      _id,
+      {
+        isConfirmed: true,
+      },
+      { upsert: true, new: true }
+    );
+    if (!findOrderById) {
+      return res.status(400).json("message:Захиалгын дугаар олдсонгүй");
+    }
+    const placeiinId = findOrderById.place;
+    console.log("placeiin id g harah", placeiinId);
+  } catch {}
+};
