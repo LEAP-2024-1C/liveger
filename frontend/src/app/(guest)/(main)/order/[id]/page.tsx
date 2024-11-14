@@ -24,7 +24,11 @@ export default function ConfirmOrderPage() {
     try {
       const response = await axios.get(
         ` http://localhost:9002/api/v1/order/${params.id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       if (response.status === 200) {
         setOrder(response.data.findOnlyOrder);
@@ -43,14 +47,18 @@ export default function ConfirmOrderPage() {
     try {
       const responce = await axios.put(
         `http://localhost:9002/api/v1/order/confirm/${params.id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       if (responce.status === 200) {
         console.log("tulbur tulult amjilttai");
         toast.success("Захиалгыг баталгаажууллаа.");
       }
     } catch (error) {
-      console.error("hamgiin suuld hiisen orderiig harah amjiltgui", error);
+      console.error("zahialga batagaajuulaad pushlehed aldaa garlaa", error);
     }
   };
   useEffect(() => {

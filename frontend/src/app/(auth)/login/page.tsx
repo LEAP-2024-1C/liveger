@@ -149,6 +149,17 @@ const Login: React.FC = () => {
               </Link>
             </div>
           </form>
+          <button
+            className="w-full rounded-lg text-xl p-2 border-2 border-green-500 bg-green-500 focus:outline-none hover:bg-green-600 text-white font-bold transition duration-300"
+            onClick={login}
+          >
+            Login
+          </button>
+          <Link href="/signup">
+            <button className="w-full border-2 border-green-500 bg-white rounded-lg text-xl p-2 focus:outline-none hover:bg-green-50 text-green-500 font-bold transition duration-300 mt-4">
+              Create Account
+            </button>
+          </Link>
         </div>
       </div>
     </div>
