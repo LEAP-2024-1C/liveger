@@ -19,8 +19,7 @@ const SignUp: React.FC = () => {
     role: "user",
   });
   const signUp = async () => {
-    const { email, firstName, lastName, phonoNumber, password, role } =
-      userData;
+    const { email, firstName, lastName, phonoNumber, password } = userData;
     try {
       const res = await axios.post(`http://localhost:9002/api/v1/auth/signup`, {
         email,
@@ -75,17 +74,19 @@ const SignUp: React.FC = () => {
           </Carousel>
         </div>
         <div className="w-96 m-auto">
-          <div className="justify-center mb-6 flex flex-row items-center gap-1">
-            <Image
-              src="https://cdn-icons-png.flaticon.com/128/5333/5333676.png"
-              alt="logo"
-              width={30}
-              height={30}
-            />
-            <h3 className="font-bold text-3xl">
-              Mongolian <span className="text-green-400">Live Ger</span>
-            </h3>
-          </div>
+          <Link href="/">
+            <div className="justify-center mb-6 flex flex-row items-center gap-1">
+              <Image
+                src="https://cdn-icons-png.flaticon.com/128/5333/5333676.png"
+                alt="logo"
+                width={30}
+                height={30}
+              />
+              <h3 className="font-bold text-3xl">
+                Mongolian <span className="text-green-400">Live Ger</span>
+              </h3>
+            </div>
+          </Link>
           <h2 className="text-2xl font-bold text-start">Sign Up</h2>
           <p className="text-start">Register and live in a Mongolian Ger</p>
           <div className="my-2 flex flex-col gap-4">

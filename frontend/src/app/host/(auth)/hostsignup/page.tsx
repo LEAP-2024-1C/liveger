@@ -6,6 +6,11 @@ import Link from "next/link";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { Dancing_Script } from "next/font/google";
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
 
 const HostSignup = () => {
   const router = useRouter();
@@ -19,8 +24,7 @@ const HostSignup = () => {
   });
 
   const hostSignup = async () => {
-    const { firstName, lastName, phoneNumber, email, password, role } =
-      HostData;
+    const { firstName, lastName, phoneNumber, email, password } = HostData;
     try {
       const res = await axios.post(`http://localhost:9002/api/v1/auth/signup`, {
         firstName,
@@ -75,6 +79,22 @@ const HostSignup = () => {
 
       <div className="w-full lg:w-1/3 flex items-center justify-center px-6 bg-white">
         <div className="max-w-md w-full">
+          <Link href="/">
+            <div className="flex flex-row p-18  justify-center space-x-3">
+              <Image
+                src="/ger.png"
+                alt="zurag1"
+                width={40}
+                height={40}
+                className=""
+              />
+              <p
+                className={`max-sm:hidden text-emerald-800 text-2xl font-bold ${dancingScript.className}`}
+              >
+                Live Ger
+              </p>
+            </div>
+          </Link>
           <h2 className="text-3xl font-bold text-center mb-8">Бүртгүүлэх</h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>

@@ -1,8 +1,6 @@
 "use client";
-import Image from "next/image";
 // import { useState } from "react";
 import { Rate } from "antd";
-import { maplakhData } from "@/app/components/home";
 import { useParams } from "next/navigation";
 import { FaShareAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
@@ -12,46 +10,12 @@ import BookingCard from "@/app/components/booking-card";
 import HostProfile from "@/app/components/host-profile";
 import AvailableActivities from "@/app/components/available-activities";
 import PlaceDescription from "@/app/components/place-description";
-import { routeModule } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
 import { HostCard } from "@/app/components/detail-host-card";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
-interface Todo {
-  id: string;
-  name: string;
-  Description: string;
-}
-
-const available_todo_mockdata = [
-  {
-    id: "1",
-    name: "ride horse",
-    Description: "you can ride horse anywhere anytime in the day",
-  },
-  {
-    id: "2",
-    name: "make yoghurt",
-    Description: "you can make yoghurt every morning",
-  },
-  {
-    id: "3",
-    name: "make tea",
-    Description: "you can make tea every morning",
-  },
-  {
-    id: "4",
-    name: "make coffee",
-    Description: "you can make coffee every morning",
-  },
-  {
-    id: "5",
-    name: "make bread",
-    Description: "you can make bread every morning",
-  },
-];
 
 export default function Place() {
   // const [rating, setRating] = useState(5);
