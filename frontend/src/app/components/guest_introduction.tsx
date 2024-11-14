@@ -26,7 +26,7 @@ export function GuestIntro() {
               />
             </section>
           </div>
-          <div className="perCon">
+          <div className="perCon flex flex-col justify-center items-center shadow-xl p-3 space-y-4">
             <h1 className="text-emerald-700 font-bold text-2xl">
               Learn about golden eagle hunting
             </h1>
@@ -35,20 +35,74 @@ export function GuestIntro() {
               golden eagles.
             </p>
             <div>
-              <section className="h-full w-full relative">
+              <section className="w-full relative">
                 <Image
                   src="/homestay.jpg"
                   alt="eagle"
                   fill
-                  className="object-cover absolute rounded-xl"
+                  className="object-cover absolute rounded-xl "
                 />
               </section>
-              <section className="h-full w-1/2 relative"></section>
+              {/* <section className="h-full w-1/2 relative"></section> */}
             </div>
           </div>
-          <div className="perCon"></div>
-          <div className="perCon"></div>
-          <div className="perCon"></div>
+          <div className="perCon flex flex-col justify-center items-center shadow-xl p-3 space-y-4">
+            <h1 className="text-emerald-700 font-bold text-2xl">
+              Learn about golden eagle hunting
+            </h1>
+            <p className="w-full">
+              Learn about the tradition of capturing, training, and hunting
+              golden eagles.
+            </p>
+            <div>
+              <section className="w-full relative">
+                <Image
+                  src="/homestay.jpg"
+                  alt="eagle"
+                  fill
+                  className="object-cover absolute rounded-xl "
+                />
+              </section>
+            </div>
+          </div>
+          <div className="perCon flex flex-col justify-center items-center shadow-xl p-3 space-y-4">
+            <h1 className="text-emerald-700 font-bold text-2xl">
+              Learn about golden eagle hunting
+            </h1>
+            <p className="w-full">
+              Learn about the tradition of capturing, training, and hunting
+              golden eagles.
+            </p>
+            <div>
+              <section className="w-full relative">
+                <Image
+                  src="/homestay.jpg"
+                  alt="eagle"
+                  fill
+                  className="object-cover absolute rounded-xl "
+                />
+              </section>
+            </div>
+          </div>
+          <div className="perCon flex flex-col justify-center items-center shadow-xl p-3 space-y-4">
+            <h1 className="text-emerald-700 font-bold text-2xl">
+              Learn about golden eagle hunting
+            </h1>
+            <p className="w-full">
+              Learn about the tradition of capturing, training, and hunting
+              golden eagles.
+            </p>
+            <div>
+              <section className="w-full relative">
+                <Image
+                  src="/homestay.jpg"
+                  alt="eagle"
+                  fill
+                  className="object-cover absolute rounded-xl "
+                />
+              </section>
+            </div>
+          </div>
         </div>
       </div>
     </div>
