@@ -47,6 +47,7 @@ export default function ConfirmOrderPage() {
     try {
       const responce = await axios.put(
         `http://localhost:9002/api/v1/order/confirm/${params.id}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
