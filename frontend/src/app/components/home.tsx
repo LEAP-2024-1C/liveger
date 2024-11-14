@@ -4,8 +4,10 @@ import { CarouselItem } from "@/components/ui/carousel";
 import { UserCard } from "@/app/components/user-home-card";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
+import dotenv from "dotenv";
 
+dotenv.config();
 interface MapLakhDataType {
   _id: string;
   title: string;
@@ -23,10 +25,10 @@ interface MapLakhDataType {
 export default function UserHome() {
   const [getPlaces, setGetPlaces] = useState<MapLakhDataType[]>([]);
   const getPlacesFunc = async () => {
+    console.log("apiig harah 6666", apiUrl);
     try {
-      const response = await axios.get(`${apiUrl}/api/v1/places`);
+      const response = await axios.get(`${process.env.API_URL}/api/v1/places`);
       setGetPlaces(response.data.getPlaces);
-      console.log("all places", response.data.getPlaces);
     } catch (error) {
       console.error("fetch places data error", error);
     }
@@ -35,7 +37,6 @@ export default function UserHome() {
   useEffect(() => {
     getPlacesFunc();
   }, []);
-  console.log("placeuudiig harah", getPlaces);
 
   return (
     <div className="bg-slate-100 py-14 rounded-xl pb-32">

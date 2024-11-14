@@ -11,7 +11,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 
 interface IUser {
   _id: string;
@@ -49,7 +49,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        console.log("No token found");
+        ("No token found");
         return;
       }
 
@@ -61,7 +61,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (res.status === 200) {
         setUser(res.data.user);
-        console.log("User data fetched:", res.data.user);
       }
     } catch (error) {
       console.error("Error fetching user data:", error);

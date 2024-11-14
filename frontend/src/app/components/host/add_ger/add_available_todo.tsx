@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { apiUrl } from "@/utils/util";
 
 // Add props interface
 export interface Todo {
@@ -25,13 +26,13 @@ export default function AddAvailableTodo({
 }: AddAvailableTodoProps) {
   const [todoDescription, setTodoDescription] = useState("");
   const [checkedTodo, setCheckedTodo] = useState<Todo[]>([]);
-  console.log(checkedTodo);
+  checkedTodo;
   const [newTodo, setNewTodo] = useState("");
   const [hutulburs, setHutulburs] = useState<Todo[]>([]);
 
   const getHutulburs = async () => {
     try {
-      const respo = await axios.get("http://localhost:9002/api/v1/service");
+      const respo = await axios.get(`${apiUrl}/api/v1/service`);
       if (respo.status === 201) {
         setHutulburs(respo.data.services);
       }
@@ -44,7 +45,7 @@ export default function AddAvailableTodo({
     const token = localStorage.getItem("token");
     try {
       const respo = await axios.post(
-        "http://localhost:9002/api/v1/service/create",
+        `${apiUrl}/api/v1/service/create`,
         { name: newTodo, description: todoDescription, isChecked: true },
         {
           headers: {

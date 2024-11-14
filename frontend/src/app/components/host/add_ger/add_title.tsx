@@ -16,7 +16,6 @@ interface AddTitleProps {
 
 export default function AddTitle({ title, setTitle }: AddTitleProps) {
   const [garchig, setGarchig] = useState(title);
-  console.log("garchigiig harah", title);
   return (
     <div className="container mx-auto border border-green-400 rounded-xl p-6">
       <h1 className="font-bold text-2xl">Гарчиг:{garchig}</h1>

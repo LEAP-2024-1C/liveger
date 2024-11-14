@@ -7,7 +7,7 @@ import { UserContext } from "@/app/context/user.context";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 
 const Login: React.FC = () => {
   const { setToken } = useContext(UserContext);
@@ -19,14 +19,12 @@ const Login: React.FC = () => {
 
   const login = async () => {
     const { email, password } = UserData;
-    console.log("first2", email, password);
     try {
       const res = await axios.post(`${apiUrl}/api/v1/auth/login`, {
         email,
         password,
         type_login: "user",
       });
-      console.log("res", res);
 
       if (res.status === 200) {
         toast.success("Login successful", { autoClose: 1000 });

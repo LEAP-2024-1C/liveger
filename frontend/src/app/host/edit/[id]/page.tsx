@@ -10,7 +10,7 @@ import EditAvailableTodo from "@/app/components/host/edit_ger/edit_available_tod
 import EditDescription from "@/app/components/host/edit_ger/edit_description";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 interface Todo {
   id: number;
   name: string;
@@ -82,7 +82,6 @@ function EditListingPage() {
           },
         }
       );
-      console.log("Place created successfully:", response.data);
     } catch (error) {
       console.error("Error creating place:", error);
     }

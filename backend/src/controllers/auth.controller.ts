@@ -23,7 +23,7 @@ export const signup = async (req: Request, res: Response) => {
     });
     res.status(201).json({ message: "sucsess", user: createdUser });
   } catch (error) {
-    console.log(error);
+    error;
     res.status(500).json({ message: "Server Error", error: error });
   }
 };
@@ -38,7 +38,7 @@ export const login = async (req: Request, res: Response) => {
         .json({ message: "Email or password cannot be empty." });
     }
     const user = await User.findOne({ email, role: type_login });
-    console.log(user)
+    user;
     if (!user) {
       return res.status(400).json({ message: "Account not registered." });
     }
@@ -51,17 +51,15 @@ export const login = async (req: Request, res: Response) => {
     const token = generateToken({ id: user._id });
     res.status(200).json({ message: "success", token });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Network error or unable to connect to server.",
-        error,
-      });
+    res.status(500).json({
+      message: "Network error or unable to connect to server.",
+      error,
+    });
   }
 };
 export const updateHost = async (req: Request, res: Response) => {
   const { _id } = req.user;
-  console.log("idiig harah ======", _id);
+
   const {
     startedHostingDate,
     myWork,
@@ -117,7 +115,6 @@ export const updateHost = async (req: Request, res: Response) => {
       findHostAndUpdateHost,
     });
   } catch (error) {
-    console.log("hostiin medeeleld medeelel nemehed aldaa garlaa", error);
     res
       .status(400)
       .json({ message: "hostiin medeeleld medeelel nemehed aldaa garlaa" });
@@ -129,7 +126,6 @@ export const getAllUser = async (req: Request, res: Response) => {
     const getAllUser = await User.find({});
     res.status(200).json({ message: "amjilttai", getAllUser });
   } catch (error) {
-    console.log("buh useriig harahad amjiltgui", error);
     res.status(400).json({ message: "buh useriig harahad amjiltgui" });
   }
 };
@@ -138,8 +134,6 @@ export const forgetPassword = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     const findUser = await User.findOne({ email });
-    console.log("emialiig harah", email);
-    console.log("email", email);
 
     if (!findUser) {
       return res.status(404).json({
@@ -176,7 +170,7 @@ export const forgetPassword = async (req: Request, res: Response) => {
 export const verifyPassword = async (req: Request, res: Response) => {
   try {
     const { password, resetToken } = req.body;
-    console.log("pass bolon reset tokeniig harah", password, resetToken);
+
     const hashedResetToken = crypto
       .createHash("sha256")
       .update(resetToken)
@@ -186,7 +180,6 @@ export const verifyPassword = async (req: Request, res: Response) => {
       resetPasswordToken: hashedResetToken,
       resetPasswordExpires: { $gt: Date.now() },
     });
-    console.log("useeer", findUser);
 
     if (!findUser) {
       return res.status(400).json({

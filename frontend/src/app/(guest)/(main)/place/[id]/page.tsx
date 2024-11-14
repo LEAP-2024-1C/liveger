@@ -16,13 +16,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 
 export default function Place() {
   // const [rating, setRating] = useState(5);
   const router = useRouter();
   const params = useParams();
-  console.log("paramiig harah", params.id);
   const [onePlace, setOnePlace] = useState({
     _id: "",
     title: "",
@@ -55,7 +54,6 @@ export default function Place() {
       const response = await axios.get(`${apiUrl}/api/v1/places/${params.id}`);
       if (response.status === 201) {
         setOnePlace(response.data.place);
-        console.log("one placeiig harah", response.data.place);
       }
     } catch (error) {
       console.error("darsan one place iin datag harahad aldaa garsan", error);
@@ -69,18 +67,7 @@ export default function Place() {
   ) => {
     const token = localStorage.getItem("token");
     if (token) {
-      console.log("token bna", token);
-      console.log(
-        "startDate: ",
-        startDate,
-        "endDate: ",
-        endDate,
-        "numberOfGuests: ",
-        numberOfGuests,
-        "thisParamid ",
-        thisParamid
-      );
-      fetch("${apiUrl}/api/v1/order", {
+      fetch(`${apiUrl}/api/v1/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +82,6 @@ export default function Place() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Booking request successful:", data);
           router.push(`/order/${data.addOrder._id}`);
           toast.success(
             "Таны захиалгыг амжилттай хадгаллаа, төлбөрөө төлж захиалгаа баталгаажуулна уу."
@@ -115,7 +101,6 @@ export default function Place() {
     new Date(onePlace.hostId.hostInfo.startedHostingDate),
     "yyyy 'оны' MM 'сар'"
   );
-  console.log("one placeiig harah", onePlace);
   return (
     <div className="mt-12 flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">

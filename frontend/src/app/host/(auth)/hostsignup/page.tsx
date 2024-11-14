@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Dancing_Script } from "next/font/google";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
   weight: ["600", "700"],

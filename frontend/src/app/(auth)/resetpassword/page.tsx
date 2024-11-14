@@ -4,7 +4,7 @@ import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 
 const ResetPassword: React.FC = () => {
   const searchParams = useSearchParams();

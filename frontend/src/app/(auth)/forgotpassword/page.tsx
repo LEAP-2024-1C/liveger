@@ -4,7 +4,7 @@ import { Image } from "antd";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 
 const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState("");

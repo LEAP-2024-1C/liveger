@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { Dialog } from "@/components/ui/dialog";
+import { apiUrl } from "@/utils/util";
 interface CardProps {
   _id: string;
   title: string;
@@ -29,18 +30,14 @@ function Page() {
   const [places, setPlaces] = useState<CardProps[]>([]);
   const getList = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:9002/api/v1/places/by-host",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const response = await axios.get(`${apiUrl}/api/v1/places/by-host`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       if (response.status === 200) {
         setPlaces(response.data.placesByHost);
-        console.log("=====", response.data.placesByHost);
       }
     } catch (error) {
       console.error("fetch places by host id data error", error);
@@ -49,7 +46,7 @@ function Page() {
   useEffect(() => {
     getList();
   }, []);
-  // console.log("place by host id iig harah", places[0].calendar.userOrderDates);
+  // ("place by host id iig harah", places[0].calendar.userOrderDates);
   return (
     <Dialog>
       <div className="container  mx-auto p-4">

@@ -20,7 +20,7 @@ app.use("/api/v1/service", serviceRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/places", placeRouter);
 app.use("/api/v1/order", orderRouter);
-// app.use("/", getPlaces);
+app.use("/", getPlaces);
 connectDatabase(mongoUrl);
 app.listen(PORT, () => {
   console.log(`сервер ${PORT} дээр ажиллаж байна.`);

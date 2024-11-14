@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import axios from "axios";
 import Calendar from "@/app/components/host/calendar/calendar";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 
 interface CardProps {
   _id: string;
@@ -44,7 +44,7 @@ const useGetPlace = (id: string) => {
         });
         setPlace(response.data.place); // Assuming the response is the place object
       } catch (error) {
-        console.log(error);
+        error;
         setPlace(null);
       }
     };
@@ -66,7 +66,7 @@ function Page() {
 
   // Check if calendar exists and has the expected structure
   const { calendar } = place;
-  console.log(calendar);
+  calendar;
 
   const blockedDates = (calendar?.blockedDate || []).map(
     (item: HostBlockedData) => ({
@@ -75,7 +75,6 @@ function Page() {
     })
   );
   const userOrderDates = (place.calendar?.userOrderDates || []).map((order) => {
-    console.log("++++++++++++++:", order);
     return {
       id: order._id, // Assuming _id is used as id
       howmany_guests: 1, // Set a default value or modify as needed

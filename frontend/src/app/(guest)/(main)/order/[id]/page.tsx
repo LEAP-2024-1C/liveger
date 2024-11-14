@@ -2,7 +2,7 @@
 import OrderInfoCart from "@/app/components/order-info-cart";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -30,10 +30,7 @@ export default function ConfirmOrderPage() {
       });
       if (response.status === 200) {
         setOrder(response.data.findOnlyOrder);
-        console.log(
-          "hamgiin suuld hiisen orderiig harah amjilttai",
-          response.data.findOnlyOrder
-        );
+        response.data.findOnlyOrder;
       }
     } catch (error) {
       console.error("hamgiin suuld hiisen orderiig harah amjiltgui", error);
@@ -53,7 +50,7 @@ export default function ConfirmOrderPage() {
         }
       );
       if (responce.status === 200) {
-        console.log("tulbur tulult amjilttai");
+        ("tulbur tulult amjilttai");
         toast.success("Захиалгыг баталгаажууллаа.");
       }
     } catch (error) {
@@ -63,9 +60,6 @@ export default function ConfirmOrderPage() {
   useEffect(() => {
     getOrder();
   }, []);
-  console.log("get one orderiig harah ------", order);
-  const objectOrder = { ...order };
-  console.log("get one orderiig harah ------", objectOrder);
   const sDate = new Date(order.startDate);
   const eDate = new Date(order.endDate);
   const dateRangeInMillSec: number = Math.abs(

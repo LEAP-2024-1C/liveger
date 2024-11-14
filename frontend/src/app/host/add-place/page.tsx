@@ -14,6 +14,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { apiUrl } from "@/utils/util";
 
 export default function AddPlace() {
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function AddPlace() {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:9002/api/v1/places/add",
+        `${apiUrl}/api/v1/places/add`,
         {
           title,
           info: description,

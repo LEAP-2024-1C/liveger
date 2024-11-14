@@ -6,7 +6,7 @@ import { carouselListImage } from "@/assets/carouselListImage/carousel";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { apiUrl } from "@/lib/utils";
+import { apiUrl } from "@/utils/util";
 
 const SignUp: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
