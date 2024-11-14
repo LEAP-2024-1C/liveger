@@ -15,6 +15,7 @@ const Login: React.FC = () => {
     email: "",
     password: "",
   });
+
   const login = async () => {
     const { email, password } = UserData;
     console.log("first2", email, password);
@@ -33,24 +34,31 @@ const Login: React.FC = () => {
         setToken(token);
         router.push("/");
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error occurred", error);
 
-      if (error.response) {
-        // Check the status code from the server response
-        if (error.response.status === 400) {
-          toast.error("Account not registered.");
-        } else if (error.response.status === 401) {
-          toast.error("Email or password does not match.");
-        } else if (error.response.status === 404) {
-          toast.error("Email or password cannot be empty.");
+      // Specify the type of error
+      if (axios.isAxiosError(error)) {
+        // Axios specific error handling
+        if (error.response) {
+          // Check the status code from the server response
+          if (error.response.status === 400) {
+            toast.error("Account not registered.");
+          } else if (error.response.status === 401) {
+            toast.error("Email or password does not match.");
+          } else if (error.response.status === 404) {
+            toast.error("Email or password cannot be empty.");
+          } else {
+            toast.error(
+              "Error: " + (error.response.data.message || "Server error")
+            );
+          }
         } else {
-          toast.error(
-            "Error: " + (error.response.data.message || "Server error")
-          );
+          toast.error("Network error or unable to connect to server.");
         }
       } else {
-        toast.error("Network error or unable to connect to server.");
+        // Handle non-Axios errors
+        toast.error("An unexpected error occurred.");
       }
     }
   };
@@ -68,12 +76,6 @@ const Login: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Implement login logic here
-    console.log("Login attempted");
-  };
 
   return (
     <div className="h-screen flex justify-center items-center gap-8 bg-white">
@@ -111,7 +113,7 @@ const Login: React.FC = () => {
 
           <h2 className="text-2xl font-bold text-start">Login</h2>
           <p className="text-start">Welcome back to Mongolian Live Ger</p>
-          <form onSubmit={handleLogin} className="my-2 flex flex-col gap-4">
+          <form onSubmit={login} className="my-2 flex flex-col gap-4">
             <input
               type="email"
               name="email"
@@ -144,25 +146,6 @@ const Login: React.FC = () => {
                 className="text-right text-sm text-green-500 hover:text-green-600"
               >
                 Forget password
-              </Link>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <button
-                type="submit"
-                className="w-full bg-green-400 rounded-lg text-xl p-2 border-none focus:outline-none hover:bg-green-500 text-white font-bold transition duration-300"
-                onClick={login}
-              >
-                Login
-              </button>
-
-              <Link href="/signup" className="w-full">
-                <button
-                  type="button"
-                  className="w-full bg-white rounded-lg text-xl p-2 border-2 border-green-400 focus:outline-none hover:bg-green-50 text-green-400 font-bold transition duration-300"
-                >
-                  Create Account
-                </button>
               </Link>
             </div>
           </form>

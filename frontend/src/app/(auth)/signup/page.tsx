@@ -19,8 +19,7 @@ const SignUp: React.FC = () => {
     role: "user",
   });
   const signUp = async () => {
-    const { email, firstName, lastName, phonoNumber, password, role } =
-      userData;
+    const { email, firstName, lastName, phonoNumber, password } = userData;
     try {
       const res = await axios.post(`http://localhost:9002/api/v1/auth/signup`, {
         email,

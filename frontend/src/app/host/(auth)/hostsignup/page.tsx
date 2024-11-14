@@ -24,8 +24,7 @@ const HostSignup = () => {
   });
 
   const hostSignup = async () => {
-    const { firstName, lastName, phoneNumber, email, password, role } =
-      HostData;
+    const { firstName, lastName, phoneNumber, email, password } = HostData;
     try {
       const res = await axios.post(`http://localhost:9002/api/v1/auth/signup`, {
         firstName,

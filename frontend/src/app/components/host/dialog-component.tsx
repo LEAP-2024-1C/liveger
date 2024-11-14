@@ -1,13 +1,8 @@
-import {
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { DialogHeader } from "@/components/ui/dialog";
 export default function DialogComponent() {
-  return (
-    <div>
-      <DialogHeader></DialogHeader>
-    </div>
-  );
+	return (
+		<div>
+			<DialogHeader></DialogHeader>
+		</div>
+	);
 }
