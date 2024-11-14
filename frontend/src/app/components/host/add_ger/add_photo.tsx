@@ -70,6 +70,7 @@ export default function AddPhoto({ images, setImages }: ImageProps) {
               }
             }}
             onError={(error) => {
+              console.log("ueueuerror harah", error);
               // Possibly add error handling logic here
             }}
           >

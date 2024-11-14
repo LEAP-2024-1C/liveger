@@ -56,36 +56,36 @@ function EditListingPage() {
     fetchData();
   }, [homeId]);
 
-  const handleSubmit = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        `${apiUrl}/api/v1/places/add`,
-        {
-          hostId: localStorage.getItem("token"),
-          title,
-          info: description,
-          images,
-          status: true,
-          location: "isdgb", // Add location if needed
-          distance: "dfv", // Add distance if needed
-          price,
-          guestFav: false, // Set as needed
-          services: availableTodo, // Send available todos
-          possibleGuestNumber: guestNumber,
-          totalGerNumber: 0, // Set as needed
-          totalBedOfPerGer: 0, // Set as needed
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-    } catch (error) {
-      console.error("Error creating place:", error);
-    }
-  };
+  // const handleSubmit = async () => {
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const response = await axios.post(
+  //       `${apiUrl}/api/v1/places/add`,
+  //       {
+  //         hostId: localStorage.getItem("token"),
+  //         title,
+  //         info: description,
+  //         images,
+  //         status: true,
+  //         location: "isdgb", // Add location if needed
+  //         distance: "dfv", // Add distance if needed
+  //         price,
+  //         guestFav: false, // Set as needed
+  //         services: availableTodo, // Send available todos
+  //         possibleGuestNumber: guestNumber,
+  //         totalGerNumber: 0, // Set as needed
+  //         totalBedOfPerGer: 0, // Set as needed
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //   } catch (error) {
+  //     console.error("Error creating place:", error);
+  //   }
+  // };
 
   return (
     <div
@@ -108,7 +108,7 @@ function EditListingPage() {
           setAvailableTodo={setAvailableTodo}
         />
       </div>
-      <Button onClick={handleSubmit}>Өөрчлөлтийг хадгалах</Button>
+      <Button>Өөрчлөлтийг хадгалах</Button>
     </div>
   );
 }

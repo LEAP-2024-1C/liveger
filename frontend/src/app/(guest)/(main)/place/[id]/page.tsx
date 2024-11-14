@@ -62,8 +62,8 @@ export default function Place() {
   const handleBookingRequest = async (
     startDate: string | null,
     endDate: string | null,
-    numberOfGuests: number | null,
-    thisParamid: string | null
+    numberOfGuests: number | null
+    // thisParamid: string | null
   ) => {
     const token = localStorage.getItem("token");
     if (token) {

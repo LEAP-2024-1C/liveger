@@ -35,7 +35,6 @@ const dancingScript = Dancing_Script({
 });
 export default function Header() {
   const { user, setToken, setUser } = useContext(UserContext);
-  "useriig harah", user;
   const router = useRouter();
   return (
     <div className="h-12 bg-white flex flex-row justify-between items-center px-8 fixed top-0 shadow-lg w-full z-50 rounded-b-xl">
