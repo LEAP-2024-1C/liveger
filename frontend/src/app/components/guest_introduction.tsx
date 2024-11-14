@@ -26,7 +26,7 @@ export function GuestIntro() {
               />
             </section>
           </div>
-          <div className="perCon flex flex-col justify-center items-center shadow-xl p-3 space-y-4">
+          <div className="perCon shadow-xl flex flex-col justify-center items-center p-3 space-y-4">
             <h1 className="text-emerald-700 font-bold text-2xl">
               Learn about golden eagle hunting
             </h1>
@@ -34,74 +34,61 @@ export function GuestIntro() {
               Learn about the tradition of capturing, training, and hunting
               golden eagles.
             </p>
-            <div>
-              <section className="w-full relative">
-                <Image
-                  src="/homestay.jpg"
-                  alt="eagle"
-                  fill
-                  className="object-cover absolute rounded-xl "
-                />
-              </section>
-              {/* <section className="h-full w-1/2 relative"></section> */}
-            </div>
+            <section className="h-full w-full relative">
+              <Image
+                src="/eagle.webp"
+                alt="homestay"
+                fill
+                className="object-cover absolute rounded-xl object-center"
+              />
+            </section>
           </div>
-          <div className="perCon flex flex-col justify-center items-center shadow-xl p-3 space-y-4">
+          <div className="perCon shadow-xl flex flex-col justify-center items-center p-3 space-y-4">
             <h1 className="text-emerald-700 font-bold text-2xl">
-              Learn about golden eagle hunting
+              Taste milk tea
             </h1>
             <p className="w-full">
-              Learn about the tradition of capturing, training, and hunting
-              golden eagles.
+              Milk tea is a daily drink that symbolizes good fortune and
+              pure-heartedness.
             </p>
-            <div>
-              <section className="w-full relative">
-                <Image
-                  src="/homestay.jpg"
-                  alt="eagle"
-                  fill
-                  className="object-cover absolute rounded-xl "
-                />
-              </section>
-            </div>
+            <section className="h-full w-full relative">
+              <Image
+                src="/mongolian-drink.jpg"
+                alt="homestay"
+                fill
+                className="object-cover absolute rounded-xl object-center"
+              />
+            </section>
           </div>
-          <div className="perCon flex flex-col justify-center items-center shadow-xl p-3 space-y-4">
+          <div className="perCon shadow-xl flex flex-col justify-center items-center p-3 space-y-4">
             <h1 className="text-emerald-700 font-bold text-2xl">
-              Learn about golden eagle hunting
+              Cook traditional meals
             </h1>
             <p className="w-full">
-              Learn about the tradition of capturing, training, and hunting
-              golden eagles.
+              Traditional meals include meat, flour, rice, and vegetables.
             </p>
-            <div>
-              <section className="w-full relative">
-                <Image
-                  src="/homestay.jpg"
-                  alt="eagle"
-                  fill
-                  className="object-cover absolute rounded-xl "
-                />
-              </section>
-            </div>
+            <section className="h-full w-full relative">
+              <Image
+                src="/nomadicfood.webp"
+                alt="homestay"
+                fill
+                className="object-cover absolute rounded-xl object-center"
+              />
+            </section>
           </div>
-          <div className="perCon flex flex-col justify-center items-center shadow-xl p-3 space-y-4">
+          <div className="perCon shadow-xl flex flex-col justify-center items-center p-3 space-y-4">
             <h1 className="text-emerald-700 font-bold text-2xl">
-              Learn about golden eagle hunting
+              Rest in a Mongolian ger
             </h1>
-            <p className="w-full">
-              Learn about the tradition of capturing, training, and hunting
-              golden eagles.
-            </p>
-            <div>
-              <section className="w-full relative">
-                <Image
-                  src="/homestay.jpg"
-                  alt="eagle"
-                  fill
-                  className="object-cover absolute rounded-xl "
-                />
-              </section>
-            </div>
+            <p className="w-full">Stay in a traditional Mongolian dwelling.</p>
+            <section className="h-full w-full relative">
+              <Image
+                src="/gerger.jpg"
+                alt="homestay"
+                fill
+                className="object-cover absolute rounded-xl"
+              />
+            </section>
           </div>
         </div>
       </div>
