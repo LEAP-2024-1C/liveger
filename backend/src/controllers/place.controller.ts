@@ -103,3 +103,25 @@ export const getPlacesbyHostId = async (req: Request, res: Response) => {
       .json({ message: "hostiin idtai placeiig olohod aldaa garlaa" });
   }
 };
+export const getPlacebyHostIdandPlaceId = async (
+  req: Request,
+  res: Response
+) => {
+  const { id } = req.params;
+  const hostId = req.user._id;
+  try {
+    const placeByHostIdAndPlaceId = await Places.findOne({
+      _id: id,
+      hostId,
+    }).populate("calendar.userOrderDates");
+    if (!placeByHostIdAndPlaceId) {
+      return res.status(400).json({ message: "gazar oldsonguieeeeeeee" });
+    }
+    res
+      .status(200)
+      .json({ message: "gazar oloh amjilttai", placeByHostIdAndPlaceId });
+  } catch (error) {
+    console.error("gazar olohod yamar negen aldaa garlaa", error);
+    res.status(400).json({ message: "gazar olohod yamar negen aldaa garlaa" });
+  }
+};
