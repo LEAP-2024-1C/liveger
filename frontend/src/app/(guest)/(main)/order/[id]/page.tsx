@@ -48,7 +48,7 @@ export default function ConfirmOrderPage() {
   const millsecInDay: number = 1000 * 60 * 60 * 24;
   const dateRange: number = Math.floor(dateRangeInMillSec / millsecInDay);
   return (
-    <div className="px-48">
+    <div className="mt-12 px-48">
       <Link href={`/place/${params.id}`}>
         <div className="flex flex-row items-center space-x-3">
           <IoMdArrowRoundBack />

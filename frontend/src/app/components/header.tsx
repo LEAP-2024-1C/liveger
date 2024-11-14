@@ -27,16 +27,19 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { UserContext } from "@/app/context/user.context";
 import { useRouter } from "next/navigation";
-import LoginModalContent from "./login_dropdownMenu_content";
-import LoginDropDownMenuContent from "./login_dropdownMenu_content";
-import SignUpDropDownMenuContent from "./signup_dropdownMenu_content";
+
 import { toast } from "react-toastify";
+import { Dancing_Script } from "next/font/google";
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
 export default function Header() {
   const { user, setToken, setUser } = useContext(UserContext);
   console.log("useriig harah", user);
   const router = useRouter();
   return (
-    <div className="h-12 flex flex-row justify-between items-center px-8">
+    <div className="h-12 bg-white flex flex-row justify-between items-center px-8 fixed top-0 shadow-lg w-full z-50 rounded-b-xl">
       <Link href="/">
         <div className="flex flex-row items-center space-x-3">
           <Image
@@ -46,7 +49,11 @@ export default function Header() {
             height={30}
             className=""
           />
-          <p className="max-sm:hidden font-bold">Live Ger</p>
+          <p
+            className={`max-sm:hidden text-emerald-800 text-2xl font-bold ${dancingScript.className}`}
+          >
+            Live Ger
+          </p>
         </div>
       </Link>
       <label className="relative flex flex-row items-center w-[30%]">
@@ -56,12 +63,12 @@ export default function Header() {
         </div>
       </label>
       <div className="flex flex-row items-center space-x-4">
-        <div className="flex flex-row items-center space-x-8">
+        {/* <div className="flex flex-row items-center space-x-8">
           <p className="flex flex-row items-center max-sm:hidden">
             Mongolia
             <TbWorld />
           </p>
-        </div>
+        </div> */}
         {!user && (
           <div className="flex flex-row space-x-2">
             <Link href="/login">

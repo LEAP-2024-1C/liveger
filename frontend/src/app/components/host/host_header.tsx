@@ -24,13 +24,17 @@ import { FaRegUser } from "react-icons/fa";
 import { UserContext } from "@/app/context/user.context";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-
+import { Dancing_Script } from "next/font/google";
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
 function Host_header() {
   const { user, setToken, setUser } = useContext(UserContext);
   const router = useRouter();
   return (
-    <div className="h-12 flex flex-row justify-between items-center py-4 sm:py-8 px-4 md:px-8 border-b bg-white border-gray-200 fixed z-50 top-0 w-full shadow-lg">
-      <div className="flex items-center">
+    <div className="h-12 flex flex-row justify-between items-center  px-4 md:px-8 border-b bg-white border-gray-200 fixed z-50 top-0 w-full shadow-lg">
+      <div className="flex flex-row items-center space-x-3">
         <Image
           src="/ger.png"
           alt="zurag1"
@@ -38,16 +42,21 @@ function Host_header() {
           height={30}
           className=""
         />
+        <p
+          className={`max-sm:hidden text-emerald-800 text-2xl font-bold ${dancingScript.className}`}
+        >
+          Live Ger
+        </p>
       </div>
       {/* Desktop navigation */}
       <div className="hidden md:flex items-center space-x-4">
-        <Button>
+        <Button className="text-white">
           <Link href="/host">Таны жагсаалт</Link>
         </Button>
-        <Button>
+        <Button className="text-white">
           <Link href="/host/dashboard">Хяналтын самбар</Link>
         </Button>
-        <Button>
+        <Button className="text-white">
           <Link href="/host/reservation">Захиалга</Link>
         </Button>
       </div>
