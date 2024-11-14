@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import axios from "axios";
 import Calendar from "@/app/components/host/calendar/calendar";
+import { apiUrl } from "@/lib/utils";
 
 interface CardProps {
   _id: string;
@@ -35,15 +36,12 @@ const useGetPlace = (id: string) => {
   useEffect(() => {
     const fetchPlace = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:9002/api/v1/places/${id}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+        const response = await axios.get(`${apiUrl}/api/v1/places/${id}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         setPlace(response.data.place); // Assuming the response is the place object
       } catch (error) {
         console.log(error);

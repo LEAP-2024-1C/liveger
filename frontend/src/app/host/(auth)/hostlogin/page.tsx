@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { Dancing_Script } from "next/font/google";
+import { apiUrl } from "@/lib/utils";
 
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
@@ -29,7 +30,7 @@ const HostLogin = () => {
   const hostlogin = async () => {
     const { email, password } = HostData;
     try {
-      const res = await axios.post(`http://localhost:9002/api/v1/auth/login`, {
+      const res = await axios.post(`${apiUrl}/api/v1/auth/login`, {
         email,
         password,
         type_login: "host",

@@ -2,6 +2,7 @@
 import OrderInfoCart from "@/app/components/order-info-cart";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { apiUrl } from "@/lib/utils";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -22,14 +23,11 @@ export default function ConfirmOrderPage() {
   const getOrder = async () => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.get(
-        ` http://localhost:9002/api/v1/order/${params.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(` ${apiUrl}/api/v1/order/${params.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (response.status === 200) {
         setOrder(response.data.findOnlyOrder);
         console.log(
@@ -46,7 +44,7 @@ export default function ConfirmOrderPage() {
     const token = localStorage.getItem("token");
     try {
       const responce = await axios.put(
-        `http://localhost:9002/api/v1/order/confirm/${params.id}`,
+        `${apiUrl}/api/v1/order/confirm/${params.id}`,
         {},
         {
           headers: {

@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Dancing_Script } from "next/font/google";
+import { apiUrl } from "@/lib/utils";
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
   weight: ["600", "700"],
@@ -26,7 +27,7 @@ const HostSignup = () => {
   const hostSignup = async () => {
     const { firstName, lastName, phoneNumber, email, password } = HostData;
     try {
-      const res = await axios.post(`http://localhost:9002/api/v1/auth/signup`, {
+      const res = await axios.post(`${apiUrl}/api/v1/auth/signup`, {
         firstName,
         lastName,
         phoneNumber,

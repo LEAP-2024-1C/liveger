@@ -4,6 +4,7 @@ import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { apiUrl } from "@/lib/utils";
 
 const ResetPassword: React.FC = () => {
   const searchParams = useSearchParams();
@@ -38,7 +39,7 @@ const ResetPassword: React.FC = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:9002/api/v1/auth/reset-password`,
+        `${apiUrl}/api/v1/auth/reset-password`,
         {
           resetToken: token,
           password: passwords.newPassword,

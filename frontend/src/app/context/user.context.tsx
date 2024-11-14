@@ -11,6 +11,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { apiUrl } from "@/lib/utils";
 
 interface IUser {
   _id: string;
@@ -52,14 +53,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         return;
       }
 
-      const res = await axios.get(
-        `http://localhost:9002/api/v1/auth/currentuser`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await axios.get(`${apiUrl}/api/v1/auth/currentuser`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (res.status === 200) {
         setUser(res.data.user);

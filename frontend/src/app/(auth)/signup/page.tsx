@@ -6,6 +6,7 @@ import { carouselListImage } from "@/assets/carouselListImage/carousel";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { apiUrl } from "@/lib/utils";
 
 const SignUp: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -21,7 +22,7 @@ const SignUp: React.FC = () => {
   const signUp = async () => {
     const { email, firstName, lastName, phonoNumber, password } = userData;
     try {
-      const res = await axios.post(`http://localhost:9002/api/v1/auth/signup`, {
+      const res = await axios.post(`${apiUrl}/api/v1/auth/signup`, {
         email,
         firstName,
         lastName,

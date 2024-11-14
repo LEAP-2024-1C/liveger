@@ -4,6 +4,7 @@ import { CarouselItem } from "@/components/ui/carousel";
 import { UserCard } from "@/app/components/user-home-card";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { apiUrl } from "@/lib/utils";
 
 interface MapLakhDataType {
   _id: string;
@@ -23,7 +24,7 @@ export default function UserHome() {
   const [getPlaces, setGetPlaces] = useState<MapLakhDataType[]>([]);
   const getPlacesFunc = async () => {
     try {
-      const response = await axios.get("http://localhost:9002/api/v1/places");
+      const response = await axios.get(`${apiUrl}/api/v1/places`);
       setGetPlaces(response.data.getPlaces);
       console.log("all places", response.data.getPlaces);
     } catch (error) {

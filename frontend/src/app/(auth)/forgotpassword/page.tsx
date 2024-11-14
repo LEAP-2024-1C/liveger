@@ -4,6 +4,7 @@ import { Image } from "antd";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { apiUrl } from "@/lib/utils";
 
 const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const ForgotPassword: React.FC = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:9002/api/v1/auth/forget-password`,
+        `${apiUrl}/api/v1/auth/forget-password`,
         { email }
       );
 

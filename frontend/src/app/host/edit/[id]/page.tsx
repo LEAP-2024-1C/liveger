@@ -10,6 +10,7 @@ import EditAvailableTodo from "@/app/components/host/edit_ger/edit_available_tod
 import EditDescription from "@/app/components/host/edit_ger/edit_description";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
+import { apiUrl } from "@/lib/utils";
 interface Todo {
   id: number;
   name: string;
@@ -35,14 +36,11 @@ function EditListingPage() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `http://localhost:9002/api/v1/places/${homeId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${apiUrl}/api/v1/places/${homeId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const placeData = response.data.getOnePlace;
         // Set initial state with fetched data
         setTitle(placeData.title);
@@ -62,7 +60,7 @@ function EditListingPage() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:9002/api/v1/places/add",
+        `${apiUrl}/api/v1/places/add`,
         {
           hostId: localStorage.getItem("token"),
           title,

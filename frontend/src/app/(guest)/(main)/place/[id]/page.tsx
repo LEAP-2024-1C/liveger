@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
+import { apiUrl } from "@/lib/utils";
 
 export default function Place() {
   // const [rating, setRating] = useState(5);
@@ -51,9 +52,7 @@ export default function Place() {
   });
   const getOnePlace = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:9002/api/v1/places/${params.id}`
-      );
+      const response = await axios.get(`${apiUrl}/api/v1/places/${params.id}`);
       if (response.status === 201) {
         setOnePlace(response.data.place);
         console.log("one placeiig harah", response.data.place);
@@ -81,7 +80,7 @@ export default function Place() {
         "thisParamid ",
         thisParamid
       );
-      fetch("http://localhost:9002/api/v1/order", {
+      fetch("${apiUrl}/api/v1/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

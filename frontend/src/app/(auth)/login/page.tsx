@@ -7,6 +7,7 @@ import { UserContext } from "@/app/context/user.context";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { apiUrl } from "@/lib/utils";
 
 const Login: React.FC = () => {
   const { setToken } = useContext(UserContext);
@@ -20,7 +21,7 @@ const Login: React.FC = () => {
     const { email, password } = UserData;
     console.log("first2", email, password);
     try {
-      const res = await axios.post(`http://localhost:9002/api/v1/auth/login`, {
+      const res = await axios.post(`${apiUrl}/api/v1/auth/login`, {
         email,
         password,
         type_login: "user",
