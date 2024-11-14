@@ -12,6 +12,17 @@ interface CardProps {
 	images: [string];
 	info: string;
 	status: boolean;
+	calendar: {
+		userOrderDates: [
+			{
+				orderId: string;
+				startDate: string;
+				endDate: string;
+				_id: string;
+			}
+		];
+		blockedDate: [];
+	};
 }
 
 function Page() {
@@ -29,6 +40,7 @@ function Page() {
 			);
 			if (response.status === 200) {
 				setPlaces(response.data.placesByHost);
+				console.log("=====", response.data.placesByHost);
 			}
 		} catch (error) {
 			console.error("fetch places by host id data error", error);
@@ -37,7 +49,7 @@ function Page() {
 	useEffect(() => {
 		getList();
 	}, []);
-	console.log("place by host id iig harah", places);
+	// console.log("place by host id iig harah", places[0].calendar.userOrderDates);
 	return (
 		<Dialog>
 			<div className="container  mx-auto p-4">

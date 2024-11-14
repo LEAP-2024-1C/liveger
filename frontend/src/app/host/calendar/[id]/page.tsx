@@ -5,30 +5,28 @@ import Image from "next/image";
 import axios from "axios";
 import Calendar from "@/app/components/host/calendar/calendar";
 
-interface UserOrderDate {
-	orderId: string;
-	startDate: string;
-	endDate: string;
+interface CardProps {
 	_id: string;
-}
-
-interface CalendarData {
-	userOrderDates: UserOrderDate[];
-	blockedDate: HostBlockedData[]; // Adjusted to use HostBlockedData
+	title: string;
+	images: [string];
+	info: string;
+	status: boolean;
+	calendar: {
+		userOrderDates: [
+			{
+				orderId: string;
+				startDate: string;
+				endDate: string;
+				_id: string;
+			}
+		];
+		blockedDate: [];
+	};
 }
 
 interface HostBlockedData {
 	date: string; // This is an example; the actual field may differ
 	// other properties...
-}
-
-interface CardProps {
-	_id: string;
-	title: string;
-	images: string[];
-	info: string;
-	status: boolean;
-	calendar: CalendarData; // Ensure this is included
 }
 
 const useGetPlace = (id: string) => {
@@ -46,7 +44,7 @@ const useGetPlace = (id: string) => {
 						},
 					}
 				);
-				setPlace(response.data); // Assuming the response is the place object
+				setPlace(response.data.place); // Assuming the response is the place object
 			} catch (error) {
 				console.log(error);
 				setPlace(null);
@@ -70,8 +68,7 @@ function Page() {
 
 	// Check if calendar exists and has the expected structure
 	const { calendar } = place;
-
-	// Transform HostBlockedData[] to string[] [{sD:'2024', eD:'2023'},{sD:'', eD:''}] = ['2024']
+	console.log(calendar);
 
 	const blockedDates = (calendar?.blockedDate || []).map(
 		(item: HostBlockedData) => ({
@@ -79,20 +76,22 @@ function Page() {
 			enddate: item.date,
 		})
 	);
-
-	const userOrderDates: {
-		id: string;
-		howmany_guests: number;
-		startdate: string;
-		enddate: string;
-		photo: string;
-	}[] = (calendar?.userOrderDates || []).map((item: UserOrderDate) => ({
-		id: item._id,
-		startdate: item.startDate,
-		enddate: item.endDate,
-		howmany_guests: 1,
-		photo: "https://picsum.photos/200/300",
-	}));
+	const userOrderDates = (place.calendar?.userOrderDates || []).map((order) => {
+		console.log("++++++++++++++:", order);
+		return {
+			id: order._id, // Assuming _id is used as id
+			howmany_guests: 1, // Set a default value or modify as needed
+			startdate: order.startDate,
+			enddate: order.endDate,
+			photo: "", // Set a default value or modify as needed
+		};
+	});
+	// 	id: order._id, // Assuming _id is used as id
+	// 	howmany_guests: 1, // Set a default value or modify as needed
+	// 	startdate: order.startDate,
+	// 	enddate: order.endDate,
+	// 	photo: "", // Set a default value or modify as needed
+	// }
 
 	return (
 		<div className={`py-4 sm:py-8 flex card-${cardId}`}>

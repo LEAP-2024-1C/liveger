@@ -1,7 +1,6 @@
 import React from "react";
-// import Image from 'next/image'
-// import { Button } from '@/components/ui/button'
 import { FaRegUser } from "react-icons/fa";
+
 interface DayProps {
 	blocked: boolean;
 	date: number;
@@ -36,7 +35,6 @@ function Day({
 			<div className="flex w-full items-center justify-center">
 				{guestsPhoto ? (
 					<div className="flex flex-col items-center ">
-						{/* <Image src={guestsPhoto} alt="зочин" width={20} height={20} className='rounded-full bg-green-200 w-10 h-10 sm:w-14 sm:h-14' /> */}
 						<FaRegUser className="text-gray-600 bg-green-200 rounded-full w-10 h-10 sm:w-14 sm:h-14" />
 						<span className="font-bold text-xs sm:text-sm mt-1">
 							{guestCount} зочин

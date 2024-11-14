@@ -50,7 +50,7 @@ function Calendar({
 						year={year}
 						monthIndex={monthIndex}
 						monthName={new Date(year, monthIndex).toLocaleString("default", {
-							month: "2-digit",
+							month: "long",
 						})}
 						guestData={guestData}
 						hostBlockedData={hostBlockedData}
