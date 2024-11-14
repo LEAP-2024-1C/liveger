@@ -27,7 +27,7 @@ export default function UserHome() {
   const getPlacesFunc = async () => {
     console.log("apiig harah 6666", apiUrl);
     try {
-      const response = await axios.get(`${process.env.API_URL}/api/v1/places`);
+      const response = await axios.get(`${apiUrl}/api/v1/places`);
       setGetPlaces(response.data.getPlaces);
     } catch (error) {
       console.error("fetch places data error", error);
