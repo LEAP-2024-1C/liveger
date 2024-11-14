@@ -83,7 +83,7 @@ body {
   overflow-x: scroll;
   flex: 0 0 100%;
   margin: 0;
-  padding: 1rem 2rem 2rem 2rem;
+  padding: 1rem 0 2rem 0;
 }
 ::-webkit-scrollbar {
   height: 5px;
