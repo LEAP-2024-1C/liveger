@@ -4,12 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 export default function ConfirmOrderPage() {
   const params = useParams();
+  const router = useRouter();
   const [order, setOrder] = useState({
     numberOfPeople: 0,
     place: { images: [""], title: "", price: 0 },
@@ -36,12 +38,21 @@ export default function ConfirmOrderPage() {
     }
   };
 
-  // const confirmOrderAndPushDates = async () => {
-  //   const token = localStorage.getItem("token");
-  //   try {
-  //     const responce = await axios.put("");
-  //   } catch {}
-  // };
+  const confirmOrderAndPushDates = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const responce = await axios.put(
+        `http://localhost:9002/api/v1/order/confirm/${params.id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (responce.status === 200) {
+        console.log("tulbur tulult amjilttai");
+        toast.success("Захиалгыг баталгаажууллаа.");
+      }
+    } catch (error) {
+      console.error("hamgiin suuld hiisen orderiig harah amjiltgui", error);
+    }
+  };
   useEffect(() => {
     getOrder();
   }, []);
@@ -74,12 +85,14 @@ export default function ConfirmOrderPage() {
               <Input />
               <h1>Billing address</h1>
             </div>
-            <Button className="text-white">Төлбөр төлөх</Button>
+            <Button className="text-white" onClick={confirmOrderAndPushDates}>
+              Төлбөр төлөх
+            </Button>
           </div>
         </div>
         <div className="">
           <OrderInfoCart
-            // image={order.place.images[0]}
+            image={order.place.images[0]}
             title={order.place.title}
             guestNumber={order.numberOfPeople}
             dateDuration={dateRange}
