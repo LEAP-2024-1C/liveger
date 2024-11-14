@@ -35,6 +35,7 @@ export default function UserHome() {
     getPlacesFunc();
   }, []);
   console.log("placeuudiig harah", getPlaces);
+
   return (
     <div className="bg-slate-100 py-14 rounded-xl pb-32">
       <div className="container md:px-8 h-full mx-auto flex flex-col space-y-4">
@@ -46,14 +47,14 @@ export default function UserHome() {
             <UserCard
               key={place._id}
               carouselItems={place.images.map((image, index) => (
-                <CarouselItem className="min-h-full rounded-xl" key={index}>
+                <CarouselItem className="relative min-h-full rounded-l-xl rounded-xl">
                   <Image
                     key={index}
                     src={image}
                     alt="carouselnii zurag"
                     layout="fill"
                     objectFit="cover"
-                    className="rounded-xl"
+                    className="rounded-xl rounded-l-xl absolute"
                   />
                 </CarouselItem>
               ))}

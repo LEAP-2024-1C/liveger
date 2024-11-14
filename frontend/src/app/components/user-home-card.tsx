@@ -6,6 +6,7 @@ import {
   CarouselContent,
   CarouselNext,
   CarouselPrevious,
+  CarouselItem,
 } from "@/components/ui/carousel";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
