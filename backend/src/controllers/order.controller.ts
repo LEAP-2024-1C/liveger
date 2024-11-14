@@ -35,7 +35,7 @@ export const createOrder = async (req: Request, res: Response) => {
       totalPrice: niitHuniiNiitUdriinTulbur,
     });
 
-    //ehnii arga
+    // ehnii arga
     // const createPlace = await Places.findOneAndUpdate(
     //   { _id: place },
     //   {
@@ -131,6 +131,29 @@ export const confirmOrder = async (req: Request, res: Response) => {
       return res.status(400).json("message:Захиалгын дугаар олдсонгүй");
     }
     const placeiinId = findOrderById.place;
+    const ordersStartDate = findOrderById.startDate;
+    const ordersEndDate = findOrderById.endDate;
     console.log("placeiin id g harah", placeiinId);
-  } catch {}
+    const addConfirmedOrdersCalendarToCalendar = await Places.findOneAndUpdate(
+      { _id: placeiinId },
+      {
+        $push: {
+          "calendar.userOrderDates": {
+            orderId: _id,
+            startDate: ordersStartDate,
+            endDate: ordersEndDate,
+          },
+        },
+      },
+      { new: true } //update lasan huvilbariig uzuuldeg
+    );
+    res.status(200).json({
+      message: "ehnii eeljind amjilttai",
+      changeOrderConfirm,
+      addConfirmedOrdersCalendarToCalendar,
+    });
+  } catch (error) {
+    console.log("orderiig confirm hiihed aldaa garlaa", error);
+    res.status(400).json({ message: "orderiig confirm hiihed aldaa garlaa" });
+  }
 };
