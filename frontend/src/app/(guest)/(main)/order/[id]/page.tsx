@@ -1,35 +1,34 @@
 "use client";
 import OrderInfoCart from "@/app/components/order-info-cart";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { apiUrl, stripePublicKey } from "@/utils/util";
+import { apiUrl } from "@/utils/util";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { toast } from "react-toastify";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js/pure";
-import CentBolgoh from "@/lib/centruushiljuuleh";
-import {
-  PaymentElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
-if (stripePublicKey === undefined) {
-  throw new Error("stripePublicKey is not defined");
-}
+// import { Elements } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js/pure";
+// import CentBolgoh from "@/lib/centruushiljuuleh";
+// import {
+//   PaymentElement,
+//   useElements,
+//   useStripe,
+// } from "@stripe/react-stripe-js";
+// if (stripePublicKey === undefined) {
+//   throw new Error("stripePublicKey is not defined");
+// }
 
-const stripePromise = loadStripe(stripePublicKey);
+// const stripePromise = loadStripe(stripePublicKey);
 
 export default function ConfirmOrderPage() {
   const params = useParams();
-  const stripe = useStripe();
-  const elements = useElements();
-  const [errorMessage, setErrorMessage] = useState<string>();
-  const [clientSecret, setClientSecret] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const stripe = useStripe();
+  // const elements = useElements();
+  // const [errorMessage, setErrorMessage] = useState<string>();
+  // const [clientSecret, setClientSecret] = useState("");
+  // const [loading, setLoading] = useState(false);
   // const router = useRouter();
   const [order, setOrder] = useState({
     numberOfPeople: 0,
@@ -54,7 +53,7 @@ export default function ConfirmOrderPage() {
       console.error("hamgiin suuld hiisen orderiig harah amjiltgui", error);
     }
   };
-  const amount = order.totalPrice;
+  // const amount = order.totalPrice;
   // if (amount <= 0) {
   //   console.error("Invalid amount: Amount must be greater than 0");
   //   return;
@@ -72,14 +71,14 @@ export default function ConfirmOrderPage() {
           },
         }
       );
-      const respo = await axios.post(
-        `/api/create-payment-route`,
-        { amount },
-        { headers: { "Content-Type": "application/json" } }
-      );
-      if (responce.status === 200 || respo.status === 200) {
+      // const respo = await axios.post(
+      //   `/api/create-payment-route`,
+      //   { amount },
+      //   { headers: { "Content-Type": "application/json" } }
+      // );
+      if (responce.status === 200) {
         toast.success("Захиалгыг баталгаажууллаа.");
-        setClientSecret(respo.data.clientSecret);
+        // setClientSecret(respo.data.clientSecret);
         return;
       }
     } catch (error) {
@@ -88,7 +87,7 @@ export default function ConfirmOrderPage() {
   };
   useEffect(() => {
     getOrder();
-  }, [amount]);
+  }, []);
 
   const sDate = new Date(order.startDate);
   const eDate = new Date(order.endDate);
@@ -97,48 +96,48 @@ export default function ConfirmOrderPage() {
   );
   const millsecInDay: number = 1000 * 60 * 60 * 24;
   const dateRange: number = Math.floor(dateRangeInMillSec / millsecInDay);
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   setLoading(true);
 
-    if (!stripe || !elements) {
-      return;
-    }
-    const { error: submitError } = await elements.submit();
-    if (submitError) {
-      setErrorMessage(submitError.message);
-      setLoading(false);
-      return;
-    }
-    const { error } = await stripe.confirmPayment({
-      elements,
-      clientSecret,
-      confirmParams: {
-        return_url: `http://www.localhost:3000/paymentsuccess?amount=${amount}`,
-      },
-    });
+  //   if (!stripe || !elements) {
+  //     return;
+  //   }
+  //   const { error: submitError } = await elements.submit();
+  //   if (submitError) {
+  //     setErrorMessage(submitError.message);
+  //     setLoading(false);
+  //     return;
+  //   }
+  //   const { error } = await stripe.confirmPayment({
+  //     elements,
+  //     clientSecret,
+  //     confirmParams: {
+  //       return_url: `http://www.localhost:3000/paymentsuccess?amount=${amount}`,
+  //     },
+  //   });
 
-    if (error) {
-      setErrorMessage(error.message);
-    } else {
-    }
+  //   if (error) {
+  //     setErrorMessage(error.message);
+  //   } else {
+  //   }
 
-    setLoading(false);
-  };
-  if (!clientSecret || !stripe || !elements) {
-    return (
-      <div className="flex items-center justify-center">
-        <div
-          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
-          role="status"
-        >
-          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-            Loading...
-          </span>
-        </div>
-      </div>
-    );
-  }
+  //   setLoading(false);
+  // };
+  // if (!clientSecret || !stripe || !elements) {
+  //   return (
+  //     <div className="flex items-center justify-center">
+  //       <div
+  //         className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+  //         role="status"
+  //       >
+  //         <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+  //           Loading...
+  //         </span>
+  //       </div>
+  //     </div>
+  //   );
+  // }
   return (
     <div className="mt-24 px-48">
       <Link href={`/place/${params.id}`}>
@@ -154,7 +153,7 @@ export default function ConfirmOrderPage() {
             <h1 className="font-semibold text-2xl">Pay with</h1>
             <div>
               <h1>Billing address</h1>
-              <Elements
+              {/* <Elements
                 stripe={stripePromise}
                 options={{
                   mode: "payment",
@@ -166,14 +165,15 @@ export default function ConfirmOrderPage() {
                   {clientSecret && <PaymentElement />}
                   {errorMessage && <div>{errorMessage}</div>}
                 </form>
-              </Elements>
+              </Elements> */}
             </div>
             <Button
-              className="text-white"
               onClick={confirmOrderAndPushDates}
-              disabled={!stripe || loading}
+              // className="text-white"
+              // onClick={confirmOrderAndPushDates}
+              // disabled={!stripe || loading}
             >
-              {!loading ? "Төлбөр төлөх" : "Processing..."}
+              Захиалга баталгаажуулах
             </Button>
           </div>
         </div>
