@@ -9,7 +9,10 @@ export async function POST(req: NextRequest) {
       currency: "usd",
       automatic_payment_methods: { enabled: true },
     });
-    return NextResponse.json({ clientSecret: paymentIntent.client_secret });
+    return NextResponse.json(
+      { clientSecret: paymentIntent.client_secret },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("striperouted yamar negen aldaa garlaa", error);
     return NextResponse.json(
