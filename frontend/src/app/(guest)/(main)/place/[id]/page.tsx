@@ -102,7 +102,7 @@ export default function Place() {
     "yyyy 'оны' MM 'сар'"
   );
   return (
-    <div className="mt-12 flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
+    <div className="mt-24 flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">
         <div className="flex flex-row justify-between items-center">
           <h1 className="font-bold text-4xl">{onePlace.title}</h1>
@@ -118,18 +118,14 @@ export default function Place() {
           </div>
         </div>
         <GuestDetailGridZurag images={onePlace.images} />
-        <div className="flex justify-between items-start space-y-4">
+        <div className="flex justify-between items-start space-y-4 relative">
           <div className="w-full p-4">
             <h1 className="text-4xl font-bold">{onePlace.title}</h1>
             <div className="flex flex-row gap-2 text-xl">
               <p className="md:text-base py-1 flex flex-row items-center ">
                 хүлээн авах боломжтой хамгийн их зочны тоо{" "}
+                <GoDotFill className="text-green-400" />
                 {onePlace.possibleGuestNumber}
-                <GoDotFill className="text-green-400" /> нийт{" "}
-                {onePlace.totalGerNumber} гэртэй
-                <GoDotFill className="text-green-400" /> 1 гэрт{" "}
-                {onePlace.totalBedOfPerGer} ортой{" "}
-                <GoDotFill className="text-green-400" /> {onePlace.luxLevel}
               </p>
             </div>
             <div>
@@ -139,28 +135,33 @@ export default function Place() {
                 className="md:flex md:flex-row text-2xl font-bold"
               />
             </div>
+
             <HostProfile name={`${onePlace.hostId.firstName}'s family`} />
-            <AvailableActivities activities={onePlace.services} />
+            <div className="flex flex-row space-x-2">
+              <AvailableActivities activities={onePlace.services} />
+              <BookingCard
+                thisplaceId={onePlace._id}
+                onBookingRequest={handleBookingRequest}
+              />
+            </div>
             <PlaceDescription
               description={onePlace.info || "No description available"}
             />
           </div>
-          <BookingCard
-            thisplaceId={onePlace._id}
-            onBookingRequest={handleBookingRequest}
+        </div>
+        <div className="">
+          <HostCard
+            image={onePlace.hostId.profileImg}
+            firstName={onePlace.hostId.firstName}
+            lastName={onePlace.hostId.lastName}
+            startHostDate={formatedStartDate}
+            myWork={onePlace.hostId.hostInfo.myWork}
+            skills={onePlace.hostId.hostInfo.skill}
+            timeToSpend={onePlace.hostId.hostInfo.timeToSpend}
+            obsessedWith={onePlace.hostId.hostInfo.obsessedWith}
+            detailDescription={onePlace.hostId.hostInfo.detailDefination}
           />
         </div>
-        <HostCard
-          image={onePlace.hostId.profileImg}
-          firstName={onePlace.hostId.firstName}
-          lastName={onePlace.hostId.lastName}
-          startHostDate={formatedStartDate}
-          myWork={onePlace.hostId.hostInfo.myWork}
-          skills={onePlace.hostId.hostInfo.skill}
-          timeToSpend={onePlace.hostId.hostInfo.timeToSpend}
-          obsessedWith={onePlace.hostId.hostInfo.obsessedWith}
-          detailDescription={onePlace.hostId.hostInfo.detailDefination}
-        />
       </div>
     </div>
   );

@@ -139,7 +139,7 @@ export default function ConfirmOrderPage() {
   //   );
   // }
   return (
-    <div className="mt-24 px-48">
+    <div className="my-24 px-48 ">
       <Link href={`/place/${params.id}`}>
         <div className="flex flex-row text-2xl font-semibold items-center space-x-3">
           <IoMdArrowRoundBack />
