@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { FaCheckCircle } from "react-icons/fa";
-import { BsMagic } from "react-icons/bs";
-import { RiHandbagLine } from "react-icons/ri";
-import { WiTime5 } from "react-icons/wi";
-import { IoMdHeartEmpty } from "react-icons/io";
 import { ReactNode } from "react";
 
 export function HostCard({
