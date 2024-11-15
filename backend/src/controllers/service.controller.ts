@@ -9,12 +9,12 @@ export const createService = async (req: Request, res: Response) => {
       description,
       isChecked,
     });
-    res
+    return res
       .status(201)
       .json({ message: "service amjilttai uuslee", createService });
   } catch (error) {
     console.error("service uusgehed yamar negen aldaa garlaa", error);
-    res
+    return res
       .status(400)
       .json({ message: "service uusehed aldaa garlaa tottotototo" });
   }
@@ -27,10 +27,10 @@ export const addServiceToPlace = (req: Request, res: Response) => {
 export const getServices = async (req: Request, res: Response) => {
   try {
     const services = await UServices.find({});
-    res.status(201).json({ message: "amjilttai", services });
+    return res.status(201).json({ message: "amjilttai", services });
   } catch (error) {
     console.error("serviceuudiig harahad yamar negen aldaa garlaa", error);
-    res
+    return res
       .status(400)
       .json({ message: "serviceuudiig harahad aldaa garlaa tottotototo" });
   }

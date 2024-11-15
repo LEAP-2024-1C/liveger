@@ -17,6 +17,6 @@ export const authorize = async (
     next();
   } catch (error) {
     console.error("Error in admin middleware:", error);
-    res.status(500).json({ message: "Дотоод серверийн алдаа" });
+    return res.status(500).json({ message: "Дотоод серверийн алдаа" });
   }
 };

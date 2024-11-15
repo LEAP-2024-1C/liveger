@@ -77,12 +77,12 @@ export const createOrder = async (req: Request, res: Response) => {
     // });
     // ("createPlace", createPlace);
     await findPlace.save();
-    res.status(200).json({
+    return res.status(200).json({
       message: "zahialga amjilttai uusgesen",
       addOrder,
     });
   } catch (error) {
-    res
+    return res
       .status(400)
       .json({ message: "zahailga uusgehed yamar negen aldaa garlaa" });
   }
@@ -101,7 +101,7 @@ export const getOrder = async (req: Request, res: Response) => {
       .limit(1)
       .populate("place")
       .populate("userId");
-    res
+    return res
       .status(200)
       .json({ message: "orderiig haij oloh amjilttai", findOnlyOrder });
   } catch (error) {
@@ -141,12 +141,14 @@ export const confirmOrder = async (req: Request, res: Response) => {
       },
       { new: true } //update lasan huvilbariig uzuuldeg
     );
-    res.status(200).json({
+    return res.status(200).json({
       message: "ehnii eeljind amjilttai",
       changeOrderConfirm,
       addConfirmedOrdersCalendarToCalendar,
     });
   } catch (error) {
-    res.status(400).json({ message: "orderiig confirm hiihed aldaa garlaa" });
+    return res
+      .status(400)
+      .json({ message: "orderiig confirm hiihed aldaa garlaa" });
   }
 };

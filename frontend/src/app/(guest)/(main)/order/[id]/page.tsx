@@ -2,13 +2,23 @@
 import OrderInfoCart from "@/app/components/order-info-cart";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { apiUrl } from "@/utils/util";
+import { apiUrl, stripePublicKey } from "@/utils/util";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { toast } from "react-toastify";
+import { Elements, PaymentElement } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CentBolgoh from "@/lib/centruushiljuuleh";
+// import PaymentConfirm from "@/app/components/paymentConfirm";
+
+if (stripePublicKey === undefined) {
+  throw new Error("stripePublicKey is not defined");
+}
+
+const stripePromise = loadStripe(stripePublicKey);
 
 export default function ConfirmOrderPage() {
   const params = useParams();
@@ -36,7 +46,12 @@ export default function ConfirmOrderPage() {
       console.error("hamgiin suuld hiisen orderiig harah amjiltgui", error);
     }
   };
-
+  const amount = +order.totalPrice;
+  if (amount <= 0) {
+    console.error("Invalid amount: Amount must be greater than 0");
+    return;
+  }
+  console.log("amountiig harah", amount);
   const confirmOrderAndPushDates = async () => {
     const token = localStorage.getItem("token");
     try {
@@ -85,6 +100,16 @@ export default function ConfirmOrderPage() {
               <Input />
               <Input />
               <h1>Billing address</h1>
+              <Elements
+                stripe={stripePromise}
+                options={{
+                  mode: "payment",
+                  amount: CentBolgoh(amount),
+                  currency: "usd",
+                }}
+              >
+                <PaymentElement />
+              </Elements>
             </div>
             <Button className="text-white" onClick={confirmOrderAndPushDates}>
               Төлбөр төлөх

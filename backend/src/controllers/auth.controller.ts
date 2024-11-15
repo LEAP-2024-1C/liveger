@@ -21,10 +21,10 @@ export const signup = async (req: Request, res: Response) => {
       password,
       role,
     });
-    res.status(201).json({ message: "sucsess", user: createdUser });
+    return res.status(201).json({ message: "sucsess", user: createdUser });
   } catch (error) {
     error;
-    res.status(500).json({ message: "Server Error", error: error });
+    return res.status(500).json({ message: "Server Error", error: error });
   }
 };
 
@@ -49,9 +49,9 @@ export const login = async (req: Request, res: Response) => {
       });
     }
     const token = generateToken({ id: user._id });
-    res.status(200).json({ message: "success", token });
+    return res.status(200).json({ message: "success", token });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       message: "Network error or unable to connect to server.",
       error,
     });
@@ -110,12 +110,12 @@ export const updateHost = async (req: Request, res: Response) => {
       },
       { new: true }
     );
-    res.status(201).json({
+    return res.status(201).json({
       message: "update host information is successful",
       findHostAndUpdateHost,
     });
   } catch (error) {
-    res
+    return res
       .status(400)
       .json({ message: "hostiin medeeleld medeelel nemehed aldaa garlaa" });
   }
@@ -124,9 +124,9 @@ export const updateHost = async (req: Request, res: Response) => {
 export const getAllUser = async (req: Request, res: Response) => {
   try {
     const getAllUser = await User.find({});
-    res.status(200).json({ message: "amjilttai", getAllUser });
+    return res.status(200).json({ message: "amjilttai", getAllUser });
   } catch (error) {
-    res.status(400).json({ message: "buh useriig harahad amjiltgui" });
+    return res.status(400).json({ message: "buh useriig harahad amjiltgui" });
   }
 };
 
@@ -155,13 +155,13 @@ export const forgetPassword = async (req: Request, res: Response) => {
 
     await sendPasswordResetEmail(email, resetToken);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Нууц үг сэргээх линк илгээгдлээ",
     });
   } catch (error) {
     console.error("Forgot password error:", error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Серверийн алдаа гарлаа",
     });
@@ -191,14 +191,14 @@ export const verifyPassword = async (req: Request, res: Response) => {
 
     await findUser.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       role: findUser.role,
       success: true,
       message: "Нууц үг амжилттай сэргээгдлээ",
     });
   } catch (error) {
     console.error("Password verification error:", error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Серверийн алдаа гарлаа",
     });
