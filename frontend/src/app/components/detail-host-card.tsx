@@ -30,7 +30,7 @@ export function HostCard({
 }) {
 	return (
 		<div>
-			<Card className="relative w-[450px] h-[250px] border-green-500 flex flex-col justify-center items-center max-sm:w-[410px]">
+			<Card className="relative md:w-[450px]md: h-[250px] md:min-w-max md:max-h-max max-w-min max-h-min border-green-500 flex flex-col justify-center items-center max-sm:w-[410px]">
 				<div className="h-36 w-36 relative mt-1">
 					<Image
 						className="rounded-full object-cover"
@@ -66,7 +66,7 @@ export function HostCard({
 				<h5>I&apos;m obsessed with: {obsessedWith} </h5>
 			</div>
 
-			<h1 className="w-[450px] text-xl text-wrap">{detailDescription}</h1>
+			<h1 className="w-full md:w-[450px] text-xl text-wrap">{detailDescription}</h1>
 		</div>
 	);
 }
