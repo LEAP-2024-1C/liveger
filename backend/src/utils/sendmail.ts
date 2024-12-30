@@ -16,7 +16,7 @@ export const sendPasswordResetEmail = async (
   email: string,
   resetToken: string
 ) => {
-  const resetUrl = `http://localhost:3000/resetpassword?token=${resetToken}`;
+  const resetUrl = `https://liveger-frontend.vercel.app/resetpassword?token=${resetToken}`;
   await transporter.sendMail({
     from: "liveGer2024@gmail.com",
     to: email,

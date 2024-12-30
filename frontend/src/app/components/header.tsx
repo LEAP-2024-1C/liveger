@@ -153,18 +153,16 @@ export default function Header() {
                 <span>API</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <span
-                  onClick={() => {
-                    localStorage.removeItem("token");
-                    setUser(null);
-                    setToken(null);
-                    toast.success("Хэрэглэгч та вебээс гарч байна.");
-                    router.push("/");
-                  }}
-                >
-                  Log out
-                </span>
+              <DropdownMenuItem
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  setUser(null);
+                  setToken(null);
+                  toast.success("Хэрэглэгч та вебээс гарч байна.");
+                  router.push("/");
+                }}
+              >
+                <span>Log out</span>
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuContent>
