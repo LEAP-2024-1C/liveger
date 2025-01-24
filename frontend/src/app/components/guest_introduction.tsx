@@ -76,20 +76,6 @@ export function GuestIntro() {
               />
             </section>
           </div>
-          <div className="perCon shadow-xl flex flex-col justify-center items-center p-3 space-y-4">
-            <h1 className="text-emerald-700 font-bold text-2xl">
-              Rest in a Mongolian ger
-            </h1>
-            <p className="w-full">Stay in a traditional Mongolian dwelling.</p>
-            <section className="h-full w-full relative">
-              <Image
-                src="/gerger.jpg"
-                alt="homestay"
-                fill
-                className="object-cover absolute rounded-xl"
-              />
-            </section>
-          </div>
         </div>
       </div>
     </div>
