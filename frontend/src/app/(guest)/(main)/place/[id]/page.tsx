@@ -45,10 +45,26 @@ export default function Place() {
     location: "",
     distance: "",
     possibleGuestNumber: "",
-    totalBedOfPerGer: "",
-    totalGerNumber: "",
-    luxLevel: "",
+    calendar: {
+      userOrderDates: [
+        { _id: "", orderId: "", startDate: new Date(), endDate: new Date() },
+      ],
+      blockedDate: [{}],
+    },
   });
+  console.log("calendaeriig harah", onePlace.calendar.userOrderDates);
+  const placeOrderDateRanges = onePlace.calendar.userOrderDates
+    .map((date) => {
+      if (date.startDate && date.endDate) {
+        return {
+          from: new Date(date.startDate),
+          to: new Date(date.endDate),
+        };
+      }
+      return null;
+    })
+    .filter((range) => range !== null) as { from: Date; to: Date }[];
+  console.log("date rangeiig harah", placeOrderDateRanges);
   const getOnePlace = async () => {
     try {
       const response = await axios.get(`${apiUrl}/api/v1/places/${params.id}`);
@@ -60,8 +76,8 @@ export default function Place() {
     }
   };
   const handleBookingRequest = async (
-    startDate: string | null,
-    endDate: string | null,
+    startDate: Date | null,
+    endDate: Date | null,
     numberOfGuests: number | null
     // thisParamid: string | null
   ) => {
@@ -101,6 +117,10 @@ export default function Place() {
     new Date(onePlace.hostId.hostInfo.startedHostingDate),
     "yyyy 'оны' MM 'сар'"
   );
+  console.log(
+    "formatted start date iig harah",
+    onePlace.hostId.hostInfo.startedHostingDate
+  );
   return (
     <div className="mt-12 flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">
@@ -123,13 +143,9 @@ export default function Place() {
             <h1 className="text-4xl font-bold">{onePlace.title}</h1>
             <div className="flex flex-row gap-2 text-xl">
               <p className="md:text-base py-1 flex flex-row items-center ">
-                хүлээн авах боломжтой хамгийн их зочны тоо
+                <GoDotFill className="text-green-400" />
+                хүлээн авах боломжтой хамгийн их зочны тоо{" "}
                 {onePlace.possibleGuestNumber}
-                <GoDotFill className="text-green-400" /> нийт{" "}
-                {onePlace.totalGerNumber} гэртэй
-                <GoDotFill className="text-green-400" /> 1 гэрт{" "}
-                {onePlace.totalBedOfPerGer} ортой{" "}
-                <GoDotFill className="text-green-400" /> {onePlace.luxLevel}
               </p>
             </div>
             <div>
@@ -148,6 +164,7 @@ export default function Place() {
           <BookingCard
             thisplaceId={onePlace._id}
             onBookingRequest={handleBookingRequest}
+            orderedDateRanges={placeOrderDateRanges}
           />
         </div>
         <HostCard
