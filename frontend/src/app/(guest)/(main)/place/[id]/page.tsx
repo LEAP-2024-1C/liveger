@@ -117,10 +117,6 @@ export default function Place() {
     new Date(onePlace.hostId.hostInfo.startedHostingDate),
     "yyyy 'оны' MM 'сар'"
   );
-  console.log(
-    "formatted start date iig harah",
-    onePlace.hostId.hostInfo.startedHostingDate
-  );
   return (
     <div className="mt-12 flex flex-row justify-center my-4  md:px-8 lg:px-28 max-sm:p-5">
       <div className="w-full space-y-5">
